@@ -1,7 +1,7 @@
 export const Home = () => {
   return (
     <>
-      <div>Home</div>
+      <h1>Welcome to Itemized!</h1>
     </>
   )
 }

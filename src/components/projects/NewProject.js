@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./projects.css";
 
 export const NewProject = () => {
@@ -10,6 +11,7 @@ export const NewProject = () => {
     description: "",
     projectCreationDate: new Date()
   })
+  const navigate = useNavigate();
 
   const fileToImgur = (event) => {
     const formdata = new FormData();
@@ -42,7 +44,6 @@ export const NewProject = () => {
   };
 
   const handleProjectCreation = (event) => {
-    event.preventDefault();
 
     if (userInputs.name && userInputs.imageURL) {
       fetch(`http://localhost:8089/projects`, {
@@ -51,7 +52,7 @@ export const NewProject = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userInputs),
-      });
+      })
     } else {
       alert("Please try again");
     }

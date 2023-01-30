@@ -45,7 +45,6 @@ export const NewItem = () => {
   };
 
   const handleItemCreation = (event) => {
-    event.preventDefault();
 
     if (userInputs.name && userInputs.type && userInputs.imageURL) {
       fetch(`http://localhost:8089/items`, {

@@ -47,3 +47,17 @@ a {
 #projectImage {
   width: 100px;
 }
+
+/* All Items/Projects */
+#allProjectsContainer, .allItemsContainer {
+  margin: 10px;
+}
+
+.allProjectsItem, .allItemsItem {
+  border: 1px solid black;
+}
+
+/* Project Details */
+.projectImage, .itemImage {
+  width: 500px;
+}
