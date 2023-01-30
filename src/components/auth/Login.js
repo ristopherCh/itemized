@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("chanson8@gmail.com");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = (event) => {
+    event.preventDefault();
 
     return fetch(`http://localhost:8089/users?email=${email}`)
       .then((res) => res.json())

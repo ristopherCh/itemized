@@ -1,15 +1,7 @@
 .navbar {
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: left;
 }
 
-.navbar__item {
-    flex-basis: 20%;
-    list-style-type: none;
+.navItem {
+    margin: 0px 10px;
 }
-
-.navbar__logout {
-    margin-left: auto;
-}
-

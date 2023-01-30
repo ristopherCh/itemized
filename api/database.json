@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Chris Hanson",
+      "email": "chanson8@gmail.com"
+    }
+  ],
+  "projects": [
+
+  ],
+  "items": [],
+  "itemsProjects": [],
+  "documents": []
+}

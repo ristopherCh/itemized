@@ -6,12 +6,29 @@ export const NavBar = () => {
 
     return (
         <ul className="navbar">
-            <li className="navbar__item navbar__logout">
-                <Link className="navbar__link" to="" onClick={() => {
-                    localStorage.removeItem("kandy_user")
+            
+            <li className="navItem">
+                <Link to="/">Home</Link>
+            </li>
+            <li className="navItem">
+                <Link to="/projects">All Projects</Link>
+            </li>
+            <li className="navItem">
+                <Link to="/items">All Items</Link>
+            </li>
+            <li className="navItem">
+                <Link to="/projects/new">Create New Project</Link>
+            </li>
+            <li className="navItem">
+                <Link to="/items/new">Create New Item</Link>
+            </li>
+            <li className="navItem">
+                <Link to="" onClick={() => {
+                    localStorage.removeItem("itemized_user")
                     navigate("/", {replace: true})
                 }}>Logout</Link>
             </li>
+
         </ul>
     )
 }
