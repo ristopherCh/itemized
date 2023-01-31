@@ -17,7 +17,7 @@
     },
     {
       "userId": 1,
-      "name": "Black Cat",
+      "name": "Black Cat Project",
       "imageURL": "https://i.imgur.com/bVFHcgs.jpg",
       "description": "This project is hopefully going strong.",
       "projectCreationDate": "2023-01-30T21:15:35.343Z",
@@ -38,16 +38,51 @@
     },
     {
       "userId": 1,
-      "name": "eye roll",
-      "type": "worthless",
+      "name": "Cute Moment",
+      "type": "Photo",
       "imageURL": "https://i.imgur.com/mum4n1k.jpg",
       "description": "not funny",
       "purchasePrice": 1,
       "purchaseDate": "2023-01-17T00:00:00.000Z",
       "review": "i'll scream",
       "id": 2
+    },
+    {
+      "userId": 1,
+      "name": "New Kennel",
+      "type": "Kennel",
+      "imageURL": "https://i.imgur.com/ZqJjXFw.jpg",
+      "description": "Yaherd",
+      "purchasePrice": 2,
+      "purchaseDate": "2023-01-17T00:00:00.000Z",
+      "review": "Works great",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "name": "Penny's nice dog bed",
+      "type": "Dog bed",
+      "imageURL": "https://i.imgur.com/7jiAUTk.jpg",
+      "description": "too big for everywhere",
+      "purchasePrice": 14,
+      "purchaseDate": "2023-01-03T00:00:00.000Z",
+      "review": "take it apart, i dare you",
+      "id": 5
     }
   ],
-  "itemsProjects": [],
+  "itemsProjects": [
+    {
+      "userId": 1,
+      "itemId": 5,
+      "projectId": 1,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "itemId": 3,
+      "projectId": 1,
+      "id": 3
+    }
+  ],
   "documents": []
 }

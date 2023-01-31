@@ -11,18 +11,26 @@ export const AllItems = () => {
         setItems(data);
       });
   }, []);
-  
-  
+
   return (
     <div id="allItemsContainer">
       {items.map((item) => {
         return (
-          <section className="allItemsItem" key={item.id}>
-            <div>{item.name}</div>
-            <Link to={`/items/${item.id}`}>More details</Link>
+          <section className="allItemsItemContainer" key={item.id}>
+            <h2>{item.name}</h2>
+            <div className="allItemsItem">
+              <div className="allItemsDetails">
+                <h3>{item.type}</h3>
+                
+              </div>
+              <div className="allItemsRightColumn">
+                <img className="allItemsImage" src={item.imageURL} alt=""></img>
+                <Link className="allItemsMoreDetailsButton" to={`/items/${item.id}`}>More details</Link>
+              </div>
+            </div>
           </section>
-        )
+        );
       })}
     </div>
   );
-}
+};

@@ -64,24 +64,27 @@ export const NewProject = () => {
   }, [userInputs]);
   
   return (
-    <>
-      <h2>Create New Project</h2>
+    <div id="newProjectContentContainer">
+      <h1>Create New Project</h1>
       <form id="newProjectForm">
         <fieldset>
+
           <label className="projectLabel" htmlFor="projectName">
             Name
           </label>
           <input type="text" id="projectName" name="name" onChange={(event) => {
               updateFormState(event, event.target.name);
             }} />
-          <label className="projectLabel" htmlFor="projectImage">
+
+          <label className="projectLabel" htmlFor="projectImageInput">
             Upload an image
           </label>
-          <input type="file" id="projectImage" name="imageURL" onChange={(event) => {
+          <input type="file" id="projectImageInput" name="imageURL" onChange={(event) => {
               fileToImgur(event);
             }} />
             <br />
           {userInputs.imageURL ? <img id="projectImage" src={userInputs.imageURL} alt={"uploaded"}></img> : ""}
+          
           <label className="projectLabel" htmlFor="projectDescription">
             Add a description <span className="italic">-- Optional</span>
           </label>
@@ -93,14 +96,16 @@ export const NewProject = () => {
               updateFormState(event, event.target.name);
             }}
           ></textarea>
+
           <button
             id="newProjectSubmitButton"
             onClick={(event) => handleProjectCreation(event)}
           >
             Submit
           </button>
+
         </fieldset>
       </form>
-    </>
+    </div>
   );
 };

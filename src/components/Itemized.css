@@ -1,14 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 /* General */
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: "Playfair Display";
+  font-weight: 500;
 }
 
 body {
   background: #fff;
   color: #333;
   line-height: 1.6;
+  background-color: rgb(248, 255, 239);
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h1,
+h2 {
+  text-align: center;
 }
 
 ul {
@@ -21,21 +35,32 @@ a {
 }
 
 /* New item/project forms */
-#newItemForm, #newProjectForm {
+#newProjectContentContainer,
+#newItemContentContainer {
+  margin-top: 20px;
+}
+
+#newItemForm,
+#newProjectForm {
   margin-left: 10px;
 }
 
-.itemLabel, .projectLabel {
+.itemLabel,
+.projectLabel {
   display: block;
+  margin-top: 10px;
 }
 
-.itemTextarea, .projectTextarea {
+.itemTextarea,
+.projectTextarea {
   width: 35rem;
   height: 100px;
 }
 
-#newItemSubmitButton, #newProjectSubmitButton {
+#newItemSubmitButton,
+#newProjectSubmitButton {
   display: block;
+  padding: 3px 5px;
 }
 
 .italic {
@@ -44,20 +69,95 @@ a {
   display: none;
 }
 
-#projectImage {
-  width: 100px;
-}
-
 /* All Items/Projects */
-#allProjectsContainer, .allItemsContainer {
+#allProjectsContainer,
+#allItemsContainer {
   margin: 10px;
 }
 
-.allProjectsItem, .allItemsItem {
+.allProjectsItem {
   border: 1px solid black;
 }
 
+.allItemsItemContainer {
+  border: 1px solid black;
+  margin: 10px;
+}
+
+.allItemsItem {
+  display: flex;
+  justify-content: left;
+}
+
+.allItemsDetails {
+  width: 42%;
+  padding-left: 10px;
+}
+
+.allItemsImage {
+  width: 150px;
+}
+
+.allItemsMoreDetailsButton {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  align-self: flex-end;
+}
+
+.allItemsRightColumn {
+  width: 58%;
+  display: flex;
+  justify-content: space-between;
+}
+
 /* Project Details */
-.projectImage, .itemImage {
-  width: 500px;
+.projectDetailsContainer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: left;
+}
+
+.projectImage {
+  width: 95%;
+  max-width: 450px;
+}
+
+.projectDetailsLeftColumn {
+  padding-left: 10%;
+  width: 45%;
+}
+
+.projectDetailsRightColumn {
+  width: 53%;
+}
+
+.projectDetailsRightColumnSplitter {
+  display: flex;
+  justify-content: left;
+}
+
+.pdrl {
+  width: 45%;
+  min-width: 100px;
+  max-width: 300px;
+  padding-left: 10%;
+}
+
+.pdrr {
+  width: 60%;
+}
+
+/* Item Details */
+.itemDetailsContainer {
+  margin-left: 25px;
+}
+
+.itemImage {
+  width: 250px;
+}
+
+.itemDetailsUL {
+  list-style: disc;
+  padding-left: 25px;
 }

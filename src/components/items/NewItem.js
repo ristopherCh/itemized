@@ -3,6 +3,8 @@ import "./items.css";
 
 export const NewItem = () => {
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
+  const [selectedProjectId, setSelectedProjectId] = useState(0);
+  const [projects, setProjects] = useState([]);
   const [userInputs, setUserInputs] = useState({
     userId: itemizedUserObject.id,
     name: "",
@@ -14,21 +16,29 @@ export const NewItem = () => {
     review: "",
   });
 
+  useEffect(() => {
+    fetch(`http://localhost:8089/projects?userId=${itemizedUserObject.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setProjects(data);
+      });
+  }, []);
+
   const fileToImgur = (event) => {
     const formdata = new FormData();
     formdata.append("image", event.target.files[0]);
     fetch("https://api.imgur.com/3/image/", {
       method: "POST",
       headers: {
-        Authorization: "Client-ID e20703cad69156a"
+        Authorization: "Client-ID e20703cad69156a",
       },
       body: formdata,
     })
       .then((res) => res.json())
       .then((data) => {
-        const copy = { ...userInputs }
+        const copy = { ...userInputs };
         copy.imageURL = data.data.link;
-        setUserInputs(copy)
+        setUserInputs(copy);
       });
   };
 
@@ -45,7 +55,7 @@ export const NewItem = () => {
   };
 
   const handleItemCreation = (event) => {
-
+    // event.preventDefault();
     if (userInputs.name && userInputs.type && userInputs.imageURL) {
       fetch(`http://localhost:8089/items`, {
         method: "POST",
@@ -53,7 +63,24 @@ export const NewItem = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userInputs),
-      });
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          let itemId = data.id;
+          if (selectedProjectId) {
+            fetch(`http://localhost:8089/itemsProjects`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                userId: itemizedUserObject.id,
+                itemId: itemId,
+                projectId: selectedProjectId,
+              }),
+            });
+          }
+        });
     } else {
       alert("Please try again");
     }
@@ -65,8 +92,9 @@ export const NewItem = () => {
   }, [userInputs]);
 
   return (
-    <>
-      <h2>Create New Item</h2>
+    <div id="newItemContentContainer">
+      <h1>Create New Item</h1>
+
       <form id="newItemForm">
         <fieldset>
           <label className="itemLabel" htmlFor="itemName">
@@ -80,6 +108,7 @@ export const NewItem = () => {
               updateFormState(event, event.target.name);
             }}
           />
+
           <label className="itemLabel" htmlFor="itemType">
             Part Type
           </label>
@@ -103,8 +132,16 @@ export const NewItem = () => {
             }}
           />
           <br />
-          {userInputs.imageURL ? <img id="projectImage" src={userInputs.imageURL} alt={"uploaded"}></img> : ""}
-          
+          {userInputs.imageURL ? (
+            <img
+              id="projectImage"
+              src={userInputs.imageURL}
+              alt={"uploaded"}
+            ></img>
+          ) : (
+            ""
+          )}
+
           <label className="itemLabel" htmlFor="itemDescription">
             Add a description <span className="italic">-- Optional</span>
           </label>
@@ -116,13 +153,26 @@ export const NewItem = () => {
               updateFormState(event, event.target.name);
             }}
           ></textarea>
+
           <label className="itemLabel" htmlFor="itemProjectSelect">
-            Link this item to an ongoing project{" "}
+            Link this item to an ongoing project
             <span className="italic">-- Optional</span>
           </label>
-          <select>
+          <select
+            onChange={(event) => {
+              setSelectedProjectId(parseInt(event.target.value));
+            }}
+          >
             <option>Choose a project...</option>
+            {projects.map((project) => {
+              return (
+                <option key={project.id} value={project.id}>
+                  {project.name}
+                </option>
+              );
+            })}
           </select>
+
           <label className="itemLabel" htmlFor="itemPrice">
             Purchase Price <span className="italic">-- Optional</span>
           </label>
@@ -134,6 +184,7 @@ export const NewItem = () => {
               updateFormState(event, event.target.name);
             }}
           />
+
           <label className="itemLabel" htmlFor="itemPurchaseDate">
             Purchase date <span className="italic">-- Optional</span>
           </label>
@@ -145,6 +196,7 @@ export const NewItem = () => {
               updateFormState(event, event.target.name);
             }}
           />
+
           <label className="itemLabel" htmlFor="itemReview">
             Add notes/review <span className="italic">-- Optional</span>
           </label>
@@ -156,6 +208,7 @@ export const NewItem = () => {
               updateFormState(event, event.target.name);
             }}
           ></textarea>
+
           <button
             id="newItemSubmitButton"
             onClick={(event) => handleItemCreation(event)}
@@ -164,6 +217,6 @@ export const NewItem = () => {
           </button>
         </fieldset>
       </form>
-    </>
+    </div>
   );
 };
