@@ -45,7 +45,7 @@ export const NewProject = () => {
 
   const handleProjectCreation = (event) => {
 
-    if (userInputs.name && userInputs.imageURL) {
+    if (userInputs.name) {
       fetch(`http://localhost:8089/projects`, {
         method: "POST",
         headers: {
@@ -83,7 +83,7 @@ export const NewProject = () => {
               fileToImgur(event);
             }} />
             <br />
-          {userInputs.imageURL ? <img id="projectImage" src={userInputs.imageURL} alt={"uploaded"}></img> : ""}
+          {userInputs.imageURL ? <img id="uploadedImage" src={userInputs.imageURL} alt={"uploaded"}></img> : ""}
           
           <label className="projectLabel" htmlFor="projectDescription">
             Add a description <span className="italic">-- Optional</span>

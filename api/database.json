@@ -22,67 +22,336 @@
       "description": "This project is hopefully going strong.",
       "projectCreationDate": "2023-01-30T21:15:35.343Z",
       "id": 2
+    },
+    {
+      "userId": 1,
+      "name": "Trek Checkpoint AL 4 2020",
+      "imageURL": "https://i.imgur.com/087PNyJ.jpg",
+      "description": "",
+      "projectCreationDate": "2023-02-01T18:30:19.667Z",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "name": "UFO Gaming PC",
+      "imageURL": "https://i.imgur.com/oyqDrNt.jpg",
+      "description": "This computer was born to work.",
+      "projectCreationDate": "2023-02-01T19:31:08.649Z",
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "name": "Sony Alpha 6600 Mirrorless Camera",
+      "imageURL": "https://i.imgur.com/9J7gUDk.jpg",
+      "description": "Incredible camera",
+      "projectCreationDate": "2023-02-01T19:50:29.271Z",
+      "id": 5
     }
   ],
   "items": [
     {
       "userId": 1,
-      "name": "Dings",
-      "type": "Lovables",
-      "imageURL": "https://i.imgur.com/AhD8eAM.jpg",
-      "description": "Defective",
-      "purchasePrice": 5,
-      "purchaseDate": "2023-01-17T00:00:00.000Z",
-      "review": "Gets better with age at least",
+      "name": "Delta Cycle & Home Two Bike Gravity Pole Stand",
+      "type": "Bike Stand",
+      "imageURL": "https://i.imgur.com/4feF26V.jpg",
+      "description": "https://www.amazon.com/gp/product/B000ACAM38/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&th=1",
+      "purchasePrice": 63,
+      "purchaseDate": "2021-07-25T00:00:00.000Z",
+      "review": "Super effective, no complaints.",
       "id": 1
     },
     {
       "userId": 1,
-      "name": "Cute Moment",
-      "type": "Photo",
-      "imageURL": "https://i.imgur.com/mum4n1k.jpg",
-      "description": "not funny",
-      "purchasePrice": 1,
-      "purchaseDate": "2023-01-17T00:00:00.000Z",
-      "review": "i'll scream",
+      "name": "Ableton Push 1",
+      "type": "MIDI Controller",
+      "imageURL": "https://i.imgur.com/UkAm0pJ.jpg",
+      "description": "64 button MIDI controller with 8 knobs, engineered to integrate with Ableton Push software.",
+      "purchasePrice": 0,
+      "purchaseDate": "2015-07-01T00:00:00.000Z",
+      "review": "Fantastic",
       "id": 2
     },
     {
       "userId": 1,
-      "name": "New Kennel",
-      "type": "Kennel",
-      "imageURL": "https://i.imgur.com/ZqJjXFw.jpg",
-      "description": "Yaherd",
-      "purchasePrice": 2,
-      "purchaseDate": "2023-01-17T00:00:00.000Z",
-      "review": "Works great",
+      "name": "Martin 000-15M StreetMaster Acoustic Guitar",
+      "type": "Acoustic Guitar",
+      "imageURL": "https://i.imgur.com/49czJ8c.jpg",
+      "description": "Mahogany, distressed satin finish",
+      "purchasePrice": 999,
+      "purchaseDate": "2018-04-27T00:00:00.000Z",
+      "review": "https://www.martinguitar.com/guitars/15-series/000-15m-streetmaster/\n\nhttps://reverb.com/item/11073020-martin-000-15m-streetmaster-acoustic-guitar\n\n",
       "id": 3
     },
     {
       "userId": 1,
-      "name": "Penny's nice dog bed",
-      "type": "Dog bed",
-      "imageURL": "https://i.imgur.com/7jiAUTk.jpg",
-      "description": "too big for everywhere",
-      "purchasePrice": 14,
-      "purchaseDate": "2023-01-03T00:00:00.000Z",
-      "review": "take it apart, i dare you",
+      "name": "Muzizy Wooden Guitar Stand",
+      "type": "Guitar Stand",
+      "imageURL": "https://i.imgur.com/RkQIOp6.jpg",
+      "description": "Mahogany Wood Floor Stand",
+      "purchasePrice": 22,
+      "purchaseDate": "2018-04-28T00:00:00.000Z",
+      "review": "https://www.amazon.com/gp/product/B074XDWJ6Q/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1",
       "id": 5
+    },
+    {
+      "userId": 1,
+      "name": "Asics Gel-Venture 6",
+      "type": "Trail Running Shoes",
+      "imageURL": "https://i.imgur.com/0qCUOuu.jpg",
+      "description": "Black/Black, Size 11.5",
+      "purchasePrice": 80,
+      "purchaseDate": "2021-10-07T00:00:00.000Z",
+      "review": "Too roomy in the toe box for long term usage, and quite heavy. Good for grass, good for walking the dog.",
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "name": "RockBros Bike Bag Rear Carrier Pannier",
+      "type": "Bike Pannier",
+      "imageURL": "https://i.imgur.com/xe65cdb.jpg",
+      "description": "Velcro straps to attach it to a rear bike rack, and each side has an unfolding pocket that latches onto the sides of the bike rack with hooks.",
+      "purchasePrice": 52,
+      "purchaseDate": "2018-07-24T00:00:00.000Z",
+      "review": "Fantastic. Incredibly roomy.",
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "name": "Bontrager Ion Pro RT",
+      "type": "Bike Light",
+      "imageURL": "https://i.imgur.com/6nMnzYu.jpg",
+      "description": "USB-rechargeable front light with five modes for day and night.",
+      "purchasePrice": 120,
+      "purchaseDate": "2020-06-06T00:00:00.000Z",
+      "review": "https://www.trekbikes.com/us/en_US/equipment/bike-accessories/bike-lights/bike-front-lights/bontrager-ion-pro-rt-front-bike-light/p/22466/\n\nIncredibly powerful.",
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "name": "Bontrager Flare RT",
+      "type": "Bike Light",
+      "imageURL": "https://i.imgur.com/uyLo0fO.jpg",
+      "description": "A compact and powerful USB rechargeable rear bike light that's daytime visible from up to 2km away.",
+      "purchasePrice": 55,
+      "purchaseDate": "2020-06-06T00:00:00.000Z",
+      "review": "https://www.trekbikes.com/us/en_US/equipment/bike-accessories/bike-lights/bike-rear-lights/bontrager-flare-rt-rear-bike-light/p/23999/\n\nGreat!",
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "name": "Toolitin Bike Pump",
+      "type": "Bike Tire Pump",
+      "imageURL": "https://i.imgur.com/r0XBAfg.jpg",
+      "description": "Works for both Presta and Schrader valves, and has a functioning pressure gauge.",
+      "purchasePrice": 22,
+      "purchaseDate": "2021-05-06T00:00:00.000Z",
+      "review": "https://www.amazon.com/gp/product/B087TCWCPX/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1",
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "name": "Bontrager BackRack Disc MIK",
+      "type": "Bike Rack",
+      "imageURL": "https://i.imgur.com/JAeHBpN.jpg",
+      "description": "An MIK compatible rack that is easy to mount to disc brake-equipped bike frames.",
+      "purchasePrice": 44,
+      "purchaseDate": "2021-12-17T00:00:00.000Z",
+      "review": "Also got the matching Bontrager/Electra MIK Bike Bag Adapter Plate for $24.99. It's attached to the big plastic bucket. Fantastic addition.\n\nhttps://www.trekbikes.com/us/en_US/equipment/bike-accessories/bike-racks/bontrager-backrack-disc-mik/p/27225/\n",
+      "id": 11
+    },
+    {
+      "userId": 1,
+      "name": "Bontrager Verse Comp Saddle",
+      "type": "Bike Saddle",
+      "imageURL": "https://i.imgur.com/1cTQrqA.jpg",
+      "description": "270mm x 155mm.\n\n",
+      "purchasePrice": 90,
+      "purchaseDate": "2022-05-21T00:00:00.000Z",
+      "review": "Bought it at the Trek store in Cool Springs, TN. It's a great seat. Price estimated, total $194.23 for both this and the GR1 Team Issue tires.\n\nhttps://www.trekbikes.com/us/en_US/equipment/cycling-components/bike-saddles/performance-bike-saddles/bontrager-verse-comp-bike-saddle/p/32222/",
+      "id": 12
+    },
+    {
+      "userId": 1,
+      "name": "Bontrager GR1 Team Issue Gravel Tire",
+      "type": "Bike Tires",
+      "imageURL": "https://i.imgur.com/4QIsURC.jpg",
+      "description": "Black gravel tires, 700C x 35mm.",
+      "purchasePrice": 110,
+      "purchaseDate": "2022-05-20T00:00:00.000Z",
+      "review": "Bought it at the Trek store in Cool Springs, TN. Price estimated, total $194.23 for both this and the Verse Comp saddle.",
+      "id": 13
+    },
+    {
+      "userId": 1,
+      "name": "Bikehand Repair Stand",
+      "type": "Bike Repair Stand",
+      "imageURL": "https://i.imgur.com/KgC3c94.jpg",
+      "description": "Max 55 lbs. ",
+      "purchasePrice": 119,
+      "purchaseDate": "2022-07-25T00:00:00.000Z",
+      "review": "https://www.amazon.com/gp/product/B00D9B7OKQ/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1\n\nGreat product, no complaints.",
+      "id": 14
+    },
+    {
+      "userId": 1,
+      "name": "Penny 22\" Black",
+      "type": "Skateboard",
+      "imageURL": "https://i.imgur.com/XrmvAqt.jpg",
+      "description": "Hot Topic-esque pink skulls and flowers and things on the underneath, very cool. Excellent board.",
+      "purchasePrice": 80,
+      "purchaseDate": "2015-04-01T00:00:00.000Z",
+      "review": "Been through SO MUCH with this board. Price unknown. Purchase date heavily estimated.",
+      "id": 15
+    },
+    {
+      "userId": 1,
+      "name": "Penny 22\" Purple",
+      "type": "Skateboard",
+      "imageURL": "https://i.imgur.com/0u3A9kU.jpg",
+      "description": "Purple with orange screws.",
+      "purchasePrice": 90,
+      "purchaseDate": "2018-06-01T00:00:00.000Z",
+      "review": "Bought this for Claire to ride with me at the Santa Monica beach. Happy times. Purchase date and price estimated.\n\nhttps://www.pennyskateboards.com/collections/22-skateboards",
+      "id": 16
+    },
+    {
+      "userId": 1,
+      "name": "Ultraboost 4.0 DNA Black",
+      "type": "Shoes",
+      "imageURL": "https://i.imgur.com/nFLGabX.jpg",
+      "description": "Size 12.5, Core Black / Active Red.",
+      "purchasePrice": 155,
+      "purchaseDate": "2022-05-31T00:00:00.000Z",
+      "review": "https://www.adidas.com/us/ultraboost-4.0-dna-shoes/FY9121.html",
+      "id": 17
+    },
+    {
+      "userId": 1,
+      "name": "OutdoorMaster Skateboard Helmet",
+      "type": "Helmet",
+      "imageURL": "https://i.imgur.com/fLAUKm1.jpg",
+      "description": "Protect your noggin.",
+      "purchasePrice": 25,
+      "purchaseDate": "2020-10-25T00:00:00.000Z",
+      "review": "Rather uncomfortable. Did it up with cool stickers though.\n\nhttps://www.amazon.com/gp/product/B07CWMGQC5/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1&psc=1",
+      "id": 18
+    },
+    {
+      "userId": 1,
+      "name": "Bose QuietComfort 35 I",
+      "type": "Headphones",
+      "imageURL": "https://i.imgur.com/u0EYsnX.jpg",
+      "description": "These are generation 1 of the QC35 product. They have active noise cancelling.",
+      "purchasePrice": 120,
+      "purchaseDate": "2016-01-01T00:00:00.000Z",
+      "review": "These are the greatest thing to have ever happened to me. If I never get another pair of headphones in my life, I will be delighted.\n\nPrice and purchase date totally unknown.",
+      "id": 19
+    },
+    {
+      "userId": 1,
+      "name": "Bowflex SelectTech 552 Adjustable Dumbbells (Pair)",
+      "type": "Weights",
+      "imageURL": "https://i.imgur.com/W4iBIRl.jpg",
+      "description": "Adjusts from 5 - 52.5 lbs",
+      "purchasePrice": 299,
+      "purchaseDate": "2013-08-31T00:00:00.000Z",
+      "review": "Heavy. Have been a wonderful possession. They cost $429.99 now.\n\nhttps://www.amazon.com/gp/product/B001ARYU58/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1",
+      "id": 20
+    },
+    {
+      "userId": 1,
+      "name": "Brooks Ghost 14",
+      "type": "Running Shoes",
+      "imageURL": "https://i.imgur.com/I9L8342.jpg",
+      "description": "Size 12 D. ",
+      "purchasePrice": 99,
+      "purchaseDate": "2023-01-14T00:00:00.000Z",
+      "review": "Great.",
+      "id": 21
+    },
+    {
+      "userId": 1,
+      "name": "Doggyhut Large Pet Bike Trailer & Stroller",
+      "type": "Dog stroller",
+      "imageURL": "https://i.imgur.com/01Q4Wj3.jpg",
+      "description": "45 x 28.3 x 40.2 inches.\nSuitable for one medium or large sized dog 78 lbs or 2 small dogs with maximum shoulder height 24 inches.\n16\" air-filled tires.",
+      "purchasePrice": 189,
+      "purchaseDate": "2023-01-10T00:00:00.000Z",
+      "review": "Fantastic, if the pup is brave enough.",
+      "documentation": "https://www.amazon.com/dp/B09SH7YLW6?ref=ppx_yo2ov_dt_b_product_details&th=1",
+      "id": 22
+    },
+    {
+      "userId": 1,
+      "name": "arms",
+      "type": "legs",
+      "imageURL": "",
+      "description": "",
+      "purchasePrice": 0,
+      "purchaseDate": "",
+      "review": "",
+      "documentation": "",
+      "id": 23
     }
   ],
   "itemsProjects": [
     {
       "userId": 1,
-      "itemId": 5,
-      "projectId": 1,
+      "itemId": 7,
+      "projectId": 3,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "itemId": 14,
+      "projectId": 3,
       "id": 2
     },
     {
       "userId": 1,
-      "itemId": 3,
-      "projectId": 1,
+      "itemId": 13,
+      "projectId": 3,
       "id": 3
+    },
+    {
+      "userId": 1,
+      "itemId": 12,
+      "projectId": 3,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "itemId": 10,
+      "projectId": 3,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "itemId": 9,
+      "projectId": 3,
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "itemId": 8,
+      "projectId": 3,
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "itemId": 1,
+      "projectId": 3,
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "itemId": 22,
+      "projectId": 1,
+      "id": 9
     }
   ],
-  "documents": []
+  "documents": [],
+  "itemsNotes": [
+    
+  ]
 }

@@ -8,22 +8,22 @@ export const NavBar = () => {
         <ul className="navbar">
             
             <li className="navItem">
-                <Link to="/">Home</Link>
+                <Link className="navLink" to="/">Home</Link>
             </li>
             <li className="navItem">
-                <Link to="/projects">All Projects</Link>
+                <Link className="navLink" to="/projects">All Projects</Link>
             </li>
             <li className="navItem">
-                <Link to="/items">All Items</Link>
+                <Link className="navLink" to="/items">All Items</Link>
             </li>
             <li className="navItem">
-                <Link to="/projects/new">Create New Project</Link>
+                <Link className="navLink" to="/projects/new">Create New Project</Link>
             </li>
             <li className="navItem">
-                <Link to="/items/new">Create New Item</Link>
+                <Link className="navLink" to="/items/new">Create New Item</Link>
             </li>
             <li className="navItem">
-                <Link to="" onClick={() => {
+                <Link className="navLink" to="" onClick={() => {
                     localStorage.removeItem("itemized_user")
                     navigate("/", {replace: true})
                 }}>Logout</Link>

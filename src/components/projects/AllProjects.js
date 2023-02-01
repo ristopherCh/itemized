@@ -15,11 +15,13 @@ export const AllProjects = () => {
 
   return (
     <div id="allProjectsContainer">
+    <h1>All Projects</h1>
       {projects.map((project) => {
         return (
           <section className="allProjectsItem" key={project.id}>
-            <div>{project.name}</div>
-            <Link to={`/projects/${project.id}`}>More details</Link>
+            <h2>{project.name}</h2>
+            <div><img className="allProjectsPhoto" src={project.imageURL} alt=""></img></div>
+            <Link className="allProjectsMoreDetailsButton" to={`/projects/${project.id}`}>More details</Link>
           </section>
         )
       })}

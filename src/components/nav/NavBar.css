@@ -6,3 +6,7 @@
 .navItem {
     margin: 0px 10px;
 }
+
+.navLink {
+    font-weight: 600;
+}

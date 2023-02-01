@@ -32,6 +32,17 @@ ul {
 a {
   color: black;
   text-decoration: none;
+  font-weight: 900
+}
+
+/* Home */
+#homeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 50%)
+}
+
+.homePhoto {
+  width: 50%;
 }
 
 /* New item/project forms */
@@ -61,12 +72,21 @@ a {
 #newProjectSubmitButton {
   display: block;
   padding: 3px 5px;
+  font-weight: 600;
 }
 
 .italic {
   font-style: italic;
   color: grey;
   display: none;
+}
+
+#uploadedImage {
+  width: 200px;
+}
+
+.newItemInputField {
+  width: 400px;
 }
 
 /* All Items/Projects */
@@ -76,7 +96,12 @@ a {
 }
 
 .allProjectsItem {
+  padding: 10px;
   border: 1px solid black;
+}
+
+.allProjectsPhoto {
+  width: 200px;
 }
 
 .allItemsItemContainer {
@@ -98,17 +123,24 @@ a {
   width: 150px;
 }
 
-.allItemsMoreDetailsButton {
+.allItemsMoreDetailsButton, .allProjectsMoreDetailsButton {
   border: 1px solid black;
   border-radius: 10px;
   padding: 5px;
   align-self: flex-end;
+  font-weight: 600;
+  margin: 10px;
 }
 
 .allItemsRightColumn {
   width: 58%;
   display: flex;
   justify-content: space-between;
+}
+
+#allProjectsContainer img {
+  display: block;
+  margin: auto;
 }
 
 /* Project Details */
@@ -150,7 +182,8 @@ a {
 
 /* Item Details */
 .itemDetailsContainer {
-  margin-left: 25px;
+  margin: 25px;
+  margin-bottom: 75px;
 }
 
 .itemImage {
@@ -158,6 +191,13 @@ a {
 }
 
 .itemDetailsUL {
-  list-style: disc;
   padding-left: 25px;
+}
+
+.itemDetailsAddBtn {
+  margin-left: 5px;
+}
+
+#foundProjectImage {
+  width: 80px;
 }

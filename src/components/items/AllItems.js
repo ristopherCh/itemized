@@ -14,6 +14,7 @@ export const AllItems = () => {
 
   return (
     <div id="allItemsContainer">
+    <h1>All Items</h1>
       {items.map((item) => {
         return (
           <section className="allItemsItemContainer" key={item.id}>

@@ -5,6 +5,12 @@ export const NewItem = () => {
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
   const [selectedProjectId, setSelectedProjectId] = useState(0);
   const [projects, setProjects] = useState([]);
+  const [itemsNotes, setItemsNotes] = useState([]);
+  const [itemNote, setItemNote] = useState({
+    userId: itemizedUserObject.id,
+    itemId: 0,
+    noteText: "",
+  });
   const [userInputs, setUserInputs] = useState({
     userId: itemizedUserObject.id,
     name: "",
@@ -14,6 +20,7 @@ export const NewItem = () => {
     purchasePrice: 0,
     purchaseDate: "",
     review: "",
+    documentation: "",
   });
 
   useEffect(() => {
@@ -21,6 +28,12 @@ export const NewItem = () => {
       .then((res) => res.json())
       .then((data) => {
         setProjects(data);
+      });
+
+    fetch(`http://localhost:8089/itemsNotes`)
+      .then((res) => res.json())
+      .then((data) => {
+        setItemsNotes(data);
       });
   }, []);
 
@@ -55,8 +68,8 @@ export const NewItem = () => {
   };
 
   const handleItemCreation = (event) => {
-    // event.preventDefault();
-    if (userInputs.name && userInputs.type && userInputs.imageURL) {
+    event.preventDefault();
+    if (userInputs.name && userInputs.type) {
       fetch(`http://localhost:8089/items`, {
         method: "POST",
         headers: {
@@ -67,6 +80,7 @@ export const NewItem = () => {
         .then((res) => res.json())
         .then((data) => {
           let itemId = data.id;
+
           if (selectedProjectId) {
             fetch(`http://localhost:8089/itemsProjects`, {
               method: "POST",
@@ -80,6 +94,17 @@ export const NewItem = () => {
               }),
             });
           }
+
+          const itemNoteCopy = { ...itemNote };
+          itemNoteCopy.itemId = itemId;
+          setItemNote(itemNoteCopy);
+          fetch(`http://localhost:8089/itemsNotes`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(itemNote),
+          })
         });
     } else {
       alert("Please try again");
@@ -93,6 +118,11 @@ export const NewItem = () => {
 
   return (
     <div id="newItemContentContainer">
+    {itemsNotes.map(itemNote => {
+      return (
+        <div key={itemNote.id}>{itemNote.noteText}</div>
+      )
+    })}
       <h1>Create New Item</h1>
 
       <form id="newItemForm">
@@ -101,6 +131,7 @@ export const NewItem = () => {
             Name
           </label>
           <input
+            className="newItemInputField"
             type="text"
             id="itemName"
             name="name"
@@ -113,6 +144,7 @@ export const NewItem = () => {
             Part Type
           </label>
           <input
+            className="newItemInputField"
             type="text"
             id="itemType"
             name="type"
@@ -134,7 +166,7 @@ export const NewItem = () => {
           <br />
           {userInputs.imageURL ? (
             <img
-              id="projectImage"
+              id="uploadedImage"
               src={userInputs.imageURL}
               alt={"uploaded"}
             ></img>
@@ -178,6 +210,7 @@ export const NewItem = () => {
           </label>
           <input
             type="number"
+            step="any"
             id="itemPrice"
             name="purchasePrice"
             onChange={(event) => {
@@ -198,7 +231,7 @@ export const NewItem = () => {
           />
 
           <label className="itemLabel" htmlFor="itemReview">
-            Add notes/review <span className="italic">-- Optional</span>
+            Add review <span className="italic">-- Optional</span>
           </label>
           <textarea
             className="itemTextarea"
@@ -208,6 +241,34 @@ export const NewItem = () => {
               updateFormState(event, event.target.name);
             }}
           ></textarea>
+
+          <label className="itemLabel" htmlFor="itemDocumentation">
+            Additional documentation <span className="italic">-- Optional</span>
+          </label>
+          <input
+            className="newItemInputField"
+            type="text"
+            id="itemDocumentation"
+            name="documentation"
+            onChange={(event) => {
+              updateFormState(event, event.target.name);
+            }}
+          />
+
+          <label className="itemLabel" htmlFor="itemNote">
+            Add personal note
+          </label>
+          <input
+            className="newItemInputField"
+            type="text"
+            id="itemNote"
+            name="note"
+            onChange={(event) => {
+              const copy = { ...itemNote };
+              copy.noteText = event.target.value;
+              setItemNote(copy);
+            }}
+          />
 
           <button
             id="newItemSubmitButton"
