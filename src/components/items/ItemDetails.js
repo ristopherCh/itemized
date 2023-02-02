@@ -4,20 +4,28 @@ import { Link, useParams } from "react-router-dom";
 export const ItemDetails = () => {
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
   const { itemId } = useParams();
+
   const [item, setItem] = useState({});
   const [projects, setProjects] = useState([]);
+  const [itemNotes, setItemNotes] = useState([]);
+  const [itemNote, setItemNote] = useState({
+    userId: itemizedUserObject.id,
+    itemId: itemId,
+    noteText: "",
+    dateTime: "",
+  });
   const [selectedItemProject, setSelectedItemProject] = useState({
     userId: itemizedUserObject.id,
     itemId: 0,
     projectId: 0,
   });
   const [itemProjects, setItemProjects] = useState([]);
+
   useEffect(() => {
     fetch(`http://localhost:8089/items/${itemId}`)
       .then((res) => res.json())
       .then((data) => {
         setItem(data);
-
         const copy = { ...selectedItemProject };
         copy.itemId = data.id;
         setSelectedItemProject(copy);
@@ -37,6 +45,14 @@ export const ItemDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         setItemProjects(data);
+      });
+
+    fetch(
+      `http://localhost:8089/itemsNotes?userId=${itemizedUserObject.id}&itemId=${item.id}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setItemNotes(data);
       });
   }, [item]);
 
@@ -73,6 +89,17 @@ export const ItemDetails = () => {
     );
   };
 
+  const handleAddNoteButton = (event) => {
+    // event.preventDefault();
+    fetch(`http://localhost:8089/itemsNotes`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(itemNote),
+    });
+  };
+
   return (
     <>
       <h1>{item.name}</h1>
@@ -90,7 +117,21 @@ export const ItemDetails = () => {
         ) : (
           ""
         )}
-        <p>Personal notes:</p>
+        <p>Notes:</p>
+        <ul>
+          {itemNotes.map((itemNote) => {
+            return (
+              <div key={itemNote.id}>
+                <li>{itemNote.noteText}</li>
+                {itemNote.dateTime ? (
+                  <li>{new Date(itemNote.dateTime).toLocaleDateString()}</li>
+                ) : (
+                  ""
+                )}
+              </div>
+            );
+          })}
+        </ul>
 
         <p>Associated projects:</p>
         <ul className="itemDetailsUL">
@@ -133,6 +174,28 @@ export const ItemDetails = () => {
             }}
           >
             Add
+          </button>
+        </form>
+        <form>
+          <label className="itemLabel" htmlFor="addItemNote">
+            Add a note to this item
+          </label>
+          <input
+            type="text"
+            id="addItemNote"
+            onChange={(event) => {
+              const copy = { ...itemNote };
+              copy.noteText = event.target.value;
+              copy.dateTime = Date();
+              setItemNote(copy);
+            }}
+          />
+          <button
+            onClick={(event) => {
+              handleAddNoteButton(event);
+            }}
+          >
+            Add note
           </button>
         </form>
       </div>

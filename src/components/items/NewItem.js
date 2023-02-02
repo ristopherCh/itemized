@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./items.css";
 
 export const NewItem = () => {
+  const navigate = useNavigate();
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
   const [selectedProjectId, setSelectedProjectId] = useState(0);
   const [projects, setProjects] = useState([]);
-  const [itemsNotes, setItemsNotes] = useState([]);
   const [itemNote, setItemNote] = useState({
     userId: itemizedUserObject.id,
     itemId: 0,
     noteText: "",
+    dateTime: "",
   });
   const [userInputs, setUserInputs] = useState({
     userId: itemizedUserObject.id,
@@ -28,12 +30,6 @@ export const NewItem = () => {
       .then((res) => res.json())
       .then((data) => {
         setProjects(data);
-      });
-
-    fetch(`http://localhost:8089/itemsNotes`)
-      .then((res) => res.json())
-      .then((data) => {
-        setItemsNotes(data);
       });
   }, []);
 
@@ -68,6 +64,7 @@ export const NewItem = () => {
   };
 
   const handleItemCreation = (event) => {
+
     event.preventDefault();
     if (userInputs.name && userInputs.type) {
       fetch(`http://localhost:8089/items`, {
@@ -97,14 +94,14 @@ export const NewItem = () => {
 
           const itemNoteCopy = { ...itemNote };
           itemNoteCopy.itemId = itemId;
-          setItemNote(itemNoteCopy);
+          itemNoteCopy.dateTime = Date();
           fetch(`http://localhost:8089/itemsNotes`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(itemNote),
-          })
+            body: JSON.stringify(itemNoteCopy),
+          });
         });
     } else {
       alert("Please try again");
@@ -118,11 +115,6 @@ export const NewItem = () => {
 
   return (
     <div id="newItemContentContainer">
-    {itemsNotes.map(itemNote => {
-      return (
-        <div key={itemNote.id}>{itemNote.noteText}</div>
-      )
-    })}
       <h1>Create New Item</h1>
 
       <form id="newItemForm">
@@ -256,7 +248,7 @@ export const NewItem = () => {
           />
 
           <label className="itemLabel" htmlFor="itemNote">
-            Add personal note
+            Add a note
           </label>
           <input
             className="newItemInputField"
