@@ -100,6 +100,25 @@ export const ItemDetails = () => {
     });
   };
 
+  const handleDeleteButtonClick = (event) => {
+    event.preventDefault();
+    fetch(`http://localhost:8089/items/${item.id}`, {
+      method: "DELETE",
+    });
+
+    for (let itemProject of itemProjects) {
+      fetch(`http://localhost:8089/itemsProjects/${itemProject.id}`, {
+        method: "DELETE",
+      });
+    }
+
+    for (let itemNote of itemNotes) {
+      fetch(`http://localhost:8089/itemsNotes/${itemNote.id}`, {
+        method: "DELETE",
+      });
+    }
+  }
+
   return (
     <>
       <h1>{item.name}</h1>
@@ -198,6 +217,14 @@ export const ItemDetails = () => {
             Add note
           </button>
         </form>
+
+        <button
+          onClick={(event) => {
+            handleDeleteButtonClick(event);
+          }}
+        >
+          Delete this item
+        </button>
       </div>
     </>
   );
