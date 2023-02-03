@@ -35,6 +35,10 @@ a {
   font-weight: 900
 }
 
+.buttonBlock {
+  display: block;
+}
+
 /* Home */
 #homeGrid {
   display: grid;

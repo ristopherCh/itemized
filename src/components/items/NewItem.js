@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./items.css";
 
-export const NewItem = () => {
+export const NewItem = ({ purchaseDate }) => {
+  const { itemId } = useParams();
+  const [editableItem, setEditableItem] = useState({});
   const navigate = useNavigate();
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
   const [selectedProjectId, setSelectedProjectId] = useState(0);
@@ -19,11 +21,25 @@ export const NewItem = () => {
     type: "",
     imageURL: "",
     description: "",
-    purchasePrice: 0,
+    purchasePrice: "",
     purchaseDate: "",
     review: "",
     documentation: "",
   });
+
+  useEffect(() => {
+    setUserInputs({
+      userId: itemizedUserObject.id,
+      name: editableItem.name,
+      type: editableItem.type,
+      imageURL: editableItem.imageURL,
+      description: editableItem.description,
+      purchasePrice: editableItem.purchasePrice,
+      purchaseDate: editableItem.purchaseDate?.slice(0, 10),
+      review: editableItem.review,
+      documentation: editableItem.documentation,
+    });
+  }, [editableItem]);
 
   useEffect(() => {
     fetch(`http://localhost:8089/projects?userId=${itemizedUserObject.id}`)
@@ -31,6 +47,14 @@ export const NewItem = () => {
       .then((data) => {
         setProjects(data);
       });
+    if (itemId) {
+      fetch(`http://localhost:8089/items/${itemId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setEditableItem(data);
+          console.log(data);
+        });
+    }
   }, []);
 
   const fileToImgur = (event) => {
@@ -54,17 +78,47 @@ export const NewItem = () => {
   const updateFormState = (event, property) => {
     const copy = { ...userInputs };
     if (event.target.type === "number") {
-      copy[property] = parseInt(event.target.value);
-    } else if (event.target.type === "date") {
-      copy[property] = new Date(event.target.value);
+      copy[property] = parseFloat(event.target.value);
     } else {
       copy[property] = event.target.value;
     }
     setUserInputs(copy);
   };
 
-  const handleItemCreation = (event) => {
+  const postToItemsProjects = (itemId) => {
+    if (selectedProjectId) {
+      fetch(`http://localhost:8089/itemsProjects`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: itemizedUserObject.id,
+          itemId: itemId,
+          projectId: selectedProjectId,
+        }),
+      });
+    }
+  };
 
+  const postToItemsNotes = (itemId) => {
+    const itemNoteCopy = { ...itemNote };
+    itemNoteCopy.itemId = itemId;
+    itemNoteCopy.dateTime = Date();
+    if (itemNoteCopy.noteText) {
+      fetch(`http://localhost:8089/itemsNotes`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(itemNoteCopy),
+      }).then(navigate(`/items/${itemId}`));
+    } else {
+      navigate(`/items/${itemId}`);
+    }
+  };
+
+  const handleItemCreation = (event) => {
     event.preventDefault();
     if (userInputs.name && userInputs.type) {
       fetch(`http://localhost:8089/items`, {
@@ -76,46 +130,37 @@ export const NewItem = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          let itemId = data.id;
-
-          if (selectedProjectId) {
-            fetch(`http://localhost:8089/itemsProjects`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                userId: itemizedUserObject.id,
-                itemId: itemId,
-                projectId: selectedProjectId,
-              }),
-            });
-          }
-
-          const itemNoteCopy = { ...itemNote };
-          itemNoteCopy.itemId = itemId;
-          itemNoteCopy.dateTime = Date();
-          fetch(`http://localhost:8089/itemsNotes`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(itemNoteCopy),
-          });
+          postToItemsProjects(data.id);
+          postToItemsNotes(data.id);
         });
     } else {
       alert("Please try again");
     }
   };
 
-  useEffect(() => {
-    // ~ This is just to monitor the change of state, it's not functional
-    // console.log(userInputs);
-  }, [userInputs]);
+  const handleItemEdit = (event) => {
+    event.preventDefault();
+    if (userInputs.name && userInputs.type) {
+      fetch(`http://localhost:8089/items/${itemId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInputs),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          postToItemsProjects(data.id);
+          postToItemsNotes(data.id);
+        });
+    } else {
+      alert("Please try again");
+    }
+  };
 
   return (
     <div id="newItemContentContainer">
-      <h1>Create New Item</h1>
+      {itemId ? <h1>Edit Item</h1> : <h1>Add New Item</h1>}
 
       <form id="newItemForm">
         <fieldset>
@@ -127,6 +172,7 @@ export const NewItem = () => {
             type="text"
             id="itemName"
             name="name"
+            value={userInputs.name}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -140,6 +186,7 @@ export const NewItem = () => {
             type="text"
             id="itemType"
             name="type"
+            value={userInputs.type}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -173,6 +220,7 @@ export const NewItem = () => {
             className="itemTextarea"
             id="itemDescription"
             name="description"
+            value={userInputs.description}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -205,6 +253,7 @@ export const NewItem = () => {
             step="any"
             id="itemPrice"
             name="purchasePrice"
+            value={userInputs.purchasePrice}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -217,6 +266,7 @@ export const NewItem = () => {
             type="date"
             id="itemPurchaseDate"
             name="purchaseDate"
+            value={userInputs.purchaseDate?.slice(0, 10)}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -229,6 +279,7 @@ export const NewItem = () => {
             className="itemTextarea"
             id="itemReview"
             name="review"
+            value={userInputs.review}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -242,6 +293,7 @@ export const NewItem = () => {
             type="text"
             id="itemDocumentation"
             name="documentation"
+            value={userInputs.documentation}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -261,13 +313,21 @@ export const NewItem = () => {
               setItemNote(copy);
             }}
           />
-
-          <button
-            id="newItemSubmitButton"
-            onClick={(event) => handleItemCreation(event)}
-          >
-            Submit
-          </button>
+          {itemId ? (
+            <button
+              id="newItemSubmitButton"
+              onClick={(event) => handleItemEdit(event)}
+            >
+              Save Edit
+            </button>
+          ) : (
+            <button
+              id="newItemSubmitButton"
+              onClick={(event) => handleItemCreation(event)}
+            >
+              Submit
+            </button>
+          )}
         </fieldset>
       </form>
     </div>

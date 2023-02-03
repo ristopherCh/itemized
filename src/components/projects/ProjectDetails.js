@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export const ProjectDetails = () => {
+  const navigate = useNavigate();
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
   const { projectId } = useParams();
   const [project, setProject] = useState({});
@@ -12,6 +13,16 @@ export const ProjectDetails = () => {
     itemId: 0,
     projectId: 0,
   });
+
+  const fetchProjectItems = () => {
+    return fetch(
+      `http://localhost:8089/itemsProjects?userId=${itemizedUserObject.id}&projectId=${projectId}&_expand=item`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setProjectItems(data);
+      });
+  };
 
   useEffect(() => {
     fetch(`http://localhost:8089/projects/${projectId}`)
@@ -24,13 +35,7 @@ export const ProjectDetails = () => {
         setSelectedProjectItem(copy);
       });
 
-    fetch(
-      `http://localhost:8089/itemsProjects?userId=${itemizedUserObject.id}&projectId=${projectId}&_expand=item`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setProjectItems(data);
-      });
+    fetchProjectItems();
 
     fetch(`http://localhost:8089/items?userId=${itemizedUserObject.id}`)
       .then((res) => res.json())
@@ -40,6 +45,7 @@ export const ProjectDetails = () => {
   }, []);
 
   const handleAddButtonClick = (event) => {
+    event.preventDefault();
     let noDuplicates = true;
     for (let projectItem of projectItems) {
       if (projectItem.itemId === selectedProjectItem.itemId) {
@@ -55,21 +61,34 @@ export const ProjectDetails = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(selectedProjectItem),
+        }).then(() => {
+          fetchProjectItems();
         });
       }
     } else {
-      alert("Please selet an item to associte project with");
+      alert("Please select an item to associate project with");
     }
   };
 
   const displayItemPhoto = () => {
     let selectedItem = items.find((item) => {
-      return item.id === selectedProjectItem.itemId
-    })
+      return item.id === selectedProjectItem.itemId;
+    });
     return (
-      <div><img id="foundItemImage" src={selectedItem.imageURL} alt=""></img></div>
-    )
-  }
+      <div>
+        <img id="foundItemImage" src={selectedItem.imageURL} alt=""></img>
+      </div>
+    );
+  };
+
+  const handleRemoveItem = (event, projectItem) => {
+    event.preventDefault();
+    fetch(`http://localhost:8089/itemsProjects/${projectItem.id}`, {
+      method: "DELETE",
+    }).then(() => {
+      fetchProjectItems();
+    });
+  };
 
   return (
     <>
@@ -90,7 +109,14 @@ export const ProjectDetails = () => {
                 <div className="pdrr">
                   <Link to={`/items/${projectItem.itemId}`}>
                     {projectItem.item?.name}
-                  </Link>
+                  </Link>{" "}
+                  <button
+                    onClick={(event) => {
+                      handleRemoveItem(event, projectItem);
+                    }}
+                  >
+                    x
+                  </button>
                 </div>
               </div>
             );

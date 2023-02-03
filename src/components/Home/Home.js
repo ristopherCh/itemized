@@ -12,7 +12,7 @@ export const Home = () => {
       .then((data) => {
         setProjects(data);
       });
-  });
+  },[]);
 
   useEffect(() => {
     setTopProjects(projects.slice(0, 4))

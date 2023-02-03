@@ -77,9 +77,10 @@
       "type": "Acoustic Guitar",
       "imageURL": "https://i.imgur.com/49czJ8c.jpg",
       "description": "Mahogany, distressed satin finish",
-      "purchasePrice": 999,
-      "purchaseDate": "2018-04-27T00:00:00.000Z",
-      "review": "https://www.martinguitar.com/guitars/15-series/000-15m-streetmaster/\n\nhttps://reverb.com/item/11073020-martin-000-15m-streetmaster-acoustic-guitar\n\n",
+      "purchasePrice": 999.99,
+      "purchaseDate": "2018-04-27",
+      "review": "Very beautiful sitting in my office! Less beautiful when I play it.\n\n",
+      "documentation": "https://www.martinguitar.com/guitars/15-series/000-15m-streetmaster/",
       "id": 3
     },
     {
@@ -133,7 +134,7 @@
       "imageURL": "https://i.imgur.com/uyLo0fO.jpg",
       "description": "A compact and powerful USB rechargeable rear bike light that's daytime visible from up to 2km away.",
       "purchasePrice": 55,
-      "purchaseDate": "2020-06-06T00:00:00.000Z",
+      "purchaseDate": "2020-06-06",
       "review": "https://www.trekbikes.com/us/en_US/equipment/bike-accessories/bike-lights/bike-rear-lights/bontrager-flare-rt-rear-bike-light/p/23999/\n\nGreat!",
       "id": 9
     },
@@ -177,8 +178,8 @@
       "imageURL": "https://i.imgur.com/4QIsURC.jpg",
       "description": "Black gravel tires, 700C x 35mm.",
       "purchasePrice": 110,
-      "purchaseDate": "2022-05-20T00:00:00.000Z",
-      "review": "Bought it at the Trek store in Cool Springs, TN. Price estimated, total $194.23 for both this and the Verse Comp saddle.",
+      "purchaseDate": "2022-05-20",
+      "review": "",
       "id": 13
     },
     {
@@ -292,6 +293,66 @@
       "review": "Love it! Doesn't quite function as promised but I've found my workarounds.",
       "documentation": "https://www.amazon.com/Complete-Golden-Retriever-Handbook-Prospective/dp/1979837120/ref=sr_1_4?crid=35BFMZX2VEDHP&keywords=golden+retriever+book&qid=1675353286&sprefix=golden+retriever+book%2Caps%2C100&sr=8-4",
       "id": 24
+    },
+    {
+      "userId": 1,
+      "name": "Movo VXR10 Universal Video Microphone",
+      "type": "Camera Microphone",
+      "imageURL": "https://i.imgur.com/C8R6wT3.jpg",
+      "description": "This is a mono camera microphone which attaches to your camera with a vibration-dampening piece and has a DeadCat for reducing wind noise.",
+      "purchasePrice": 39,
+      "purchaseDate": "2021-04-30",
+      "review": "Hasn't failed me yet.",
+      "documentation": "https://www.amazon.com/gp/product/B0723D3FVL/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1",
+      "id": 25
+    },
+    {
+      "userId": 1,
+      "name": "IKEA MARKUS",
+      "type": "Office Chair",
+      "imageURL": "https://i.imgur.com/hlLBefy.jpg",
+      "description": "Vissle dark gray office chair with all the usual capabilities.",
+      "purchasePrice": 220,
+      "purchaseDate": "2019-07-01T00:00:00.000Z",
+      "review": "Fantastic chair. Will use it until it completely collapses.",
+      "documentation": "https://www.ikea.com/us/en/p/markus-office-chair-vissle-dark-gray-90289172/",
+      "id": 26
+    },
+    {
+      "userId": 1,
+      "name": "Adidas Ultraboost",
+      "type": "Shoes",
+      "imageURL": "https://i.imgur.com/p0XzmNl.jpg",
+      "description": "Size: 12.5\n\nColor: Core Black / Core Black / Glow Green",
+      "purchasePrice": 180,
+      "purchaseDate": "2019-09-04T00:00:00.000Z",
+      "review": "These shoes have taken me further than I ever expected. They're still in use, although they're wearing out in the toe.",
+      "documentation": "",
+      "id": 27
+    },
+    {
+      "userId": 1,
+      "name": "Denon AVR-X1500H",
+      "type": "Home Theater Receiver",
+      "imageURL": "https://i.imgur.com/wT5CLpQ.jpg",
+      "description": "This receiver does all the expected things: receives many HDMI inputs, receives multiple audio signals, has the option for front, center, and many surround speakers. It also has Bluetooth and I can cast straight to it from Spotify.\n\n7.2Ch x 80 Watts",
+      "purchasePrice": 327,
+      "purchaseDate": "2020-04-04T00:00:00.000Z",
+      "review": "Wonderful, I love it. No complaints.",
+      "documentation": "http://manuals.denon.com/AVRX1500H/NA/EN/index.php",
+      "id": 28
+    },
+    {
+      "userId": 1,
+      "name": "Edifier R2000DB",
+      "type": "Speakers",
+      "imageURL": "https://i.imgur.com/zOxJsem.jpg",
+      "description": "120 watts RMS, 25mm \"Eagle Eye\" tweeter 6 ohm, RMS 24W x 2 + 36W x 2, 5\" alloy 4 ohm, 9.5 x 11.25 x 7.5in",
+      "purchasePrice": 249.99,
+      "purchaseDate": "2017-12-12",
+      "review": "Pretty good. They don't blow me away.",
+      "documentation": "https://www.amazon.com/Edifier-R2000DB-Bluetooth-Bookshelf-Speakers/dp/B016PAWJYS",
+      "id": 29
     }
   ],
   "itemsProjects": [
@@ -351,9 +412,21 @@
     },
     {
       "userId": 1,
+      "itemId": 26,
+      "projectId": 4,
+      "id": 11
+    },
+    {
+      "userId": 1,
       "itemId": 24,
       "projectId": 1,
-      "id": 10
+      "id": 12
+    },
+    {
+      "userId": 1,
+      "itemId": 25,
+      "projectId": 5,
+      "id": 13
     }
   ],
   "documents": [],
@@ -371,6 +444,55 @@
       "noteText": "Vomited on the carpet",
       "dateTime": "Thu Feb 02 2023 09:56:24 GMT-0600 (Central Standard Time)",
       "id": 2
+    },
+    {
+      "userId": 1,
+      "itemId": 25,
+      "noteText": "Gets in the way of the flip screen on my Sony Alpha 6600 so I had to buy a cold shoe bracket to mount it off to the side.",
+      "dateTime": "Thu Feb 02 2023 12:01:07 GMT-0600 (Central Standard Time)",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "itemId": 26,
+      "noteText": "Purchase price and date estimated.",
+      "dateTime": "Thu Feb 02 2023 12:50:30 GMT-0600 (Central Standard Time)",
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "itemId": "27",
+      "noteText": "Ripped the laces hole, have to lace them one rung up now.",
+      "dateTime": "Thu Feb 02 2023 13:03:31 GMT-0600 (Central Standard Time)",
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "itemId": "29",
+      "noteText": "Note to self: buy a shorter cable to connect the two speakers.",
+      "dateTime": "Thu Feb 02 2023 16:43:20 GMT-0600 (Central Standard Time)",
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "itemId": 29,
+      "noteText": "Question: Couldn't I swap these out with my studio speakers?",
+      "dateTime": "Thu Feb 02 2023 16:48:23 GMT-0600 (Central Standard Time)",
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "itemId": "9",
+      "noteText": "Buy yourself a helmet mount for this light",
+      "dateTime": "Thu Feb 02 2023 18:39:04 GMT-0600 (Central Standard Time)",
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "itemId": 13,
+      "noteText": "Bought it at the Trek store in Cool Springs, TN. Price estimated, total $194.23 for both this and the Verse Comp saddle.",
+      "dateTime": "Thu Feb 02 2023 18:39:55 GMT-0600 (Central Standard Time)",
+      "id": 9
     }
   ]
 }

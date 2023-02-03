@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export const ItemDetails = () => {
+  const navigate = useNavigate();
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
   const { itemId } = useParams();
-
   const [item, setItem] = useState({});
   const [projects, setProjects] = useState([]);
   const [itemNotes, setItemNotes] = useState([]);
@@ -20,6 +20,26 @@ export const ItemDetails = () => {
     projectId: 0,
   });
   const [itemProjects, setItemProjects] = useState([]);
+
+  const fetchItemProjects = () => {
+    return fetch(
+      `http://localhost:8089/itemsProjects?userId=${itemizedUserObject.id}&itemId=${item.id}&_expand=project`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setItemProjects(data);
+      });
+  };
+
+  const fetchItemNotes = () => {
+    return fetch(
+      `http://localhost:8089/itemsNotes?userId=${itemizedUserObject.id}&itemId=${item.id}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setItemNotes(data);
+      });
+  };
 
   useEffect(() => {
     fetch(`http://localhost:8089/items/${itemId}`)
@@ -39,24 +59,13 @@ export const ItemDetails = () => {
   }, []);
 
   useEffect(() => {
-    fetch(
-      `http://localhost:8089/itemsProjects?userId=${itemizedUserObject.id}&itemId=${item.id}&_expand=project`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setItemProjects(data);
-      });
+    fetchItemProjects();
 
-    fetch(
-      `http://localhost:8089/itemsNotes?userId=${itemizedUserObject.id}&itemId=${item.id}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setItemNotes(data);
-      });
+    fetchItemNotes();
   }, [item]);
 
   const handleAddButtonClick = (event) => {
+    event.preventDefault();
     let noDuplicates = true;
     for (let itemProject of itemProjects) {
       if (itemProject.projectId === selectedItemProject.projectId) {
@@ -71,6 +80,8 @@ export const ItemDetails = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(selectedItemProject),
+        }).then(() => {
+          fetchItemProjects();
         });
       }
     } else {
@@ -90,34 +101,50 @@ export const ItemDetails = () => {
   };
 
   const handleAddNoteButton = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     fetch(`http://localhost:8089/itemsNotes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(itemNote),
+    }).then(() => {
+      fetchItemNotes();
     });
+  };
+
+  const handleEditButtonClick = (event) => {
+    event.preventDefault();
+    navigate(`/edit/${item.id}`);
   };
 
   const handleDeleteButtonClick = (event) => {
     event.preventDefault();
-    fetch(`http://localhost:8089/items/${item.id}`, {
-      method: "DELETE",
-    });
+    let promiseArray = [];
+
+    promiseArray.push(
+      fetch(`http://localhost:8089/items/${item.id}`, {
+        method: "DELETE",
+      })
+    );
 
     for (let itemProject of itemProjects) {
-      fetch(`http://localhost:8089/itemsProjects/${itemProject.id}`, {
-        method: "DELETE",
-      });
+      promiseArray.push(
+        fetch(`http://localhost:8089/itemsProjects/${itemProject.id}`, {
+          method: "DELETE",
+        })
+      );
     }
 
     for (let itemNote of itemNotes) {
-      fetch(`http://localhost:8089/itemsNotes/${itemNote.id}`, {
-        method: "DELETE",
-      });
+      promiseArray.push(
+        fetch(`http://localhost:8089/itemsNotes/${itemNote.id}`, {
+          method: "DELETE",
+        })
+      );
     }
-  }
+    Promise.all(promiseArray).then(navigate("/items"));
+  };
 
   return (
     <>
@@ -136,34 +163,49 @@ export const ItemDetails = () => {
         ) : (
           ""
         )}
-        <p>Notes:</p>
-        <ul>
-          {itemNotes.map((itemNote) => {
-            return (
-              <div key={itemNote.id}>
-                <li>{itemNote.noteText}</li>
-                {itemNote.dateTime ? (
-                  <li>{new Date(itemNote.dateTime).toLocaleDateString()}</li>
-                ) : (
-                  ""
-                )}
-              </div>
-            );
-          })}
-        </ul>
+        {itemNotes.length > 0 ? (
+          <>
+            <p>Notes:</p>
+            <ul>
+              {itemNotes.map((itemNote) => {
+                return (
+                  <div key={itemNote.id}>
+                    <li>{itemNote.noteText}</li>
+                    {itemNote.dateTime ? (
+                      <li>
+                        {new Date(itemNote.dateTime).toLocaleDateString()}
+                      </li>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                );
+              })}
+            </ul>
+          </>
+        ) : (
+          ""
+        )}
 
-        <p>Associated projects:</p>
-        <ul className="itemDetailsUL">
-          {itemProjects.map((itemProject) => {
-            return (
-              <li className="itemDetailsLI" key={itemProject.id}>
-                <Link to={`/projects/${itemProject.project.id}`}>
-                  {itemProject.project?.name}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        {itemProjects.length > 0 ? (
+          <>
+            <p>Associated projects:</p>
+            <ul className="itemDetailsUL">
+              {itemProjects.map((itemProject) => {
+                return (
+                  <li className="itemDetailsLI" key={itemProject.id}>
+                    <Link to={`/projects/${itemProject.project.id}`}>
+                      {itemProject.project?.name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        ) : (
+          <div>This item is associated with no projects</div>
+        )}
+
         <form>
           <div>
             <label>Add this item to a project</label>
@@ -185,7 +227,6 @@ export const ItemDetails = () => {
               );
             })}
           </select>
-
           <button
             className="itemDetailsAddBtn"
             onClick={(event) => {
@@ -195,12 +236,13 @@ export const ItemDetails = () => {
             Add
           </button>
         </form>
+
         <form>
           <label className="itemLabel" htmlFor="addItemNote">
             Add a note to this item
           </label>
-          <input
-            type="text"
+          <textarea
+            className="itemTextarea"
             id="addItemNote"
             onChange={(event) => {
               const copy = { ...itemNote };
@@ -208,8 +250,9 @@ export const ItemDetails = () => {
               copy.dateTime = Date();
               setItemNote(copy);
             }}
-          />
+          ></textarea>
           <button
+          className=""
             onClick={(event) => {
               handleAddNoteButton(event);
             }}
@@ -218,7 +261,14 @@ export const ItemDetails = () => {
           </button>
         </form>
 
-        <button
+        <button className="buttonBlock"
+          onClick={(event) => {
+            handleEditButtonClick(event);
+          }}
+        >
+          Edit this item
+        </button>
+        <button className="buttonBlock"
           onClick={(event) => {
             handleDeleteButtonClick(event);
           }}

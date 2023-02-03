@@ -20,7 +20,7 @@ export const NavBar = () => {
                 <Link className="navLink" to="/projects/new">Create New Project</Link>
             </li>
             <li className="navItem">
-                <Link className="navLink" to="/items/new">Create New Item</Link>
+                <Link className="navLink" to="/items/new">Add New Item</Link>
             </li>
             <li className="navItem">
                 <Link className="navLink" to="" onClick={() => {
