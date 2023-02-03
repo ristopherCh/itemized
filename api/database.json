@@ -46,6 +46,14 @@
       "description": "Incredible camera",
       "projectCreationDate": "2023-02-01T19:50:29.271Z",
       "id": 5
+    },
+    {
+      "userId": 1,
+      "name": "Fitness",
+      "imageURL": "https://i.imgur.com/AX79iwU.jpg",
+      "description": "An agony a day keeps me generally injured.",
+      "projectCreationDate": "2023-02-03T19:38:08.854Z",
+      "id": 6
     }
   ],
   "items": [
@@ -56,7 +64,7 @@
       "imageURL": "https://i.imgur.com/4feF26V.jpg",
       "description": "https://www.amazon.com/gp/product/B000ACAM38/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&th=1",
       "purchasePrice": 63,
-      "purchaseDate": "2021-07-25T00:00:00.000Z",
+      "purchaseDate": "2021-07-25",
       "review": "Super effective, no complaints.",
       "id": 1
     },
@@ -173,7 +181,7 @@
     },
     {
       "userId": 1,
-      "name": "Bontrager GR1 Team Issue Gravel Tire",
+      "name": "Bontrager GR1 Team Issue Gravel Tire!",
       "type": "Bike Tires",
       "imageURL": "https://i.imgur.com/4QIsURC.jpg",
       "description": "Black gravel tires, 700C x 35mm.",
@@ -255,8 +263,9 @@
       "imageURL": "https://i.imgur.com/W4iBIRl.jpg",
       "description": "Adjusts from 5 - 52.5 lbs",
       "purchasePrice": 299,
-      "purchaseDate": "2013-08-31T00:00:00.000Z",
-      "review": "Heavy. Have been a wonderful possession. They cost $429.99 now.\n\nhttps://www.amazon.com/gp/product/B001ARYU58/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1",
+      "purchaseDate": "2013-08-31",
+      "review": "Heavy. Have been a wonderful possession. They cost $429.99 now.",
+      "documentation": "https://www.amazon.com/gp/product/B001ARYU58/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1",
       "id": 20
     },
     {
@@ -353,6 +362,42 @@
       "review": "Pretty good. They don't blow me away.",
       "documentation": "https://www.amazon.com/Edifier-R2000DB-Bluetooth-Bookshelf-Speakers/dp/B016PAWJYS",
       "id": 29
+    },
+    {
+      "userId": 1,
+      "name": "Samsung Watch Active2",
+      "type": "Smart watch",
+      "imageURL": "https://i.imgur.com/xpmJSYQ.jpg",
+      "description": "30.2mm main display, 1.15GHz processor, 4GB ROM",
+      "purchasePrice": 199,
+      "purchaseDate": "2019-12-30",
+      "review": "It's been reliable and useful. I love being able to download Spotify playlists to take on the road. WiFi and Bluetooth are occasionally enraging, as is likely the case for all smart watches.",
+      "documentation": "https://www.samsung.com/nz/watches/galaxy-watch-active/galaxy-watch-active2-40mm-gold-sm-r830nsdaxnz/",
+      "id": 30
+    },
+    {
+      "userId": 1,
+      "name": "Garmin Edge 830",
+      "type": "Biking GPS",
+      "imageURL": "https://i.imgur.com/pufvJwY.jpg",
+      "description": "2.6\" touchscreen",
+      "purchasePrice": 437.95,
+      "purchaseDate": "2020-06-04",
+      "review": "Great! Confusing. So much functionality that I don't understand how to use.",
+      "documentation": "https://www.garmin.com/en-US/p/621232",
+      "id": 31
+    },
+    {
+      "userId": 1,
+      "name": "Garmin vivosport",
+      "type": "Smart watch",
+      "imageURL": "https://i.imgur.com/29bfbrb.jpg",
+      "description": "0.38\" x 0.76\" display",
+      "purchasePrice": 109.49,
+      "purchaseDate": "2020-06-16",
+      "review": "Fantastic, but for that it can't play music.",
+      "documentation": "https://www.garmin.com/en-US/p/574602",
+      "id": 32
     }
   ],
   "itemsProjects": [
@@ -427,6 +472,18 @@
       "itemId": 25,
       "projectId": 5,
       "id": 13
+    },
+    {
+      "userId": 1,
+      "itemId": 31,
+      "projectId": 3,
+      "id": 14
+    },
+    {
+      "userId": 1,
+      "itemId": 20,
+      "projectId": 6,
+      "id": 15
     }
   ],
   "documents": [],
@@ -493,6 +550,27 @@
       "noteText": "Bought it at the Trek store in Cool Springs, TN. Price estimated, total $194.23 for both this and the Verse Comp saddle.",
       "dateTime": "Thu Feb 02 2023 18:39:55 GMT-0600 (Central Standard Time)",
       "id": 9
+    },
+    {
+      "userId": 1,
+      "itemId": "13",
+      "noteText": "I popped this today and had to patch it. Beware of it leaking through this patch.",
+      "dateTime": "Fri Feb 03 2023 09:47:50 GMT-0600 (Central Standard Time)",
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "itemId": 30,
+      "noteText": "Purchase price estimated.",
+      "dateTime": "Fri Feb 03 2023 13:16:17 GMT-0600 (Central Standard Time)",
+      "id": 11
+    },
+    {
+      "userId": 1,
+      "itemId": 32,
+      "noteText": "This is my second of these watches, the first one I ran into the ground.",
+      "dateTime": "Fri Feb 03 2023 13:24:20 GMT-0600 (Central Standard Time)",
+      "id": 12
     }
   ]
 }

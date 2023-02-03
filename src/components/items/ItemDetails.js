@@ -115,7 +115,7 @@ export const ItemDetails = () => {
 
   const handleEditButtonClick = (event) => {
     event.preventDefault();
-    navigate(`/edit/${item.id}`);
+    navigate(`/items/edit/${item.id}`);
   };
 
   const handleDeleteButtonClick = (event) => {

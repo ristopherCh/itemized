@@ -16,22 +16,9 @@ export const ApplicationViews = () => {
       <Route path="/items" element={<AllItems />} />
       <Route path="/items/:itemId" element={<ItemDetails />} />
       <Route path="/projects/new" element={<NewProject />} />
-      <Route
-        path="/items/new"
-        element={
-          <NewItem
-            name={"wowzer"}
-            type={"sneeze"}
-            imageURL={"https://i.imgur.com/4feF26V.jpg"}
-            description={"get it get it get it"}
-            purchasePrice={63}
-            purchaseDate={"2021-07-25"}
-            review={"yes review"}
-            documentation={"worrrds"}
-          />
-        }
-      />
-			<Route path="/edit/:itemId" element={<NewItem />} />
+      <Route path="/projects/edit/:projectId" element={<NewProject />} />
+      <Route path="/items/new" element={<NewItem />} />
+      <Route path="/items/edit/:itemId" element={<NewItem />} />
     </Routes>
   );
 };

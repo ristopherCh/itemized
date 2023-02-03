@@ -90,6 +90,28 @@ export const ProjectDetails = () => {
     });
   };
 
+  const handleDelete = (event) => {
+    event.preventDefault();
+    fetch(`http://localhost:8089/projects/${projectId}`, {
+      method: "DELETE",
+    }).then(() => {
+      let promiseArray = [];
+      for (let item of projectItems) {
+        promiseArray.push(
+          fetch(`http://localhost:8089/itemsProjects/${item.id}`, {
+            method: "DELETE",
+          })
+        );
+      }
+      Promise.all(promiseArray).then(navigate("/projects"));
+    });
+  };
+
+  const handleEditButtonClick = (event) => {
+    event.preventDefault();
+    navigate(`/projects/edit/${project.id}`);
+  };
+
   return (
     <>
       <h1>{project.name}</h1>
@@ -111,6 +133,7 @@ export const ProjectDetails = () => {
                     {projectItem.item?.name}
                   </Link>{" "}
                   <button
+                    className="projectRemoveItemBtn"
                     onClick={(event) => {
                       handleRemoveItem(event, projectItem);
                     }}
@@ -149,6 +172,20 @@ export const ProjectDetails = () => {
           Add
         </button>
       </form>
+      <button className="buttonBlock"
+          onClick={(event) => {
+            handleEditButtonClick(event);
+          }}
+        >
+          Edit this item
+        </button>
+      <button
+        onClick={(event) => {
+          handleDelete(event);
+        }}
+      >
+        Delete Project
+      </button>
     </>
   );
 };

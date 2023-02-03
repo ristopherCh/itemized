@@ -52,7 +52,7 @@ export const NewItem = ({ purchaseDate }) => {
         .then((res) => res.json())
         .then((data) => {
           setEditableItem(data);
-          console.log(data);
+          
         });
     }
   }, []);
