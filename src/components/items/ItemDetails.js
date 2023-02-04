@@ -5,6 +5,8 @@ export const ItemDetails = () => {
   const navigate = useNavigate();
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
   const { itemId } = useParams();
+  const [newTag, setNewTag] = useState("");
+  const [itemTags, setItemTags] = useState([]);
   const [item, setItem] = useState({});
   const [projects, setProjects] = useState([]);
   const [itemNotes, setItemNotes] = useState([]);
@@ -56,6 +58,14 @@ export const ItemDetails = () => {
       .then((data) => {
         setProjects(data);
       });
+
+    fetch(
+      `http://localhost:8089/tags?userId=${itemizedUserObject.id}&itemId=${itemId}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setItemTags(data);
+      });
   }, []);
 
   useEffect(() => {
@@ -64,7 +74,7 @@ export const ItemDetails = () => {
     fetchItemNotes();
   }, [item]);
 
-  const handleAddButtonClick = (event) => {
+  const handleAddItemProject = (event) => {
     event.preventDefault();
     let noDuplicates = true;
     for (let itemProject of itemProjects) {
@@ -146,16 +156,40 @@ export const ItemDetails = () => {
     Promise.all(promiseArray).then(navigate("/items"));
   };
 
+  const handleAddTag = (event) => {
+    event.preventDefault();
+    fetch(`http://localhost:8089/tags`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: itemizedUserObject.id,
+        itemId: itemId,
+        tag: newTag,
+      }),
+    });
+    setNewTag("");
+  };
+
   return (
     <>
       <h1>{item.name}</h1>
       <div className="itemDetailsContainer">
         <h3>{item.type}</h3>
         <img className="itemImage" src={item.imageURL} alt=""></img>
-        <p>Item description: {item.description}</p>
-        <p>Purchase price: ${parseFloat(item.purchasePrice).toFixed(2)}</p>
-        <p>Purchase date: {new Date(item.purchaseDate).toLocaleDateString()}</p>
-        <p>Item review: {item.review}</p>
+        <div>Item description: {item.description}</div>
+        <div>Purchase price: ${parseFloat(item.purchasePrice).toFixed(2)}</div>
+        <div>
+          Purchase date: {new Date(item.purchaseDate).toLocaleDateString()}
+        </div>
+        <div>Tags:</div>
+        <ul>
+          {itemTags.map((itemTag) => {
+            return <li map={itemTag.id}>{itemTag.tag}</li>;
+          })}
+        </ul>
+        <div>Item review: {item.review}</div>
         {item.documentation ? (
           <a href={item.documentation} target="_blank" rel="noreferrer">
             Link to documentation
@@ -208,7 +242,11 @@ export const ItemDetails = () => {
 
         <form>
           <div>
-            <label>Add this item to a project</label>
+            {itemProjects.length > 0 ? (
+              <label>Add this item to another project</label>
+            ) : (
+              <label>Add this item to a project</label>
+            )}
           </div>
           {selectedItemProject.projectId ? displayProjectPhoto() : ""}
           <select
@@ -230,13 +268,29 @@ export const ItemDetails = () => {
           <button
             className="itemDetailsAddBtn"
             onClick={(event) => {
-              handleAddButtonClick(event);
+              handleAddItemProject(event);
             }}
           >
             Add
           </button>
         </form>
 
+        <form>
+          <label htmlFor="addItemTag">Add tag</label>
+          <input
+            id="addItemTag"
+            onChange={(event) => {
+              setNewTag(event.target.value);
+            }}
+          />
+          <button
+            onClick={(event) => {
+              handleAddTag(event);
+            }}
+          >
+            +
+          </button>
+        </form>
         <form>
           <label className="itemLabel" htmlFor="addItemNote">
             Add a note to this item
@@ -252,7 +306,7 @@ export const ItemDetails = () => {
             }}
           ></textarea>
           <button
-          className=""
+            className=""
             onClick={(event) => {
               handleAddNoteButton(event);
             }}
@@ -261,14 +315,16 @@ export const ItemDetails = () => {
           </button>
         </form>
 
-        <button className="buttonBlock"
+        <button
+          className="buttonBlock"
           onClick={(event) => {
             handleEditButtonClick(event);
           }}
         >
           Edit this item
         </button>
-        <button className="buttonBlock"
+        <button
+          className="buttonBlock"
           onClick={(event) => {
             handleDeleteButtonClick(event);
           }}

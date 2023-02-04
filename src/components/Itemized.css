@@ -93,6 +93,10 @@ a {
   width: 400px;
 }
 
+.skinnyLI {
+  display: inline;
+}
+
 /* All Items/Projects */
 #allProjectsContainer,
 #allItemsContainer {
@@ -149,7 +153,7 @@ a {
 
 /* Project Details */
 .projectDetailsContainer {
-  margin-top: 10px;
+  margin-top: 25px;
   display: flex;
   justify-content: left;
 }
@@ -184,8 +188,8 @@ a {
   width: 60%;
 }
 
-.projectRemoveItemBtn {
-
+.projectDescription {
+  text-align: center;
 }
 
 /* Item Details */
@@ -206,6 +210,6 @@ a {
   margin-left: 5px;
 }
 
-#foundProjectImage {
+#foundProjectImage, #foundItemImage {
   width: 80px;
 }

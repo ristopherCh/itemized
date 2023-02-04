@@ -11,7 +11,7 @@
       "userId": 1,
       "name": "White Dog Project",
       "imageURL": "https://i.imgur.com/pT7HUUy.jpg",
-      "description": "She was white but I'm not so sure anymore.",
+      "description": "She was once white but I'm not so sure anymore.",
       "projectCreationDate": "2023-01-30T21:08:26.951Z",
       "id": 1
     },
@@ -19,7 +19,7 @@
       "userId": 1,
       "name": "Black Cat Project",
       "imageURL": "https://i.imgur.com/bVFHcgs.jpg",
-      "description": "This project is hopefully going strong.",
+      "description": "Why is my lap so hot",
       "projectCreationDate": "2023-01-30T21:15:35.343Z",
       "id": 2
     },
@@ -27,7 +27,7 @@
       "userId": 1,
       "name": "Trek Checkpoint AL 4 2020",
       "imageURL": "https://i.imgur.com/087PNyJ.jpg",
-      "description": "",
+      "description": "It's been my delight, will it be my demise?",
       "projectCreationDate": "2023-02-01T18:30:19.667Z",
       "id": 3
     },
@@ -35,7 +35,7 @@
       "userId": 1,
       "name": "UFO Gaming PC",
       "imageURL": "https://i.imgur.com/oyqDrNt.jpg",
-      "description": "This computer was born to work.",
+      "description": "This computer was born to work",
       "projectCreationDate": "2023-02-01T19:31:08.649Z",
       "id": 4
     },
@@ -43,7 +43,7 @@
       "userId": 1,
       "name": "Sony Alpha 6600 Mirrorless Camera",
       "imageURL": "https://i.imgur.com/9J7gUDk.jpg",
-      "description": "Incredible camera",
+      "description": "Look ma, I'm an artist",
       "projectCreationDate": "2023-02-01T19:50:29.271Z",
       "id": 5
     },
@@ -51,7 +51,7 @@
       "userId": 1,
       "name": "Fitness",
       "imageURL": "https://i.imgur.com/AX79iwU.jpg",
-      "description": "An agony a day keeps me generally injured.",
+      "description": "Why is this necessary",
       "projectCreationDate": "2023-02-03T19:38:08.854Z",
       "id": 6
     }
@@ -175,8 +175,9 @@
       "imageURL": "https://i.imgur.com/1cTQrqA.jpg",
       "description": "270mm x 155mm.\n\n",
       "purchasePrice": 90,
-      "purchaseDate": "2022-05-21T00:00:00.000Z",
-      "review": "Bought it at the Trek store in Cool Springs, TN. It's a great seat. Price estimated, total $194.23 for both this and the GR1 Team Issue tires.\n\nhttps://www.trekbikes.com/us/en_US/equipment/cycling-components/bike-saddles/performance-bike-saddles/bontrager-verse-comp-bike-saddle/p/32222/",
+      "purchaseDate": "2022-05-21",
+      "review": "Bought it at the Trek store in Cool Springs, TN. It's a great seat. Price estimated, total $194.23 for both this and the GR1 Team Issue tires.\n\n",
+      "documentation": "https://www.trekbikes.com/us/en_US/equipment/cycling-components/bike-saddles/performance-bike-saddles/bontrager-verse-comp-bike-saddle/p/32222/",
       "id": 12
     },
     {
@@ -298,7 +299,7 @@
       "imageURL": "https://i.imgur.com/9XIuUaZ.jpg",
       "description": "Golden retriever. Severe underbite. Prone to UTI's. Loves to hold paws. Listens to nobody.",
       "purchasePrice": 1600,
-      "purchaseDate": "2017-09-09T00:00:00.000Z",
+      "purchaseDate": "2017-09-09",
       "review": "Love it! Doesn't quite function as promised but I've found my workarounds.",
       "documentation": "https://www.amazon.com/Complete-Golden-Retriever-Handbook-Prospective/dp/1979837120/ref=sr_1_4?crid=35BFMZX2VEDHP&keywords=golden+retriever+book&qid=1675353286&sprefix=golden+retriever+book%2Caps%2C100&sr=8-4",
       "id": 24
@@ -398,6 +399,18 @@
       "review": "Fantastic, but for that it can't play music.",
       "documentation": "https://www.garmin.com/en-US/p/574602",
       "id": 32
+    },
+    {
+      "userId": 1,
+      "name": "IKEA FREDDE",
+      "type": "Desk",
+      "imageURL": "https://i.imgur.com/Lb0TsfW.jpg",
+      "description": "Gaming desk, black. 57.5\" x 55\" x 29\"",
+      "purchasePrice": 329.65,
+      "purchaseDate": "2019-05-25",
+      "review": "How many wonderful years have we been together.",
+      "documentation": "https://www.ikea.com/us/en/p/fredde-gaming-desk-black-50219044/",
+      "id": 33
     }
   ],
   "itemsProjects": [
@@ -484,6 +497,30 @@
       "itemId": 20,
       "projectId": 6,
       "id": 15
+    },
+    {
+      "userId": 1,
+      "itemId": 22,
+      "projectId": 2,
+      "id": 16
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "projectId": 6,
+      "id": 17
+    },
+    {
+      "userId": 1,
+      "itemId": 29,
+      "projectId": 4,
+      "id": 18
+    },
+    {
+      "userId": 1,
+      "itemId": 33,
+      "projectId": 4,
+      "id": 19
     }
   ],
   "documents": [],
@@ -571,6 +608,39 @@
       "noteText": "This is my second of these watches, the first one I ran into the ground.",
       "dateTime": "Fri Feb 03 2023 13:24:20 GMT-0600 (Central Standard Time)",
       "id": 12
+    },
+    {
+      "userId": 1,
+      "itemId": "33",
+      "noteText": "I completely disassembled this desk and made it even more epic.",
+      "dateTime": "Fri Feb 03 2023 18:00:30 GMT-0600 (Central Standard Time)",
+      "id": 13
+    }
+  ],
+  "tags": [
+    {
+      "userId": 1,
+      "itemId": 33,
+      "tag": "Gaming",
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "itemId": 33,
+      "tag": "Furniture",
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "itemId": 33,
+      "tag": "Office",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "itemId": "33",
+      "tag": "Work",
+      "id": 4
     }
   ]
 }

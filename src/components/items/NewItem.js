@@ -4,11 +4,14 @@ import "./items.css";
 
 export const NewItem = ({ purchaseDate }) => {
   const { itemId } = useParams();
+  const [tag, setTag] = useState("");
+  const [tags, setTags] = useState([]);
   const [editableItem, setEditableItem] = useState({});
   const navigate = useNavigate();
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
   const [selectedProjectId, setSelectedProjectId] = useState(0);
   const [projects, setProjects] = useState([]);
+  const [itemProjects, setItemProjects] = useState([]);
   const [itemNote, setItemNote] = useState({
     userId: itemizedUserObject.id,
     itemId: 0,
@@ -52,7 +55,13 @@ export const NewItem = ({ purchaseDate }) => {
         .then((res) => res.json())
         .then((data) => {
           setEditableItem(data);
-          
+        });
+      fetch(
+        `http://localhost:8089/itemsProjects?itemId=${itemId}&_expand=project`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setItemProjects(data);
         });
     }
   }, []);
@@ -86,7 +95,14 @@ export const NewItem = ({ purchaseDate }) => {
   };
 
   const postToItemsProjects = (itemId) => {
-    if (selectedProjectId) {
+    let isDuplicate = false;
+    for (let itemProject of itemProjects) {
+      if (itemProject.projectId === selectedProjectId) {
+        isDuplicate = true;
+      }
+    }
+
+    if (selectedProjectId && !isDuplicate) {
       fetch(`http://localhost:8089/itemsProjects`, {
         method: "POST",
         headers: {
@@ -118,6 +134,27 @@ export const NewItem = ({ purchaseDate }) => {
     }
   };
 
+  const postToTags = (itemId) => {
+    const promiseArray = [];
+
+    for (let tag of tags) {
+      promiseArray.push(
+        fetch(`http://localhost:8089/tags`, {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: itemizedUserObject.id,
+            itemId: itemId,
+            tag: tag,
+          }),
+        })
+      );
+    }
+    return promiseArray;
+  };
+
   const handleItemCreation = (event) => {
     event.preventDefault();
     if (userInputs.name && userInputs.type) {
@@ -132,6 +169,7 @@ export const NewItem = ({ purchaseDate }) => {
         .then((data) => {
           postToItemsProjects(data.id);
           postToItemsNotes(data.id);
+          postToTags(data.id);
         });
     } else {
       alert("Please try again");
@@ -158,6 +196,38 @@ export const NewItem = ({ purchaseDate }) => {
     }
   };
 
+  const displayItemProjects = () => {
+    if (itemId) {
+      return (
+        <>
+          <div>Associated projects:</div>
+          <ul>
+            {itemProjects.map((itemProject) => {
+              return <li>{itemProject.project.name}</li>;
+            })}
+          </ul>
+        </>
+      );
+    } else {
+      return "";
+    }
+  };
+
+  const handleTagButton = (event) => {
+    event.preventDefault();
+    const copy = tags;
+    copy.push(tag);
+    setTags(copy);
+    setTag("");
+  };
+
+  const handleDeleteTag = (event, index) => {
+    event.preventDefault();
+    const copy = tags.slice(0).reverse();
+    copy.splice(index, 1);
+    setTags(copy);
+  };
+
   return (
     <div id="newItemContentContainer">
       {itemId ? <h1>Edit Item</h1> : <h1>Add New Item</h1>}
@@ -172,7 +242,7 @@ export const NewItem = ({ purchaseDate }) => {
             type="text"
             id="itemName"
             name="name"
-            value={userInputs.name}
+            value={userInputs.name || ""}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -186,7 +256,7 @@ export const NewItem = ({ purchaseDate }) => {
             type="text"
             id="itemType"
             name="type"
-            value={userInputs.type}
+            value={userInputs.type || ""}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -220,14 +290,54 @@ export const NewItem = ({ purchaseDate }) => {
             className="itemTextarea"
             id="itemDescription"
             name="description"
-            value={userInputs.description}
+            value={userInputs.description || ""}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
           ></textarea>
 
+          <label htmlFor="itemTags" className="itemLabel">
+            Tag this item
+          </label>
+          <input
+            type="text"
+            className="newItemInputField"
+            id="itemTags"
+            name="tag"
+            value={tag}
+            onChange={(event) => {
+              setTag(event.target.value);
+            }}
+          />
+          <button
+            onClick={(event) => {
+              handleTagButton(event);
+            }}
+          >
+            +
+          </button>
+          <ul>
+            {tags
+              .slice(0)
+              .reverse()
+              .map((tag, index) => {
+                return (
+                  <div key={index}>
+                    <li className="skinnyLI">{tag}</li>
+                    <button
+                      name={index}
+                      onClick={(event) => handleDeleteTag(event, index)}
+                    >
+                      x
+                    </button>
+                  </div>
+                );
+              })}
+          </ul>
+
+          {displayItemProjects()}
           <label className="itemLabel" htmlFor="itemProjectSelect">
-            Link this item to an ongoing project
+            Link this item to a project
             <span className="italic">-- Optional</span>
           </label>
           <select
@@ -253,7 +363,7 @@ export const NewItem = ({ purchaseDate }) => {
             step="any"
             id="itemPrice"
             name="purchasePrice"
-            value={userInputs.purchasePrice}
+            value={userInputs.purchasePrice || ""}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -266,7 +376,7 @@ export const NewItem = ({ purchaseDate }) => {
             type="date"
             id="itemPurchaseDate"
             name="purchaseDate"
-            value={userInputs.purchaseDate?.slice(0, 10)}
+            value={userInputs.purchaseDate?.slice(0, 10) || ""}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -279,7 +389,7 @@ export const NewItem = ({ purchaseDate }) => {
             className="itemTextarea"
             id="itemReview"
             name="review"
-            value={userInputs.review}
+            value={userInputs.review || ""}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -293,7 +403,7 @@ export const NewItem = ({ purchaseDate }) => {
             type="text"
             id="itemDocumentation"
             name="documentation"
-            value={userInputs.documentation}
+            value={userInputs.documentation || ""}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}

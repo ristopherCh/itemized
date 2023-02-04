@@ -115,6 +115,7 @@ export const ProjectDetails = () => {
   return (
     <>
       <h1>{project.name}</h1>
+      <h3 className="projectDescription">{project.description}</h3>
       <div className="projectDetailsContainer">
         <div className="projectDetailsLeftColumn">
           <img className="projectImage" src={project.imageURL} alt=""></img>
@@ -148,6 +149,7 @@ export const ProjectDetails = () => {
       </div>
       <form>
         <div>Add an item to this project</div>
+        {selectedProjectItem.itemId ? displayItemPhoto() : ""}
         <select
           onChange={(event) => {
             const copy = { ...selectedProjectItem };
@@ -177,7 +179,7 @@ export const ProjectDetails = () => {
             handleEditButtonClick(event);
           }}
         >
-          Edit this item
+          Edit this project
         </button>
       <button
         onClick={(event) => {
