@@ -47,7 +47,9 @@ export const ItemDetails = () => {
     fetch(`http://localhost:8089/items/${itemId}`)
       .then((res) => res.json())
       .then((data) => {
+        data.description = data.description.split(". ");
         setItem(data);
+
         const copy = { ...selectedItemProject };
         copy.itemId = data.id;
         setSelectedItemProject(copy);
@@ -59,6 +61,10 @@ export const ItemDetails = () => {
         setProjects(data);
       });
 
+    fetchAndSetItemTags();
+  }, []);
+
+  const fetchAndSetItemTags = () => {
     fetch(
       `http://localhost:8089/tags?userId=${itemizedUserObject.id}&itemId=${itemId}`
     )
@@ -66,7 +72,7 @@ export const ItemDetails = () => {
       .then((data) => {
         setItemTags(data);
       });
-  }, []);
+  };
 
   useEffect(() => {
     fetchItemProjects();
@@ -129,6 +135,7 @@ export const ItemDetails = () => {
   };
 
   const handleDeleteButtonClick = (event) => {
+    // TODO : Understand why this deletes itemTags too, even though it's not scripted in
     event.preventDefault();
     let promiseArray = [];
 
@@ -158,179 +165,287 @@ export const ItemDetails = () => {
 
   const handleAddTag = (event) => {
     event.preventDefault();
-    fetch(`http://localhost:8089/tags`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: itemizedUserObject.id,
-        itemId: itemId,
-        tag: newTag,
-      }),
+    let hasDuplicate = false;
+    itemTags.forEach((itemTag) => {
+      if (itemTag.tag === newTag) {
+        hasDuplicate = true;
+      }
     });
-    setNewTag("");
+    if (!hasDuplicate) {
+      fetch(`http://localhost:8089/tags`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: itemizedUserObject.id,
+          itemId: parseInt(itemId),
+          tag: newTag,
+        }),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          fetchAndSetItemTags();
+          setNewTag("");
+        });
+    } else {
+      setNewTag("");
+    }
+  };
+
+  const handleTagDelete = (event) => {
+    event.preventDefault();
+    let tagId = event.target.name;
+    fetch(`http://localhost:8089/tags/${tagId}`, {
+      method: "DELETE",
+    }).then(() => {
+      fetchAndSetItemTags();
+    });
+  };
+
+  const blurFunction = (state) => {
+    let containerElement = document.getElementById("main_container");
+    let overlayElement = document.getElementById("itemImageLargeDiv");
+    // let overlayElementLower = document.getElementById("itemReview");
+    let navElement = document.getElementById("navbarUL");
+    if (state) {
+      overlayElement.style.display = "block";
+      // overlayElementLower.style.display = "block";
+      containerElement.setAttribute("class", "blur");
+      navElement.setAttribute("class", "blur");
+    } else {
+      overlayElement.style.display = "none";
+      // overlayElementLower.style.display = "none";
+      containerElement.setAttribute("class", null);
+      navElement.setAttribute("class", null);
+    }
   };
 
   return (
     <>
-      <h1>{item.name}</h1>
-      <div className="itemDetailsContainer">
-        <h3>{item.type}</h3>
-        <img className="itemImage" src={item.imageURL} alt=""></img>
-        <div>Item description: {item.description}</div>
-        <div>Purchase price: ${parseFloat(item.purchasePrice).toFixed(2)}</div>
+      <div id="itemImageLargeDiv">
         <div>
-          Purchase date: {new Date(item.purchaseDate).toLocaleDateString()}
-        </div>
-        <div>Tags:</div>
-        <ul>
-          {itemTags.map((itemTag) => {
-            return <li map={itemTag.id}>{itemTag.tag}</li>;
-          })}
-        </ul>
-        <div>Item review: {item.review}</div>
-        {item.documentation ? (
-          <a href={item.documentation} target="_blank" rel="noreferrer">
-            Link to documentation
-          </a>
-        ) : (
-          ""
-        )}
-        {itemNotes.length > 0 ? (
-          <>
-            <p>Notes:</p>
-            <ul>
-              {itemNotes.map((itemNote) => {
-                return (
-                  <div key={itemNote.id}>
-                    <li>{itemNote.noteText}</li>
-                    {itemNote.dateTime ? (
-                      <li>
-                        {new Date(itemNote.dateTime).toLocaleDateString()}
-                      </li>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                );
-              })}
-            </ul>
-          </>
-        ) : (
-          ""
-        )}
-
-        {itemProjects.length > 0 ? (
-          <>
-            <p>Associated projects:</p>
-            <ul className="itemDetailsUL">
-              {itemProjects.map((itemProject) => {
-                return (
-                  <li className="itemDetailsLI" key={itemProject.id}>
-                    <Link to={`/projects/${itemProject.project.id}`}>
-                      {itemProject.project?.name}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </>
-        ) : (
-          <div>This item is associated with no projects</div>
-        )}
-
-        <form>
-          <div>
-            {itemProjects.length > 0 ? (
-              <label>Add this item to another project</label>
-            ) : (
-              <label>Add this item to a project</label>
-            )}
+          <h1 className="smallH1">{item.name}</h1>
+          <div onClick={() => blurFunction(0)}>
+            <span className="boldPointer close"></span>
           </div>
-          {selectedItemProject.projectId ? displayProjectPhoto() : ""}
-          <select
-            onChange={(event) => {
-              const copy = { ...selectedItemProject };
-              copy.projectId = parseInt(event.target.value);
-              setSelectedItemProject(copy);
-            }}
-          >
-            <option>Choose project</option>
-            {projects.map((project) => {
+        </div>
+        <img className="itemImageLarge" src={item.imageURL} alt="" />
+
+        <div className="itemReview">
+          <span className="justBold">Review:</span>
+          <br />
+          {item.review}
+        </div>
+      </div>
+
+      <div id="main_container">
+        <div className="itemDetailsContainer">
+          <h1>{item.name}</h1>
+          <h3 className="itemTypeHeader">{item.type}</h3>
+          <div className="itemPhotoFlexbox">
+            <img
+              className="itemImage"
+              src={item.imageURL}
+              alt=""
+              onClick={() => {
+                blurFunction(1);
+              }}
+            />
+
+            <div className="itemRightColumnBox">
+              <div className="itemRightColumnBoxTop">
+                <div className="itemRightColumnTopLeft">
+                  <div className="itemPriceContainer">
+                    <h2 className="itemRightColumnHeader">
+                      Purchase Price: ${item.purchasePrice?.toFixed(2)}
+                    </h2>
+                    <h2 className="itemRightColumnHeader">
+                      Purchase Date:{" "}
+                      {new Date(item.purchaseDate).toLocaleDateString()}
+                    </h2>
+                  </div>
+                </div>
+                <div className="itemRightColumnTopRight">
+                  <h2 className="itemRightColumnHeader">
+                    This item is a member of:
+                  </h2>
+                  {itemProjects.length > 0 ? (
+                    <>
+                      <ul className="itemDetailsUL">
+                        {itemProjects.map((itemProject) => {
+                          return (
+                            <li key={itemProject.id}>
+                              <Link to={`/projects/${itemProject.project.id}`}>
+                                <span className="itemProjectsLI">{itemProject.project?.name}</span>
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </>
+                  ) : (
+                    <div>This item is associated with no projects</div>
+                  )}
+                </div>
+              </div>
+              <div className="itemDescriptionBox">
+                <h2 className="itemRightColumnHeader">Description</h2>
+                <div className="itemDescription">
+                  <ul className="itemDescriptionUL">
+                    {item.description?.map((point, index) => {
+                      return <li key={index}>{point}</li>;
+                    })}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>Tags:</div>
+          <ul>
+            {itemTags.map((itemTag) => {
               return (
-                <option key={project.id} value={project.id}>
-                  {project.name}
-                </option>
+                <div key={itemTag.id}>
+                  <li key={itemTag.id} className="skinnyLI">
+                    <Link to={`/items/tags/${itemTag.tag}`}>{itemTag.tag}</Link>
+                  </li>
+                  <button
+                    name={itemTag.id}
+                    onClick={(event) => {
+                      handleTagDelete(event);
+                    }}
+                  >
+                    x
+                  </button>
+                </div>
               );
             })}
-          </select>
-          <button
-            className="itemDetailsAddBtn"
-            onClick={(event) => {
-              handleAddItemProject(event);
-            }}
-          >
-            Add
-          </button>
-        </form>
+          </ul>
+          {item.documentation ? (
+            <a href={item.documentation} target="_blank" rel="noreferrer">
+              Link to documentation
+            </a>
+          ) : (
+            ""
+          )}
+          {itemNotes.length > 0 ? (
+            <>
+              <p>Notes:</p>
+              <ul>
+                {itemNotes.map((itemNote) => {
+                  return (
+                    <div key={itemNote.id}>
+                      <li>{itemNote.noteText}</li>
+                      {itemNote.dateTime ? (
+                        <li>
+                          {new Date(itemNote.dateTime).toLocaleDateString()}
+                        </li>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  );
+                })}
+              </ul>
+            </>
+          ) : (
+            ""
+          )}
 
-        <form>
-          <label htmlFor="addItemTag">Add tag</label>
-          <input
-            id="addItemTag"
-            onChange={(event) => {
-              setNewTag(event.target.value);
-            }}
-          />
-          <button
-            onClick={(event) => {
-              handleAddTag(event);
-            }}
-          >
-            +
-          </button>
-        </form>
-        <form>
-          <label className="itemLabel" htmlFor="addItemNote">
-            Add a note to this item
-          </label>
-          <textarea
-            className="itemTextarea"
-            id="addItemNote"
-            onChange={(event) => {
-              const copy = { ...itemNote };
-              copy.noteText = event.target.value;
-              copy.dateTime = Date();
-              setItemNote(copy);
-            }}
-          ></textarea>
-          <button
-            className=""
-            onClick={(event) => {
-              handleAddNoteButton(event);
-            }}
-          >
-            Add note
-          </button>
-        </form>
+          <form>
+            <div>
+              {itemProjects.length > 0 ? (
+                <label>Add this item to another project</label>
+              ) : (
+                <label>Add this item to a project</label>
+              )}
+            </div>
+            {selectedItemProject.projectId ? displayProjectPhoto() : ""}
+            <select
+              onChange={(event) => {
+                const copy = { ...selectedItemProject };
+                copy.projectId = parseInt(event.target.value);
+                setSelectedItemProject(copy);
+              }}
+            >
+              <option>Choose project</option>
+              {projects.map((project) => {
+                return (
+                  <option key={project.id} value={project.id}>
+                    {project.name}
+                  </option>
+                );
+              })}
+            </select>
+            <button
+              className="itemDetailsAddBtn"
+              onClick={(event) => {
+                handleAddItemProject(event);
+              }}
+            >
+              Add
+            </button>
+          </form>
 
-        <button
-          className="buttonBlock"
-          onClick={(event) => {
-            handleEditButtonClick(event);
-          }}
-        >
-          Edit this item
-        </button>
-        <button
-          className="buttonBlock"
-          onClick={(event) => {
-            handleDeleteButtonClick(event);
-          }}
-        >
-          Delete this item
-        </button>
+          <form>
+            <label htmlFor="addItemTag">Add tag</label>
+            <input
+              id="addItemTag"
+              value={newTag}
+              onChange={(event) => {
+                setNewTag(event.target.value);
+              }}
+            />
+            <button
+              onClick={(event) => {
+                handleAddTag(event);
+              }}
+            >
+              +
+            </button>
+          </form>
+          <form>
+            <label className="itemLabel" htmlFor="addItemNote">
+              Add a note to this item
+            </label>
+            <textarea
+              className="itemTextarea"
+              id="addItemNote"
+              onChange={(event) => {
+                const copy = { ...itemNote };
+                copy.noteText = event.target.value;
+                copy.dateTime = Date();
+                setItemNote(copy);
+              }}
+            ></textarea>
+            <button
+              className=""
+              onClick={(event) => {
+                handleAddNoteButton(event);
+              }}
+            >
+              Add note
+            </button>
+          </form>
+
+          <button
+            className="buttonBlock"
+            onClick={(event) => {
+              handleEditButtonClick(event);
+            }}
+          >
+            Edit this item
+          </button>
+          <button
+            className="buttonBlock"
+            onClick={(event) => {
+              handleDeleteButtonClick(event);
+            }}
+          >
+            Delete this item
+          </button>
+        </div>
       </div>
     </>
   );

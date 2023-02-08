@@ -19,6 +19,7 @@ export const ApplicationViews = () => {
       <Route path="/projects/edit/:projectId" element={<NewProject />} />
       <Route path="/items/new" element={<NewItem />} />
       <Route path="/items/edit/:itemId" element={<NewItem />} />
+      <Route path="/items/tags/:itemTag" element={<AllItems />} />
     </Routes>
   );
 };

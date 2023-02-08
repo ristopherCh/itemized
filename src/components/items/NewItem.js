@@ -6,6 +6,7 @@ export const NewItem = ({ purchaseDate }) => {
   const { itemId } = useParams();
   const [tag, setTag] = useState("");
   const [tags, setTags] = useState([]);
+  const [priorTags, setPriorTags] = useState([]);
   const [editableItem, setEditableItem] = useState({});
   const navigate = useNavigate();
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
@@ -31,20 +32,6 @@ export const NewItem = ({ purchaseDate }) => {
   });
 
   useEffect(() => {
-    setUserInputs({
-      userId: itemizedUserObject.id,
-      name: editableItem.name,
-      type: editableItem.type,
-      imageURL: editableItem.imageURL,
-      description: editableItem.description,
-      purchasePrice: editableItem.purchasePrice,
-      purchaseDate: editableItem.purchaseDate?.slice(0, 10),
-      review: editableItem.review,
-      documentation: editableItem.documentation,
-    });
-  }, [editableItem]);
-
-  useEffect(() => {
     fetch(`http://localhost:8089/projects?userId=${itemizedUserObject.id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -63,8 +50,39 @@ export const NewItem = ({ purchaseDate }) => {
         .then((data) => {
           setItemProjects(data);
         });
+      fetch(
+        `http://localhost:8089/tags?userId=${itemizedUserObject.id}&itemId=${itemId}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setPriorTags(data);
+        });
     }
   }, []);
+
+  // & When editing, previously set tags are added to the current tags array
+  useEffect(() => {
+    const priorTagsArray = [];
+    priorTags.forEach((tag) => {
+      priorTagsArray.push(tag.tag);
+    });
+    const copy = tags.concat(priorTagsArray);
+    setTags(copy);
+  }, [priorTags]);
+
+  useEffect(() => {
+    setUserInputs({
+      userId: itemizedUserObject.id,
+      name: editableItem.name,
+      type: editableItem.type,
+      imageURL: editableItem.imageURL,
+      description: editableItem.description,
+      purchasePrice: editableItem.purchasePrice,
+      purchaseDate: editableItem.purchaseDate?.slice(0, 10),
+      review: editableItem.review,
+      documentation: editableItem.documentation,
+    });
+  }, [editableItem]);
 
   const fileToImgur = (event) => {
     const formdata = new FormData();
@@ -103,7 +121,7 @@ export const NewItem = ({ purchaseDate }) => {
     }
 
     if (selectedProjectId && !isDuplicate) {
-      fetch(`http://localhost:8089/itemsProjects`, {
+      return fetch(`http://localhost:8089/itemsProjects`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -114,6 +132,8 @@ export const NewItem = ({ purchaseDate }) => {
           projectId: selectedProjectId,
         }),
       });
+    } else {
+      return;
     }
   };
 
@@ -128,7 +148,7 @@ export const NewItem = ({ purchaseDate }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(itemNoteCopy),
-      }).then(navigate(`/items/${itemId}`));
+      });
     } else {
       navigate(`/items/${itemId}`);
     }
@@ -155,25 +175,58 @@ export const NewItem = ({ purchaseDate }) => {
     return promiseArray;
   };
 
-  const handleItemCreation = (event) => {
-    event.preventDefault();
-    if (userInputs.name && userInputs.type) {
-      fetch(`http://localhost:8089/items`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userInputs),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          postToItemsProjects(data.id);
-          postToItemsNotes(data.id);
-          postToTags(data.id);
-        });
-    } else {
-      alert("Please try again");
+  const erasePriorTags = () => {
+    let tagArray = [];
+    for (let tag of priorTags) {
+      tagArray.push(
+        fetch(`http://localhost:8089/tags/${tag.id}`, {
+          method: "DELETE",
+        })
+      );
     }
+    return tagArray;
+  };
+
+  const displayItemProjects = () => {
+    if (itemId) {
+      return (
+        <>
+          <div>Associated projects:</div>
+          <ul>
+            {itemProjects.map((itemProject) => {
+              return <li key={itemProject.id}>{itemProject.project.name}</li>;
+            })}
+          </ul>
+        </>
+      );
+    } else {
+      return "";
+    }
+  };
+
+  const handleAddTag = (event) => {
+    event.preventDefault();
+    let hasDuplicate = false;
+    tags.forEach((priorTag) => {
+      if (priorTag === tag) {
+        hasDuplicate = true;
+      }
+    });
+    if (!hasDuplicate) {
+      const copy = tags;
+      copy.push(tag);
+      setTags(copy);
+      setTag("");
+    } else {
+      setTag("");
+    }
+  };
+
+  const handleDeleteTag = (event, index) => {
+    event.preventDefault();
+    const copy = tags.slice(0).reverse();
+    copy.splice(index, 1);
+    setTags(copy);
   };
 
   const handleItemEdit = (event) => {
@@ -190,42 +243,34 @@ export const NewItem = ({ purchaseDate }) => {
         .then((data) => {
           postToItemsProjects(data.id);
           postToItemsNotes(data.id);
+          erasePriorTags();
+          postToTags(data.id).then(navigate(`/items/${itemId}`));
         });
     } else {
       alert("Please try again");
     }
   };
 
-  const displayItemProjects = () => {
-    if (itemId) {
-      return (
-        <>
-          <div>Associated projects:</div>
-          <ul>
-            {itemProjects.map((itemProject) => {
-              return <li>{itemProject.project.name}</li>;
-            })}
-          </ul>
-        </>
-      );
+  const handleItemCreation = (event) => {
+    // TODO : .then() all of those posts together
+    event.preventDefault();
+    if (userInputs.name && userInputs.type) {
+      fetch(`http://localhost:8089/items`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInputs),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          postToItemsProjects(data.id);
+          postToItemsNotes(data.id);
+          postToTags(data.id).then(navigate(`/items/${data.id}`));
+        });
     } else {
-      return "";
+      alert("Please try again");
     }
-  };
-
-  const handleTagButton = (event) => {
-    event.preventDefault();
-    const copy = tags;
-    copy.push(tag);
-    setTags(copy);
-    setTag("");
-  };
-
-  const handleDeleteTag = (event, index) => {
-    event.preventDefault();
-    const copy = tags.slice(0).reverse();
-    copy.splice(index, 1);
-    setTags(copy);
   };
 
   return (
@@ -311,7 +356,7 @@ export const NewItem = ({ purchaseDate }) => {
           />
           <button
             onClick={(event) => {
-              handleTagButton(event);
+              handleAddTag(event);
             }}
           >
             +
@@ -336,10 +381,18 @@ export const NewItem = ({ purchaseDate }) => {
           </ul>
 
           {displayItemProjects()}
-          <label className="itemLabel" htmlFor="itemProjectSelect">
-            Link this item to a project
-            <span className="italic">-- Optional</span>
-          </label>
+          {itemProjects.length > 0 ? (
+            <label className="itemLabel" htmlFor="itemProjectSelect">
+              Add this item to another project
+              <span className="italic">-- Optional</span>
+            </label>
+          ) : (
+            <label className="itemLabel" htmlFor="itemProjectSelect">
+              Add this item to a project
+              <span className="italic">-- Optional</span>
+            </label>
+          )}
+
           <select
             onChange={(event) => {
               setSelectedProjectId(parseInt(event.target.value));

@@ -4,6 +4,11 @@
       "id": 1,
       "fullName": "Chris Hanson",
       "email": "chanson8@gmail.com"
+    },
+    {
+      "email": "claire.cato@aol.com",
+      "fullName": "Claire Cato",
+      "id": 2
     }
   ],
   "projects": [
@@ -54,6 +59,27 @@
       "description": "Why is this necessary",
       "projectCreationDate": "2023-02-03T19:38:08.854Z",
       "id": 6
+    },
+    {
+      "userId": 1,
+      "name": "Apple Ecosystem",
+      "imageURL": "https://i.imgur.com/0HeDHuc.jpg",
+      "description": "Once you're in you'll never get out",
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "name": "Living Room Home Theater",
+      "imageURL": "https://i.imgur.com/cUGhtUy.jpg",
+      "description": "Your neighbors love it! Hopefully",
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "name": "Music Production",
+      "description": "Keep dreaming, kid!",
+      "id": 9,
+      "imageURL": "https://i.imgur.com/0tVjazv.jpg"
     }
   ],
   "items": [
@@ -71,18 +97,18 @@
     {
       "userId": 1,
       "name": "Ableton Push 1",
-      "type": "MIDI Controller",
+      "type": "MIDI controller",
       "imageURL": "https://i.imgur.com/UkAm0pJ.jpg",
-      "description": "64 button MIDI controller with 8 knobs, engineered to integrate with Ableton Push software.",
-      "purchasePrice": 0,
-      "purchaseDate": "2015-07-01T00:00:00.000Z",
-      "review": "Fantastic",
+      "description": "64 button MIDI controller with 8 knobs, engineered to integrate with Ableton Push software. Price and purchase date estimated.",
+      "purchasePrice": 300,
+      "purchaseDate": "2015-07-01",
+      "review": "Fantastic.",
       "id": 2
     },
     {
       "userId": 1,
       "name": "Martin 000-15M StreetMaster Acoustic Guitar",
-      "type": "Acoustic Guitar",
+      "type": "Acoustic guitar",
       "imageURL": "https://i.imgur.com/49czJ8c.jpg",
       "description": "Mahogany, distressed satin finish",
       "purchasePrice": 999.99,
@@ -182,13 +208,13 @@
     },
     {
       "userId": 1,
-      "name": "Bontrager GR1 Team Issue Gravel Tire!",
+      "name": "Bontrager GR1 Team Issue Gravel Tire",
       "type": "Bike Tires",
       "imageURL": "https://i.imgur.com/4QIsURC.jpg",
       "description": "Black gravel tires, 700C x 35mm.",
       "purchasePrice": 110,
       "purchaseDate": "2022-05-20",
-      "review": "",
+      "review": "I haven't fallen yet.",
       "id": 13
     },
     {
@@ -198,8 +224,9 @@
       "imageURL": "https://i.imgur.com/KgC3c94.jpg",
       "description": "Max 55 lbs. ",
       "purchasePrice": 119,
-      "purchaseDate": "2022-07-25T00:00:00.000Z",
-      "review": "https://www.amazon.com/gp/product/B00D9B7OKQ/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1\n\nGreat product, no complaints.",
+      "purchaseDate": "2022-07-25",
+      "review": "Great product, no complaints.",
+      "documentation": "https://www.amazon.com/gp/product/B00D9B7OKQ/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1",
       "id": 14
     },
     {
@@ -226,13 +253,14 @@
     },
     {
       "userId": 1,
-      "name": "Ultraboost 4.0 DNA Black",
+      "name": "Adidas Ultraboost 4.0 DNA Black",
       "type": "Shoes",
       "imageURL": "https://i.imgur.com/nFLGabX.jpg",
       "description": "Size 12.5, Core Black / Active Red.",
       "purchasePrice": 155,
-      "purchaseDate": "2022-05-31T00:00:00.000Z",
-      "review": "https://www.adidas.com/us/ultraboost-4.0-dna-shoes/FY9121.html",
+      "purchaseDate": "2022-05-31",
+      "review": "Great. Wearing them right now, most likely.",
+      "documentation": "https://www.adidas.com/us/ultraboost-4.0-dna-shoes/FY9121.html",
       "id": 17
     },
     {
@@ -297,7 +325,7 @@
       "name": "Penny the Dog",
       "type": "Dog",
       "imageURL": "https://i.imgur.com/9XIuUaZ.jpg",
-      "description": "Golden retriever. Severe underbite. Prone to UTI's. Loves to hold paws. Listens to nobody.",
+      "description": "Golden retriever. Severe underbite. Prone to UTIs. Loves to hold paws. Listens to nobody.",
       "purchasePrice": 1600,
       "purchaseDate": "2017-09-09",
       "review": "Love it! Doesn't quite function as promised but I've found my workarounds.",
@@ -347,7 +375,7 @@
       "imageURL": "https://i.imgur.com/wT5CLpQ.jpg",
       "description": "This receiver does all the expected things: receives many HDMI inputs, receives multiple audio signals, has the option for front, center, and many surround speakers. It also has Bluetooth and I can cast straight to it from Spotify.\n\n7.2Ch x 80 Watts",
       "purchasePrice": 327,
-      "purchaseDate": "2020-04-04T00:00:00.000Z",
+      "purchaseDate": "2020-04-04",
       "review": "Wonderful, I love it. No complaints.",
       "documentation": "http://manuals.denon.com/AVRX1500H/NA/EN/index.php",
       "id": 28
@@ -361,7 +389,7 @@
       "purchasePrice": 249.99,
       "purchaseDate": "2017-12-12",
       "review": "Pretty good. They don't blow me away.",
-      "documentation": "https://www.amazon.com/Edifier-R2000DB-Bluetooth-Bookshelf-Speakers/dp/B016PAWJYS",
+      "documentation": "https://www.edifier.com/product-r2000db.html",
       "id": 29
     },
     {
@@ -411,6 +439,126 @@
       "review": "How many wonderful years have we been together.",
       "documentation": "https://www.ikea.com/us/en/p/fredde-gaming-desk-black-50219044/",
       "id": 33
+    },
+    {
+      "userId": 1,
+      "name": "Zhiyun Crane-M2 S",
+      "type": "Camera Gimbal",
+      "imageURL": "https://i.imgur.com/OSKWqTQ.jpg",
+      "description": "Portable as a phone gimbal, super light yet strong enough to hold various cameras, like phones, action cams, and mirrorless cameras. The 549g/1.12lb lightweight body, stronger motors, and extended axes make it a must-have for run-and-gun filmmakers.",
+      "purchasePrice": 269,
+      "purchaseDate": "2022-04-03",
+      "review": "Great! Could be stronger, as I can't use my biggest lens with it. The light is pointless. Wish I could control focus with it. Still, incredibly useful.",
+      "documentation": "https://www.zhiyun-tech.com/en/product/detail/585",
+      "id": 34
+    },
+    {
+      "userId": 2,
+      "name": "Edifier R1700BT Bluetooth Bookshelf Speakers",
+      "type": "Speakers",
+      "imageURL": "https://i.imgur.com/uYt5jRf.jpg",
+      "description": "All-in-one Bluetooth Bookshelf Speakers\nDual RCA inputs for connectivity to multiple audio sources\nClass D amplifier system with Digital Signal Processing (DSP)\nSide-mounted panel and remote control for easy adjustment\n100% MDF wooden enclosure to minimize acoustic resonance",
+      "purchasePrice": 149.99,
+      "purchaseDate": "2020-05-15",
+      "review": "Great. Could boom harder but for the price I'm well satisfied.",
+      "documentation": "https://www.edifier.com/product-r1700bt.html",
+      "id": 35
+    },
+    {
+      "userId": 1,
+      "name": "Google Home Mini",
+      "type": "Smart speaker",
+      "imageURL": "https://i.imgur.com/oJf6MJR.jpg",
+      "description": "Google Home Mini is a smart speaker powered by the Google Assistant, so you can ask it questions and tell it to do things. Just start with \"Ok Google\" to enjoy your entertainment, get answers from Google, tackle your day, and control your smart home. Google Home Mini works on its own or you can have a few around the house, giving you the power of Google anywhere.",
+      "purchasePrice": 49,
+      "purchaseDate": "2017-10-14",
+      "review": "1st generation and still going strong. Would never use it as a speaker of course, but it is certainly capable of turning my lights on and off 5 times a day.",
+      "documentation": "https://www.bestbuy.com/site/home-mini-1st-generation-smart-speaker-with-google-assistant-chalk/6082194.p?skuId=6082194",
+      "id": 36
+    },
+    {
+      "userId": 1,
+      "name": "Apple iPad (8th generation)",
+      "type": "Tablet",
+      "imageURL": "https://i.imgur.com/itxxzWn.jpg",
+      "description": "8th generation, 32GB",
+      "purchasePrice": 299.99,
+      "purchaseDate": "2021-02-14",
+      "review": "Just fine.",
+      "documentation": "https://support.apple.com/kb/SP822?locale=en_US",
+      "id": 37
+    },
+    {
+      "userId": 1,
+      "name": "Apple iPhone 11",
+      "type": "Phone",
+      "imageURL": "https://i.imgur.com/50M9BP8.jpg",
+      "description": "128GB, black.",
+      "purchasePrice": 707.41,
+      "purchaseDate": "2021-04-17",
+      "review": "It's a great phone. I'm mad about green and blue bubbles though. Otherwise, basically perfect. I've dropped it maybe 40 times but it's still good.",
+      "documentation": "https://support.apple.com/kb/SP804?locale=en_US",
+      "id": 38
+    },
+    {
+      "userId": 1,
+      "name": "Native Instruments Komplete Audio 6",
+      "type": "Audio interface",
+      "imageURL": "https://i.imgur.com/eYBJk1n.jpg",
+      "description": "4 analog in/out. 2 digital in/out. 1 headphone out. MIDI in/out",
+      "purchasePrice": 228.99,
+      "purchaseDate": "2012-09-09",
+      "review": "Good grief! Where would I be without it?",
+      "documentation": "https://www.native-instruments.com/en/products/komplete/audio-interfaces/komplete-audio-6/",
+      "id": 39
+    },
+    {
+      "userId": 1,
+      "name": "Klipsch RP-600M",
+      "type": "Home Theater Left & Right Speakers",
+      "imageURL": "https://i.imgur.com/uwgwy8z.jpg",
+      "description": "1” titanium lts vented tweeter with hybrid tractrix Horn. 6.5\" Spun copper cerametallic woofers.",
+      "purchasePrice": 458.86,
+      "purchaseDate": "2020-04-13",
+      "review": "Blow me away, again and again.",
+      "documentation": "https://www.amazon.com/Klipsch-Reference-Premiere-Bookshelf-Speakers/dp/B07G3D2C8S/ref=sr_1_1?crid=2QBQMMH3NWV1G&keywords=Klipsch%2BRP-600M&qid=1675817301&s=electronics&sprefix=klipsch%2Brp-600m%2Celectronics%2C100&sr=1-1&ufe=app_do%3Aamzn1.fos.ac2169a1-b668-44b9-8bd0-5ec63b24bcb5&th=1",
+      "id": 40
+    },
+    {
+      "userId": 1,
+      "name": "Apple MacBook Air M1, 2020",
+      "type": "Laptop",
+      "imageURL": "https://i.imgur.com/c4vWsQa.jpg",
+      "description": "M1, 2020, 8 GB memory, 250 GB hard drive, 13.3 in retina display, 2560 x 1600 pixels",
+      "purchasePrice": 988.41,
+      "purchaseDate": "2021-07-28",
+      "review": "Incredible, so sleek. How do you work this thing though.",
+      "documentation": "https://support.apple.com/kb/SP825?locale=en_US",
+      "id": 41
+    },
+    {
+      "userId": 1,
+      "name": "Kindle Oasis (10th generation)",
+      "type": "E-book Reader",
+      "imageURL": "https://i.imgur.com/HBPfOiH.jpg",
+      "description": "7\" display. Page turn buttons. Warm light filter",
+      "purchasePrice": 269.99,
+      "purchaseDate": "2020-10-07",
+      "review": "In a world of wonderful electronics, this possibly makes me the happiest.",
+      "documentation": "https://www.amazon.com/gp/product/B07L5GJD99/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1",
+      "id": 42
+    },
+    {
+      "userId": 1,
+      "name": "Komplete Kontrol M32 Micro Keyboard Controller",
+      "type": "MIDI keyboard",
+      "imageURL": "https://i.imgur.com/EoXauEp.jpg",
+      "description": "Native Instruments. \nMicro-sized keyboard, 32 keys.\nSynth-action, custom NI keybed\nInformative OLED display\nEight touch-sensitive control knobs\nTwo touch strips\nFour-directional push encoder for one-handed sound browsing and project navigation",
+      "purchasePrice": 139,
+      "purchaseDate": "2020-12-23",
+      "review": "Super cute.",
+      "documentation": "https://www.native-instruments.com/en/products/komplete/keyboards/komplete-kontrol-m32/",
+      "id": 43
     }
   ],
   "itemsProjects": [
@@ -521,6 +669,72 @@
       "itemId": 33,
       "projectId": 4,
       "id": 19
+    },
+    {
+      "userId": 1,
+      "itemId": 34,
+      "projectId": 5,
+      "id": 20
+    },
+    {
+      "userId": 1,
+      "itemId": 30,
+      "projectId": 6,
+      "id": 21
+    },
+    {
+      "userId": 1,
+      "itemId": 38,
+      "projectId": 7,
+      "id": 22
+    },
+    {
+      "userId": 1,
+      "itemId": 37,
+      "projectId": 7,
+      "id": 23
+    },
+    {
+      "userId": 1,
+      "itemId": 28,
+      "projectId": 8,
+      "id": 24
+    },
+    {
+      "userId": 1,
+      "itemId": 2,
+      "projectId": 9,
+      "id": 25
+    },
+    {
+      "userId": 1,
+      "itemId": 3,
+      "projectId": 9,
+      "id": 26
+    },
+    {
+      "userId": 1,
+      "itemId": 39,
+      "projectId": 9,
+      "id": 27
+    },
+    {
+      "userId": 1,
+      "itemId": 40,
+      "projectId": 8,
+      "id": 28
+    },
+    {
+      "userId": 1,
+      "itemId": 41,
+      "projectId": 7,
+      "id": 29
+    },
+    {
+      "userId": 1,
+      "itemId": 43,
+      "projectId": 9,
+      "id": 30
     }
   ],
   "documents": [],
@@ -622,25 +836,427 @@
       "userId": 1,
       "itemId": 33,
       "tag": "Gaming",
-      "id": 1
+      "id": 38
     },
     {
       "userId": 1,
       "itemId": 33,
       "tag": "Furniture",
-      "id": 2
+      "id": 39
     },
     {
       "userId": 1,
       "itemId": 33,
       "tag": "Office",
-      "id": 3
+      "id": 40
     },
     {
       "userId": 1,
-      "itemId": "33",
-      "tag": "Work",
-      "id": 4
+      "itemId": 31,
+      "tag": "Electronics",
+      "id": 41
+    },
+    {
+      "userId": 1,
+      "itemId": 31,
+      "tag": "Biking",
+      "id": 42
+    },
+    {
+      "userId": 1,
+      "itemId": 31,
+      "tag": "GPS",
+      "id": 43
+    },
+    {
+      "userId": 1,
+      "itemId": 32,
+      "tag": "GPS",
+      "id": 44
+    },
+    {
+      "userId": 1,
+      "itemId": 30,
+      "tag": "GPS",
+      "id": 45
+    },
+    {
+      "userId": 1,
+      "itemId": 30,
+      "tag": "Watch",
+      "id": 46
+    },
+    {
+      "userId": 2,
+      "itemId": 35,
+      "tag": "Speakers",
+      "id": 47
+    },
+    {
+      "userId": 1,
+      "itemId": 29,
+      "tag": "Speakers",
+      "id": 48
+    },
+    {
+      "userId": 1,
+      "itemId": 29,
+      "tag": "Electronics",
+      "id": 49
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "tag": "Shoes",
+      "id": 50
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "tag": "Clothes",
+      "id": 51
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "tag": "Clothing",
+      "id": 52
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "tag": "Fitness",
+      "id": 53
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "tag": "Yellow",
+      "id": 54
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "tag": "Brooks",
+      "id": 55
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "tag": "Running",
+      "id": 56
+    },
+    {
+      "userId": 1,
+      "itemId": 36,
+      "tag": "Smart",
+      "id": 58
+    },
+    {
+      "userId": 1,
+      "itemId": 36,
+      "tag": "Google",
+      "id": 59
+    },
+    {
+      "userId": 1,
+      "itemId": 36,
+      "tag": "Cast",
+      "id": 60
+    },
+    {
+      "userId": 1,
+      "itemId": 36,
+      "tag": "Speakers",
+      "id": 61
+    },
+    {
+      "userId": 1,
+      "itemId": 30,
+      "tag": "Running",
+      "id": 69
+    },
+    {
+      "userId": 1,
+      "itemId": 32,
+      "tag": "Watch",
+      "id": 70
+    },
+    {
+      "userId": 1,
+      "itemId": 32,
+      "tag": "Running",
+      "id": 71
+    },
+    {
+      "userId": 1,
+      "itemId": 14,
+      "tag": "Biking",
+      "id": 75
+    },
+    {
+      "userId": 1,
+      "itemId": 14,
+      "tag": "Tools",
+      "id": 76
+    },
+    {
+      "userId": 1,
+      "itemId": 8,
+      "tag": "Lights",
+      "id": 77
+    },
+    {
+      "userId": 1,
+      "itemId": 8,
+      "tag": "Biking",
+      "id": 78
+    },
+    {
+      "userId": 1,
+      "itemId": 8,
+      "tag": "Electronics",
+      "id": 79
+    },
+    {
+      "userId": 1,
+      "itemId": 34,
+      "tag": "Electronics",
+      "id": 86
+    },
+    {
+      "userId": 1,
+      "itemId": 34,
+      "tag": "Gimbal",
+      "id": 87
+    },
+    {
+      "userId": 1,
+      "itemId": 34,
+      "tag": "Camera",
+      "id": 88
+    },
+    {
+      "userId": 1,
+      "itemId": 22,
+      "tag": "Transport",
+      "id": 89
+    },
+    {
+      "userId": 1,
+      "itemId": 22,
+      "tag": "Outdoors",
+      "id": 90
+    },
+    {
+      "userId": 1,
+      "itemId": 27,
+      "tag": "Fitness",
+      "id": 91
+    },
+    {
+      "userId": 1,
+      "itemId": 17,
+      "tag": "Shoes",
+      "id": 92
+    },
+    {
+      "userId": 1,
+      "itemId": 17,
+      "tag": "Fitness",
+      "id": 93
+    },
+    {
+      "userId": 1,
+      "itemId": 17,
+      "tag": "Running",
+      "id": 94
+    },
+    {
+      "userId": 1,
+      "itemId": 37,
+      "tag": "Electronics",
+      "id": 100
+    },
+    {
+      "userId": 1,
+      "itemId": 37,
+      "tag": "Tablet",
+      "id": 101
+    },
+    {
+      "userId": 1,
+      "itemId": 37,
+      "tag": "iPad",
+      "id": 103
+    },
+    {
+      "userId": 1,
+      "itemId": 37,
+      "tag": "Apple",
+      "id": 104
+    },
+    {
+      "userId": 1,
+      "itemId": 38,
+      "tag": "Electronics",
+      "id": 105
+    },
+    {
+      "userId": 1,
+      "itemId": 38,
+      "tag": "Apple",
+      "id": 106
+    },
+    {
+      "userId": 1,
+      "itemId": 38,
+      "tag": "Phone",
+      "id": 107
+    },
+    {
+      "userId": 1,
+      "itemId": 38,
+      "tag": "GPS",
+      "id": 108
+    },
+    {
+      "userId": 1,
+      "itemId": 38,
+      "tag": "iPhone",
+      "id": 109
+    },
+    {
+      "userId": 1,
+      "itemId": 28,
+      "tag": "Electronics",
+      "id": 110
+    },
+    {
+      "userId": 1,
+      "itemId": 28,
+      "tag": "Speakers",
+      "id": 111
+    },
+    {
+      "userId": 1,
+      "itemId": 40,
+      "tag": "Speakers",
+      "id": 115
+    },
+    {
+      "userId": 1,
+      "itemId": 40,
+      "tag": "Electronics",
+      "id": 116
+    },
+    {
+      "userId": 1,
+      "itemId": 40,
+      "tag": "Home theater",
+      "id": 117
+    },
+    {
+      "userId": 1,
+      "itemId": 40,
+      "tag": "Audio",
+      "id": 118
+    },
+    {
+      "userId": 1,
+      "itemId": 41,
+      "tag": "Computers",
+      "id": 119
+    },
+    {
+      "userId": 1,
+      "itemId": 41,
+      "tag": "Apple",
+      "id": 120
+    },
+    {
+      "userId": 1,
+      "itemId": 41,
+      "tag": "Electronics",
+      "id": 121
+    },
+    {
+      "userId": 1,
+      "itemId": 41,
+      "tag": "Laptop",
+      "id": 122
+    },
+    {
+      "userId": 1,
+      "itemId": 2,
+      "tag": "Electronics",
+      "id": 130
+    },
+    {
+      "userId": 1,
+      "itemId": 2,
+      "tag": "Music",
+      "id": 131
+    },
+    {
+      "userId": 1,
+      "itemId": 43,
+      "tag": "Electronics",
+      "id": 132
+    },
+    {
+      "userId": 1,
+      "itemId": 43,
+      "tag": "Music production",
+      "id": 133
+    },
+    {
+      "userId": 1,
+      "itemId": 24,
+      "tag": "Animal",
+      "id": 136
+    },
+    {
+      "userId": 1,
+      "itemId": 24,
+      "tag": "Dog",
+      "id": 137
+    },
+    {
+      "userId": 1,
+      "itemId": 42,
+      "tag": "Tablet",
+      "id": 138
+    },
+    {
+      "userId": 1,
+      "itemId": 42,
+      "tag": "Electronics",
+      "id": 139
+    },
+    {
+      "userId": 1,
+      "itemId": 42,
+      "tag": "Kindle",
+      "id": 140
+    },
+    {
+      "userId": 1,
+      "itemId": 39,
+      "tag": "Electronics",
+      "id": 141
+    },
+    {
+      "userId": 1,
+      "itemId": 39,
+      "tag": "Music gear",
+      "id": 142
+    },
+    {
+      "userId": 1,
+      "itemId": 39,
+      "tag": "Speakers",
+      "id": 143
     }
   ]
 }
