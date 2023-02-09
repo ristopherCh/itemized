@@ -218,12 +218,12 @@ export const ItemDetails = () => {
       overlayElement.style.display = "block";
       // overlayElementLower.style.display = "block";
       containerElement.setAttribute("class", "blur");
-      navElement.setAttribute("class", "blur greenBackground");
+      navElement.setAttribute("class", "blur darkGreenBackground");
     } else {
       overlayElement.style.display = "none";
       // overlayElementLower.style.display = "none";
       containerElement.setAttribute("class", null);
-      navElement.setAttribute("class", "greenBackground");
+      navElement.setAttribute("class", "darkGreenBackground");
     }
   };
 
@@ -237,7 +237,7 @@ export const ItemDetails = () => {
           </div>
         </div>
         <img className="itemImageLarge" src={item.imageURL} alt="" />
-        <div className="itemReview greenBackground boxShadow">
+        <div className="itemReview darkGreenBackground boxShadow">
           <span className="justBold underlined">Review</span>
           <br />
           {item.review}
@@ -315,7 +315,7 @@ export const ItemDetails = () => {
                         </ul>
                       </>
                     ) : (
-                      <div>This item is associated with no projects</div>
+                      <h2 classname="displayInline">This item is associated with no projects</h2>
                     )}
                   </div>
 
@@ -356,7 +356,10 @@ export const ItemDetails = () => {
                 </div>
               </div>
 
-              <div className="tempBorder margin10 boxShadow yellowBackground" id="">
+              <div
+                className="tempBorder margin10 boxShadow yellowBackground"
+                id=""
+              >
                 <h2 className="underlined">Tags</h2>
                 <form className="flexRow justifyCenter">
                   <input
@@ -377,15 +380,15 @@ export const ItemDetails = () => {
                   </button>
                 </form>
 
-                <ul>
+                <div id="tagsContainer">
                   {itemTags.map((itemTag) => {
                     return (
                       <div className="itemTagsContainer" key={itemTag.id}>
-                        <li className="width30" key={itemTag.id}>
+                        <div className="width30" key={itemTag.id}>
                           <Link to={`/items/tags/${itemTag.tag}`}>
                             {itemTag.tag}
                           </Link>
-                        </li>
+                        </div>
                         <div className="width50">
                           <button
                             className="borderNone standardBackground"
@@ -400,22 +403,19 @@ export const ItemDetails = () => {
                       </div>
                     );
                   })}
-                </ul>
+                </div>
               </div>
 
-              <div
-                className="flexColumn tempBorder margin10"
-                id="itemNotes"
-              >
+              <div className="flexColumn tempBorder margin10" id="itemNotes">
                 <div className="width100">
                   {itemNotes.length > 0 ? (
-                    <div className="boxShadow yellowBackground padding20">
+                    <div className="boxShadow yellowBackground padding20" id="notesBox">
                       <h2 className="underlined">Notes</h2>
-                      <ul>
+                      <ul className="">
                         {itemNotes.map((itemNote) => {
                           return (
                             <div
-                              className="tempBorder margin10"
+                              className="tempBorder margin10 padding5"
                               key={itemNote.id}
                             >
                               <li>
@@ -444,9 +444,9 @@ export const ItemDetails = () => {
                   )}
                 </div>
                 <div className="margin10">
-                  <form className="flexRow spaceAround tempBorder alignCenter">
+                  <form className="flexRow justifyCenter tempBorder alignEnd" id="addNoteBox">
                     <textarea
-                      className="itemTextarea width75"
+                      className="itemTextarea width50"
                       value={itemNote.noteText}
                       id="addItemNote"
                       onChange={(event) => {
@@ -456,9 +456,10 @@ export const ItemDetails = () => {
                         setItemNote(copy);
                       }}
                     ></textarea>
-                    <div>
+                    <div className="marginLeft20">
                       <button
                         className="height50 marginAuto alignCenter justifyCenter"
+                        id="addNoteButton"
                         onClick={(event) => {
                           handleAddNoteButton(event);
                         }}
@@ -469,7 +470,10 @@ export const ItemDetails = () => {
                   </form>
                 </div>
               </div>
-              <div className="tempBorder margin10 inline boxShadow width40 flexRow padding20 justifyCenter marginAuto">
+              <div
+                className="tempBorder margin10 inline boxShadow width30 flexRow padding20 justifyCenter marginAuto deleteButtonDiv"
+                id="editDeleteButtonDiv"
+              >
                 <button
                   className="buttonBlock inline marginRight20"
                   onClick={(event) => {

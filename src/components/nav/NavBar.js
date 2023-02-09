@@ -5,7 +5,7 @@ export const NavBar = () => {
   const navigate = useNavigate();
 
   return (
-    <ul id="navbarUL" className="greenBackground">
+    <ul id="navbarUL" className="darkGreenBackground">
       <div className="navbar">
         <li className="navItem">
           <div className="navFlexHolder">
