@@ -829,6 +829,62 @@
       "noteText": "I completely disassembled this desk and made it even more epic.",
       "dateTime": "Fri Feb 03 2023 18:00:30 GMT-0600 (Central Standard Time)",
       "id": 13
+    },
+    {
+      "userId": 1,
+      "itemId": "38",
+      "noteText": "Replaced screen protector.",
+      "dateTime": "Wed Feb 08 2023 14:52:00 GMT-0600 (Central Standard Time)",
+      "id": 14
+    },
+    {
+      "userId": 1,
+      "itemId": "31",
+      "noteText": "Went bonkers when I ran with it. Keep it level!",
+      "dateTime": "Wed Feb 08 2023 15:52:52 GMT-0600 (Central Standard Time)",
+      "id": 15
+    },
+    {
+      "userId": 1,
+      "itemId": "39",
+      "noteText": "The updated version has 2 headphone outputs and a lit level meter!",
+      "dateTime": "Wed Feb 08 2023 16:09:53 GMT-0600 (Central Standard Time)",
+      "id": 16
+    },
+    {
+      "userId": 1,
+      "itemId": "26",
+      "noteText": "I've lost the knob that sets the lean-back resistance.\n",
+      "dateTime": "Wed Feb 08 2023 16:40:38 GMT-0600 (Central Standard Time)",
+      "id": 17
+    },
+    {
+      "userId": 1,
+      "itemId": "43",
+      "noteText": "I'd like to buy a cover for this, it gets too dusty.",
+      "dateTime": "Wed Feb 08 2023 17:27:09 GMT-0600 (Central Standard Time)",
+      "id": 18
+    },
+    {
+      "userId": 1,
+      "itemId": "43",
+      "noteText": "Comes with a powerful software package, including synths, basses, drums, effects – plus Ableton Live 11 Lite",
+      "dateTime": "Wed Feb 08 2023 17:44:35 GMT-0600 (Central Standard Time)",
+      "id": 19
+    },
+    {
+      "userId": 1,
+      "itemId": "43",
+      "noteText": "Can this control Ableton? I think so, but only more recent versions than the one I have.",
+      "dateTime": "Wed Feb 08 2023 17:48:05 GMT-0600 (Central Standard Time)",
+      "id": 20
+    },
+    {
+      "userId": 1,
+      "itemId": "25",
+      "noteText": "Don't use the cable intended for cell phones! They look identical but it won't work.",
+      "dateTime": "Wed Feb 08 2023 19:51:40 GMT-0600 (Central Standard Time)",
+      "id": 21
     }
   ],
   "tags": [
@@ -1200,18 +1256,6 @@
     },
     {
       "userId": 1,
-      "itemId": 43,
-      "tag": "Electronics",
-      "id": 132
-    },
-    {
-      "userId": 1,
-      "itemId": 43,
-      "tag": "Music production",
-      "id": 133
-    },
-    {
-      "userId": 1,
       "itemId": 24,
       "tag": "Animal",
       "id": 136
@@ -1257,6 +1301,60 @@
       "itemId": 39,
       "tag": "Speakers",
       "id": 143
+    },
+    {
+      "userId": 1,
+      "itemId": 39,
+      "tag": "Sound",
+      "id": 144
+    },
+    {
+      "userId": 1,
+      "itemId": 26,
+      "tag": "Furniture",
+      "id": 145
+    },
+    {
+      "userId": 1,
+      "itemId": 26,
+      "tag": "Office",
+      "id": 146
+    },
+    {
+      "userId": 1,
+      "itemId": 43,
+      "tag": "Electronics",
+      "id": 147
+    },
+    {
+      "userId": 1,
+      "itemId": 43,
+      "tag": "Music production",
+      "id": 148
+    },
+    {
+      "userId": 1,
+      "itemId": 25,
+      "tag": "Camera",
+      "id": 149
+    },
+    {
+      "userId": 1,
+      "itemId": 25,
+      "tag": "Electronics",
+      "id": 150
+    },
+    {
+      "userId": 1,
+      "itemId": 24,
+      "tag": "Outdoors",
+      "id": 151
+    },
+    {
+      "userId": 1,
+      "itemId": 6,
+      "tag": "Outdoors",
+      "id": 152
     }
   ]
 }

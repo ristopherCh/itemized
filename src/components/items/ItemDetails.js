@@ -126,6 +126,12 @@ export const ItemDetails = () => {
       body: JSON.stringify(itemNote),
     }).then(() => {
       fetchItemNotes();
+      setItemNote({
+        userId: itemizedUserObject.id,
+        itemId: itemId,
+        noteText: "",
+        dateTime: "",
+      });
     });
   };
 
@@ -212,12 +218,12 @@ export const ItemDetails = () => {
       overlayElement.style.display = "block";
       // overlayElementLower.style.display = "block";
       containerElement.setAttribute("class", "blur");
-      navElement.setAttribute("class", "blur");
+      navElement.setAttribute("class", "blur greenBackground");
     } else {
       overlayElement.style.display = "none";
       // overlayElementLower.style.display = "none";
       containerElement.setAttribute("class", null);
-      navElement.setAttribute("class", null);
+      navElement.setAttribute("class", "greenBackground");
     }
   };
 
@@ -227,13 +233,12 @@ export const ItemDetails = () => {
         <div>
           <h1 className="smallH1">{item.name}</h1>
           <div onClick={() => blurFunction(0)}>
-            <span className="boldPointer close"></span>
+            <span className="boldPointer close" />
           </div>
         </div>
         <img className="itemImageLarge" src={item.imageURL} alt="" />
-
-        <div className="itemReview">
-          <span className="justBold">Review:</span>
+        <div className="itemReview greenBackground boxShadow">
+          <span className="justBold underlined">Review</span>
           <br />
           {item.review}
         </div>
@@ -243,208 +248,247 @@ export const ItemDetails = () => {
         <div className="itemDetailsContainer">
           <h1>{item.name}</h1>
           <h3 className="itemTypeHeader">{item.type}</h3>
-          <div className="itemPhotoFlexbox">
+          {/* Top flexbox (with photo) */}
+          <div className="flexColumn spaceAround alignCenter">
             <img
-              className="itemImage"
+              className="itemImage boxShadow"
               src={item.imageURL}
               alt=""
               onClick={() => {
                 blurFunction(1);
               }}
             />
+            <div
+              className="flexColumn width75 margin10"
+              id="everythingButImage"
+            >
+              <div className="width100 spaceBetween flexColumn alignCenter tempBorder margin10">
+                <h2 className="displayInline">
+                  Purchase Price ${item.purchasePrice?.toFixed(2)}{" "}
+                </h2>
+                <h2 className="displayInline">
+                  Purchase Date{" "}
+                  {new Date(item.purchaseDate).toLocaleDateString()}
+                </h2>
+                {item.documentation ? (
+                  <a href={item.documentation} target="_blank" rel="noreferrer">
+                    <h4 className="displayInline">Documentation</h4>
+                  </a>
+                ) : (
+                  ""
+                )}
+              </div>
 
-            <div className="itemRightColumnBox">
-              <div className="itemRightColumnBoxTop">
-                <div className="itemRightColumnTopLeft">
-                  <div className="itemPriceContainer">
-                    <h2 className="itemRightColumnHeader">
-                      Purchase Price: ${item.purchasePrice?.toFixed(2)}
-                    </h2>
-                    <h2 className="itemRightColumnHeader">
-                      Purchase Date:{" "}
-                      {new Date(item.purchaseDate).toLocaleDateString()}
-                    </h2>
+              <div className="tempBorder margin10 alignCenter spaceAround flexRow margin10">
+                <div className="marginRight20">
+                  <div className="itemDescription boxShadow yellowBackground padding20">
+                    <h2 className="underlined">Description</h2>
+                    <ul className="itemDescriptionUL">
+                      {item.description?.map((point, index) => {
+                        return <li key={index}>{point}</li>;
+                      })}
+                    </ul>
                   </div>
                 </div>
-                <div className="itemRightColumnTopRight">
-                  <h2 className="itemRightColumnHeader">
-                    This item is a member of:
-                  </h2>
-                  {itemProjects.length > 0 ? (
-                    <>
-                      <ul className="itemDetailsUL">
-                        {itemProjects.map((itemProject) => {
+
+                <div className="width50 margin10 flexRow alignItemsCenter spaceAround flexColumn boxShadow yellowBackground padding20">
+                  <div className="marginBottom20" id="itemProjectsList">
+                    {itemProjects.length > 0 ? (
+                      <>
+                        <h2 className="displayInline">
+                          This item is a member of:
+                        </h2>
+                        <ul className="itemDetailsUL">
+                          {itemProjects.map((itemProject) => {
+                            return (
+                              <li key={itemProject.id}>
+                                <Link
+                                  to={`/projects/${itemProject.project.id}`}
+                                >
+                                  <span className="itemProjectsLI">
+                                    {itemProject.project?.name}
+                                  </span>
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </>
+                    ) : (
+                      <div>This item is associated with no projects</div>
+                    )}
+                  </div>
+
+                  <form className="">
+                    <div className="">
+                      {itemProjects.length > 0 ? (
+                        <label>Add this item to another project</label>
+                      ) : (
+                        <label>Add this item to a project</label>
+                      )}
+                    </div>
+                    {selectedItemProject.projectId ? displayProjectPhoto() : ""}
+                    <select
+                      onChange={(event) => {
+                        const copy = { ...selectedItemProject };
+                        copy.projectId = parseInt(event.target.value);
+                        setSelectedItemProject(copy);
+                      }}
+                    >
+                      <option>Choose project</option>
+                      {projects.map((project) => {
+                        return (
+                          <option key={project.id} value={project.id}>
+                            {project.name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <button
+                      className="itemDetailsAddBtn"
+                      onClick={(event) => {
+                        handleAddItemProject(event);
+                      }}
+                    >
+                      Add
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+              <div className="tempBorder margin10 boxShadow yellowBackground" id="">
+                <h2 className="underlined">Tags</h2>
+                <form className="flexRow justifyCenter">
+                  <input
+                    className=""
+                    id="addItemTag"
+                    value={newTag}
+                    onChange={(event) => {
+                      setNewTag(event.target.value);
+                    }}
+                  />
+                  <button
+                    className="borderNone standardBackground"
+                    onClick={(event) => {
+                      handleAddTag(event);
+                    }}
+                  >
+                    <span className="justBold">+</span>
+                  </button>
+                </form>
+
+                <ul>
+                  {itemTags.map((itemTag) => {
+                    return (
+                      <div className="itemTagsContainer" key={itemTag.id}>
+                        <li className="width30" key={itemTag.id}>
+                          <Link to={`/items/tags/${itemTag.tag}`}>
+                            {itemTag.tag}
+                          </Link>
+                        </li>
+                        <div className="width50">
+                          <button
+                            className="borderNone standardBackground"
+                            name={itemTag.id}
+                            onClick={(event) => {
+                              handleTagDelete(event);
+                            }}
+                          >
+                            x
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </ul>
+              </div>
+
+              <div
+                className="flexColumn tempBorder margin10"
+                id="itemNotes"
+              >
+                <div className="width100">
+                  {itemNotes.length > 0 ? (
+                    <div className="boxShadow yellowBackground padding20">
+                      <h2 className="underlined">Notes</h2>
+                      <ul>
+                        {itemNotes.map((itemNote) => {
                           return (
-                            <li key={itemProject.id}>
-                              <Link to={`/projects/${itemProject.project.id}`}>
-                                <span className="itemProjectsLI">{itemProject.project?.name}</span>
-                              </Link>
-                            </li>
+                            <div
+                              className="tempBorder margin10"
+                              key={itemNote.id}
+                            >
+                              <li>
+                                <div className="flexRow spaceBetween boxShadow">
+                                  <div className="">{itemNote.noteText}</div>
+                                  <div className="width30 textAlignRight">
+                                    {itemNote.dateTime ? (
+                                      <>
+                                        {new Date(
+                                          itemNote.dateTime
+                                        ).toLocaleDateString()}
+                                      </>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </div>
+                                </div>
+                              </li>
+                            </div>
                           );
                         })}
                       </ul>
-                    </>
+                    </div>
                   ) : (
-                    <div>This item is associated with no projects</div>
+                    ""
                   )}
                 </div>
-              </div>
-              <div className="itemDescriptionBox">
-                <h2 className="itemRightColumnHeader">Description</h2>
-                <div className="itemDescription">
-                  <ul className="itemDescriptionUL">
-                    {item.description?.map((point, index) => {
-                      return <li key={index}>{point}</li>;
-                    })}
-                  </ul>
+                <div className="margin10">
+                  <form className="flexRow spaceAround tempBorder alignCenter">
+                    <textarea
+                      className="itemTextarea width75"
+                      value={itemNote.noteText}
+                      id="addItemNote"
+                      onChange={(event) => {
+                        const copy = { ...itemNote };
+                        copy.noteText = event.target.value;
+                        copy.dateTime = Date();
+                        setItemNote(copy);
+                      }}
+                    ></textarea>
+                    <div>
+                      <button
+                        className="height50 marginAuto alignCenter justifyCenter"
+                        onClick={(event) => {
+                          handleAddNoteButton(event);
+                        }}
+                      >
+                        Add note
+                      </button>
+                    </div>
+                  </form>
                 </div>
+              </div>
+              <div className="tempBorder margin10 inline boxShadow width40 flexRow padding20 justifyCenter marginAuto">
+                <button
+                  className="buttonBlock inline marginRight20"
+                  onClick={(event) => {
+                    handleEditButtonClick(event);
+                  }}
+                >
+                  Edit this item
+                </button>
+                <button
+                  className="buttonBlock inline"
+                  onClick={(event) => {
+                    handleDeleteButtonClick(event);
+                  }}
+                >
+                  Delete this item
+                </button>
               </div>
             </div>
           </div>
-
-          <div>Tags:</div>
-          <ul>
-            {itemTags.map((itemTag) => {
-              return (
-                <div key={itemTag.id}>
-                  <li key={itemTag.id} className="skinnyLI">
-                    <Link to={`/items/tags/${itemTag.tag}`}>{itemTag.tag}</Link>
-                  </li>
-                  <button
-                    name={itemTag.id}
-                    onClick={(event) => {
-                      handleTagDelete(event);
-                    }}
-                  >
-                    x
-                  </button>
-                </div>
-              );
-            })}
-          </ul>
-          {item.documentation ? (
-            <a href={item.documentation} target="_blank" rel="noreferrer">
-              Link to documentation
-            </a>
-          ) : (
-            ""
-          )}
-          {itemNotes.length > 0 ? (
-            <>
-              <p>Notes:</p>
-              <ul>
-                {itemNotes.map((itemNote) => {
-                  return (
-                    <div key={itemNote.id}>
-                      <li>{itemNote.noteText}</li>
-                      {itemNote.dateTime ? (
-                        <li>
-                          {new Date(itemNote.dateTime).toLocaleDateString()}
-                        </li>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                  );
-                })}
-              </ul>
-            </>
-          ) : (
-            ""
-          )}
-
-          <form>
-            <div>
-              {itemProjects.length > 0 ? (
-                <label>Add this item to another project</label>
-              ) : (
-                <label>Add this item to a project</label>
-              )}
-            </div>
-            {selectedItemProject.projectId ? displayProjectPhoto() : ""}
-            <select
-              onChange={(event) => {
-                const copy = { ...selectedItemProject };
-                copy.projectId = parseInt(event.target.value);
-                setSelectedItemProject(copy);
-              }}
-            >
-              <option>Choose project</option>
-              {projects.map((project) => {
-                return (
-                  <option key={project.id} value={project.id}>
-                    {project.name}
-                  </option>
-                );
-              })}
-            </select>
-            <button
-              className="itemDetailsAddBtn"
-              onClick={(event) => {
-                handleAddItemProject(event);
-              }}
-            >
-              Add
-            </button>
-          </form>
-
-          <form>
-            <label htmlFor="addItemTag">Add tag</label>
-            <input
-              id="addItemTag"
-              value={newTag}
-              onChange={(event) => {
-                setNewTag(event.target.value);
-              }}
-            />
-            <button
-              onClick={(event) => {
-                handleAddTag(event);
-              }}
-            >
-              +
-            </button>
-          </form>
-          <form>
-            <label className="itemLabel" htmlFor="addItemNote">
-              Add a note to this item
-            </label>
-            <textarea
-              className="itemTextarea"
-              id="addItemNote"
-              onChange={(event) => {
-                const copy = { ...itemNote };
-                copy.noteText = event.target.value;
-                copy.dateTime = Date();
-                setItemNote(copy);
-              }}
-            ></textarea>
-            <button
-              className=""
-              onClick={(event) => {
-                handleAddNoteButton(event);
-              }}
-            >
-              Add note
-            </button>
-          </form>
-
-          <button
-            className="buttonBlock"
-            onClick={(event) => {
-              handleEditButtonClick(event);
-            }}
-          >
-            Edit this item
-          </button>
-          <button
-            className="buttonBlock"
-            onClick={(event) => {
-              handleDeleteButtonClick(event);
-            }}
-          >
-            Delete this item
-          </button>
         </div>
       </div>
     </>
