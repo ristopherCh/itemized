@@ -2,6 +2,17 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 export const ItemDetails = () => {
+  const todaysDate = `${new Date().getFullYear()}-${(new Date()
+    .getMonth()+1)
+    .toLocaleString("en-US", {
+      minimumIntegerDigits: 2,
+      useGrouping: false,
+    })}-${new Date()
+    .getDate()
+    .toLocaleString("en-US", {
+      minimumIntegerDigits: 2,
+      useGrouping: false,
+    })}`
   const navigate = useNavigate();
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
   const { itemId } = useParams();
@@ -14,8 +25,9 @@ export const ItemDetails = () => {
     userId: itemizedUserObject.id,
     itemId: itemId,
     noteText: "",
-    dateTime: "",
+    dateTime: todaysDate,
   });
+
   const [selectedItemProject, setSelectedItemProject] = useState({
     userId: itemizedUserObject.id,
     itemId: 0,
@@ -33,12 +45,31 @@ export const ItemDetails = () => {
       });
   };
 
+  const compare = (prop) => {
+    return (a, b) => {
+      if (a[prop] < b[prop]) {
+        return -1;
+      }
+      if (a[prop] > b[prop]) {
+        return 1;
+      }
+      return 0;
+    };
+  };
+
   const fetchItemNotes = () => {
     return fetch(
       `http://localhost:8089/itemsNotes?userId=${itemizedUserObject.id}&itemId=${item.id}`
     )
       .then((res) => res.json())
       .then((data) => {
+        data.forEach((datapoint) => {
+          datapoint.dateTime = new Date(datapoint.dateTime)
+            .toISOString()
+            .slice(0, 10);
+        });
+        data.sort(compare("dateTime"));
+
         setItemNotes(data);
       });
   };
@@ -47,6 +78,7 @@ export const ItemDetails = () => {
     fetch(`http://localhost:8089/items/${itemId}`)
       .then((res) => res.json())
       .then((data) => {
+        data.unEditedDescription = data.description;
         data.description = data.description.split(". ");
         setItem(data);
 
@@ -118,19 +150,21 @@ export const ItemDetails = () => {
 
   const handleAddNoteButton = (event) => {
     event.preventDefault();
+    const copy = { ...itemNote };
+    copy.dateTime = copy.dateTime.replace(/-/g, "/");
     fetch(`http://localhost:8089/itemsNotes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(itemNote),
+      body: JSON.stringify(copy),
     }).then(() => {
       fetchItemNotes();
       setItemNote({
         userId: itemizedUserObject.id,
         itemId: itemId,
         noteText: "",
-        dateTime: "",
+        dateTime: todaysDate,
       });
     });
   };
@@ -167,6 +201,25 @@ export const ItemDetails = () => {
       );
     }
     Promise.all(promiseArray).then(navigate("/items"));
+  };
+
+  const handleNoteDelete = (event) => {
+    fetch(`http://localhost:8089/itemsNotes/${event.currentTarget.value}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then(() => {
+        fetchItemNotes();
+      });
+  };
+
+  const handleNoteEdit = (event) => {
+    handleNoteDelete(event);
+    const noteToEdit = itemNotes.find((itemNote) => {
+      return itemNote.id === parseInt(event.currentTarget.value);
+    });
+    noteToEdit.dateTime = noteToEdit.dateTime.slice(0, 10);
+    setItemNote(noteToEdit);
   };
 
   const handleAddTag = (event) => {
@@ -230,23 +283,22 @@ export const ItemDetails = () => {
   return (
     <>
       <div id="itemImageLargeDiv">
-        <div>
+        <div className="borderRadius20 pinkBackground">
           <h1 className="smallH1">{item.name}</h1>
           <div onClick={() => blurFunction(0)}>
             <span className="boldPointer close" />
           </div>
         </div>
         <img className="itemImageLarge" src={item.imageURL} alt="" />
-        <div className="itemReview darkGreenBackground boxShadow">
-          <span className="justBold underlined">Review</span>
-          <br />
-          {item.review}
+        <div className="itemReview borderRadius20 darkGreenBackground">
+          <span className="displayBlock justBold underlined textAlignCenter">Review</span>
+          <div className="textAlignCenter">{item.review}</div>
         </div>
       </div>
 
       <div id="main_container">
         <div className="itemDetailsContainer">
-          <h1>{item.name}</h1>
+          <h1 className="">{item.name}</h1>
           <h3 className="itemTypeHeader">{item.type}</h3>
           {/* Top flexbox (with photo) */}
           <div className="flexColumn spaceAround alignCenter">
@@ -262,7 +314,7 @@ export const ItemDetails = () => {
               className="flexColumn width75 margin10"
               id="everythingButImage"
             >
-              <div className="width100 spaceBetween flexColumn alignCenter tempBorder margin10">
+              <div className="width100 spaceBetween flexColumn alignCenter margin10">
                 <h2 className="displayInline">
                   Purchase Price ${item.purchasePrice?.toFixed(2)}{" "}
                 </h2>
@@ -279,9 +331,12 @@ export const ItemDetails = () => {
                 )}
               </div>
 
-              <div className="tempBorder margin10 alignCenter spaceAround flexRow margin10">
-                <div className="marginRight20">
-                  <div className="itemDescription boxShadow yellowBackground padding20">
+              <div className="margin10 alignCenter spaceBetween flexRow margin10">
+                <div className="width45">
+                  <div
+                    id="descriptionBox"
+                    className="simpleBorder itemDescription minWidth250 boxShadow yellowBackground padding1020"
+                  >
                     <h2 className="underlined">Description</h2>
                     <ul className="itemDescriptionUL">
                       {item.description?.map((point, index) => {
@@ -291,14 +346,20 @@ export const ItemDetails = () => {
                   </div>
                 </div>
 
-                <div className="width50 margin10 flexRow alignItemsCenter spaceAround flexColumn boxShadow yellowBackground padding20">
-                  <div className="marginBottom20" id="itemProjectsList">
+                <div
+                  id="projectBox"
+                  className="borderRadiusLight simpleBorder width50 margin10 minWidth250 flexRow alignItemsCenter spaceAround flexColumn boxShadow yellowBackground"
+                >
+                  <div
+                    className="marginBottom20 marginTop10"
+                    id="itemProjectsList"
+                  >
                     {itemProjects.length > 0 ? (
                       <>
-                        <h2 className="displayInline">
+                        <h2 className="textAlignCenter">
                           This item is a member of:
                         </h2>
-                        <ul className="itemDetailsUL">
+                        <ul className="itemDetailsUL marginLeft20 marginRight20">
                           {itemProjects.map((itemProject) => {
                             return (
                               <li key={itemProject.id}>
@@ -315,7 +376,9 @@ export const ItemDetails = () => {
                         </ul>
                       </>
                     ) : (
-                      <h2 classname="displayInline">This item is associated with no projects</h2>
+                      <h2 className="displayInline">
+                        This item is associated with no projects
+                      </h2>
                     )}
                   </div>
 
@@ -328,40 +391,42 @@ export const ItemDetails = () => {
                       )}
                     </div>
                     {selectedItemProject.projectId ? displayProjectPhoto() : ""}
-                    <select
-                      onChange={(event) => {
-                        const copy = { ...selectedItemProject };
-                        copy.projectId = parseInt(event.target.value);
-                        setSelectedItemProject(copy);
-                      }}
-                    >
-                      <option>Choose project</option>
-                      {projects.map((project) => {
-                        return (
-                          <option key={project.id} value={project.id}>
-                            {project.name}
-                          </option>
-                        );
-                      })}
-                    </select>
-                    <button
-                      className="itemDetailsAddBtn"
-                      onClick={(event) => {
-                        handleAddItemProject(event);
-                      }}
-                    >
-                      Add
-                    </button>
+                    <div className="marginBottom10">
+                      <select
+                        onChange={(event) => {
+                          const copy = { ...selectedItemProject };
+                          copy.projectId = parseInt(event.target.value);
+                          setSelectedItemProject(copy);
+                        }}
+                      >
+                        <option>Choose project</option>
+                        {projects.map((project) => {
+                          return (
+                            <option key={project.id} value={project.id}>
+                              {project.name}
+                            </option>
+                          );
+                        })}
+                      </select>
+                      <button
+                        className="marginLeft10"
+                        onClick={(event) => {
+                          handleAddItemProject(event);
+                        }}
+                      >
+                        Add
+                      </button>
+                    </div>
                   </form>
                 </div>
               </div>
 
               <div
-                className="tempBorder margin10 boxShadow yellowBackground"
-                id=""
+                id="tagsBox"
+                className="boxShadow yellowBackground simpleBorder"
               >
                 <h2 className="underlined">Tags</h2>
-                <form className="flexRow justifyCenter">
+                <form className="flexRow justifyCenter marginBottom10">
                   <input
                     className=""
                     id="addItemTag"
@@ -380,24 +445,22 @@ export const ItemDetails = () => {
                   </button>
                 </form>
 
-                <div id="tagsContainer">
+                <div className="grid" id="tagsContainer">
                   {itemTags.map((itemTag) => {
                     return (
                       <div className="itemTagsContainer" key={itemTag.id}>
-                        <div className="width30" key={itemTag.id}>
+                        <div className="width100 textCenter" key={itemTag.id}>
                           <Link to={`/items/tags/${itemTag.tag}`}>
                             {itemTag.tag}
                           </Link>
-                        </div>
-                        <div className="width50">
                           <button
-                            className="borderNone standardBackground"
+                            className="borderNone standardBackground marginLeft10 cursorPointer padding13 boxShadow"
                             name={itemTag.id}
                             onClick={(event) => {
                               handleTagDelete(event);
                             }}
                           >
-                            x
+                            <i className="fa-solid fa-xmark"></i>
                           </button>
                         </div>
                       </div>
@@ -406,32 +469,55 @@ export const ItemDetails = () => {
                 </div>
               </div>
 
-              <div className="flexColumn tempBorder margin10" id="itemNotes">
+              <div
+                className="flexColumn margin10 yellowBackground simpleBorder"
+                id="itemNotes"
+              >
                 <div className="width100">
                   {itemNotes.length > 0 ? (
-                    <div className="boxShadow yellowBackground padding20" id="notesBox">
+                    <div className="marginTop20" id="notesBox">
                       <h2 className="underlined">Notes</h2>
                       <ul className="">
                         {itemNotes.map((itemNote) => {
                           return (
                             <div
-                              className="tempBorder margin10 padding5"
+                              className="margin10 padding52"
                               key={itemNote.id}
                             >
                               <li>
-                                <div className="flexRow spaceBetween boxShadow">
-                                  <div className="">{itemNote.noteText}</div>
-                                  <div className="width30 textAlignRight">
+                                <div className="flexRow spaceBetween">
+                                  <div className="width85 marginLeft20">
+                                    {itemNote.noteText}
+                                  </div>
+                                  <div className="width10 textAlignRight alignSelfCenter">
                                     {itemNote.dateTime ? (
                                       <>
                                         {new Date(
-                                          itemNote.dateTime
+                                          itemNote.dateTime.replace(/-/g, "/")
                                         ).toLocaleDateString()}
                                       </>
                                     ) : (
                                       ""
                                     )}
                                   </div>
+                                  <button
+                                    value={itemNote.id}
+                                    className="height20 borderNone standardBackground marginLeft10 cursorPointer padding13 boxShadow alignSelfCenter"
+                                    onClick={(event) => {
+                                      handleNoteEdit(event);
+                                    }}
+                                  >
+                                    <i className="fa-regular fa-pen-to-square"></i>
+                                  </button>
+                                  <button
+                                    value={itemNote.id}
+                                    className="height20 borderNone standardBackground marginLeft10 cursorPointer padding13 boxShadow alignSelfCenter"
+                                    onClick={(event) => {
+                                      handleNoteDelete(event);
+                                    }}
+                                  >
+                                    <i className="fa-solid fa-xmark"></i>
+                                  </button>
                                 </div>
                               </li>
                             </div>
@@ -444,34 +530,47 @@ export const ItemDetails = () => {
                   )}
                 </div>
                 <div className="margin10">
-                  <form className="flexRow justifyCenter tempBorder alignEnd" id="addNoteBox">
+                  <form
+                    className="flexRow justifyCenter alignEnd"
+                    id="addNoteBox"
+                  >
                     <textarea
                       className="itemTextarea width50"
-                      value={itemNote.noteText}
+                      value={itemNote?.noteText}
                       id="addItemNote"
                       onChange={(event) => {
                         const copy = { ...itemNote };
                         copy.noteText = event.target.value;
-                        copy.dateTime = Date();
                         setItemNote(copy);
                       }}
                     ></textarea>
-                    <div className="marginLeft20">
+                    <div className="flexRow marginLeft20">
                       <button
-                        className="height50 marginAuto alignCenter justifyCenter"
+                        className="borderNone standardBackground cursorPointer borderLight padding13 borderRadiusLight boxShadow marginLeft10"
                         id="addNoteButton"
                         onClick={(event) => {
                           handleAddNoteButton(event);
                         }}
                       >
-                        Add note
+                        Add Note
                       </button>
+                      <input
+                        value={itemNote?.dateTime || ""}
+                        className="borderNone marginLeft10"
+                        type="date"
+                        onChange={(event) => {
+                          const copy = { ...itemNote };
+                          console.log(event.target.value);
+                          copy.dateTime = event.target.value;
+                          setItemNote(copy);
+                        }}
+                      />
                     </div>
                   </form>
                 </div>
               </div>
               <div
-                className="tempBorder margin10 inline boxShadow width30 flexRow padding20 justifyCenter marginAuto deleteButtonDiv"
+                className="margin10 inline width30 flexRow padding20 justifyCenter marginAuto deleteButtonDiv"
                 id="editDeleteButtonDiv"
               >
                 <button

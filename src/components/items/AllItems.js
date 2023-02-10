@@ -134,10 +134,11 @@ export const AllItems = () => {
   return (
     <div id="allItemsContainer">
       {itemTag ? <h1>{itemTag}</h1> : <h1>All Items</h1>}
-      <div id="allItemsFilterBar">
+      <div className="" id="allItemsFilterBar">
         <div>
           <label>Search</label>
           <input
+          className="marginLeft10"
             type="text"
             onChange={(event) => {
               setSearchInput(event.target.value);
@@ -147,6 +148,7 @@ export const AllItems = () => {
         <div>
           <label>Filter</label>
           <select
+          className="marginLeft10"
             onChange={(event) => {
               setFilterStatus(parseInt(event.target.value));
             }}
@@ -166,7 +168,7 @@ export const AllItems = () => {
       {filteredItems.map((item) => {
         return (
           <Link key={item.id} to={`/items/${item.id}`}>
-            <section className="allItemsItemContainer" key={item.id}>
+            <section className="allItemsItemContainer width75 marginAuto" key={item.id}>
               <h2>{item.name}</h2>
               <div className="allItemsItem">
                 <div className="allItemsDetails">

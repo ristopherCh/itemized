@@ -278,12 +278,12 @@ export const NewItem = ({ purchaseDate }) => {
       {itemId ? <h1>Edit Item</h1> : <h1>Add New Item</h1>}
 
       <form id="newItemForm">
-        <fieldset>
+        <fieldset className="flexColumn">
           <label className="itemLabel" htmlFor="itemName">
             Name
           </label>
           <input
-            className="newItemInputField"
+            className="width400"
             type="text"
             id="itemName"
             name="name"
@@ -297,7 +297,7 @@ export const NewItem = ({ purchaseDate }) => {
             Part Type
           </label>
           <input
-            className="newItemInputField"
+            className="width400"
             type="text"
             id="itemType"
             name="type"
@@ -335,7 +335,7 @@ export const NewItem = ({ purchaseDate }) => {
             className="itemTextarea"
             id="itemDescription"
             name="description"
-            value={userInputs.description || ""}
+            value={userInputs.unEditedDescription ? userInputs.unEditedDescription : userInputs.description || ""}
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -344,36 +344,39 @@ export const NewItem = ({ purchaseDate }) => {
           <label htmlFor="itemTags" className="itemLabel">
             Tag this item
           </label>
-          <input
-            type="text"
-            className="newItemInputField"
-            id="itemTags"
-            name="tag"
-            value={tag}
-            onChange={(event) => {
-              setTag(event.target.value);
-            }}
-          />
-          <button
-            onClick={(event) => {
-              handleAddTag(event);
-            }}
-          >
-            +
-          </button>
+          <div>
+            <input
+              type="text"
+              className="width400"
+              id="itemTags"
+              name="tag"
+              value={tag}
+              onChange={(event) => {
+                setTag(event.target.value);
+              }}
+            />
+            <button
+              onClick={(event) => {
+                handleAddTag(event);
+              }}
+            >
+              +
+            </button>
+          </div>
           <ul>
             {tags
               .slice(0)
               .reverse()
               .map((tag, index) => {
                 return (
-                  <div key={index}>
+                  <div className="flexRow" key={index}>
                     <li className="skinnyLI">{tag}</li>
                     <button
+                    className="borderNone standardBackground marginLeft10 cursorPointer padding13"
                       name={index}
                       onClick={(event) => handleDeleteTag(event, index)}
                     >
-                      x
+                      <i className="fa-solid fa-xmark"></i>
                     </button>
                   </div>
                 );
@@ -393,7 +396,7 @@ export const NewItem = ({ purchaseDate }) => {
             </label>
           )}
 
-          <select
+          <select className="width400"
             onChange={(event) => {
               setSelectedProjectId(parseInt(event.target.value));
             }}
@@ -417,6 +420,7 @@ export const NewItem = ({ purchaseDate }) => {
             id="itemPrice"
             name="purchasePrice"
             value={userInputs.purchasePrice || ""}
+            className="width400"
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
@@ -427,6 +431,7 @@ export const NewItem = ({ purchaseDate }) => {
           </label>
           <input
             type="date"
+            className="width400"
             id="itemPurchaseDate"
             name="purchaseDate"
             value={userInputs.purchaseDate?.slice(0, 10) || ""}
@@ -452,7 +457,7 @@ export const NewItem = ({ purchaseDate }) => {
             Additional documentation <span className="italic">-- Optional</span>
           </label>
           <input
-            className="newItemInputField"
+            className="width400"
             type="text"
             id="itemDocumentation"
             name="documentation"
@@ -462,35 +467,37 @@ export const NewItem = ({ purchaseDate }) => {
             }}
           />
 
-          <label className="itemLabel" htmlFor="itemNote">
+          {/* <label className="itemLabel" htmlFor="itemNote">
             Add a note
-          </label>
-          <input
-            className="newItemInputField"
-            type="text"
-            id="itemNote"
-            name="note"
-            onChange={(event) => {
-              const copy = { ...itemNote };
-              copy.noteText = event.target.value;
-              setItemNote(copy);
-            }}
-          />
-          {itemId ? (
-            <button
-              id="newItemSubmitButton"
-              onClick={(event) => handleItemEdit(event)}
-            >
-              Save Edit
-            </button>
-          ) : (
-            <button
-              id="newItemSubmitButton"
-              onClick={(event) => handleItemCreation(event)}
-            >
-              Submit
-            </button>
-          )}
+          </label> */}
+          <div>
+            {/* <input
+              className="width400"
+              type="text"
+              id="itemNote"
+              name="note"
+              onChange={(event) => {
+                const copy = { ...itemNote };
+                copy.noteText = event.target.value;
+                setItemNote(copy);
+              }}
+            /> */}
+            {itemId ? (
+              <button
+                id="newItemSubmitButton"
+                onClick={(event) => handleItemEdit(event)}
+              >
+                Save Edit
+              </button>
+            ) : (
+              <button
+                id="newItemSubmitButton"
+                onClick={(event) => handleItemCreation(event)}
+              >
+                Submit
+              </button>
+            )}
+          </div>
         </fieldset>
       </form>
     </div>

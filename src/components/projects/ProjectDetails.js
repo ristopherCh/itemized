@@ -92,6 +92,7 @@ export const ProjectDetails = () => {
 
   const handleDelete = (event) => {
     event.preventDefault();
+    
     fetch(`http://localhost:8089/projects/${projectId}`, {
       method: "DELETE",
     }).then(() => {
@@ -117,77 +118,93 @@ export const ProjectDetails = () => {
       <h1>{project.name}</h1>
       <h3 className="projectDescription">{project.description}</h3>
       <div className="projectDetailsContainer">
-        <div className="projectDetailsLeftColumn">
-          <img className="projectImage" src={project.imageURL} alt=""></img>
+        <div className="width40">
+          <img
+            className="displayBlock projectImage borderRadiusLight marginAuto"
+            src={project.imageURL}
+            alt=""
+          ></img>
         </div>
-        <div className="projectDetailsRightColumn">
-          <h2>Items</h2>
-          {projectItems.map((projectItem, index) => {
-            return (
-              <div
-                className="projectDetailsRightColumnSplitter"
-                key={projectItem.id}
-              >
-                <div className="pdrl">{projectItem.item?.type}:</div>
-                <div className="pdrr">
-                  <Link to={`/items/${projectItem.itemId}`}>
-                    {projectItem.item?.name}
-                  </Link>{" "}
-                  <button
-                    className="projectRemoveItemBtn"
-                    onClick={(event) => {
-                      handleRemoveItem(event, projectItem);
+        <div className="width60 maxWidth750">
+          <div id="itemsListDiv">
+            <h2 className="underlined">Items</h2>
+            {projectItems.map((projectItem, index) => {
+              return (
+                <div className="flexRow spaceAround" key={projectItem.id}>
+                  <div className="pdrl width30">{projectItem.item?.type}:</div>
+                  <div className="width75">
+                    <Link to={`/items/${projectItem.itemId}`}>
+                      {projectItem.item?.name}
+                    </Link>{" "}
+                    <button
+                      className="borderNone standardBackground marginLeft10 cursorPointer padding 13"
+                      onClick={(event) => {
+                        handleRemoveItem(event, projectItem);
+                      }}
+                    >
+                      <i className="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="marginTop20" id="addItemDiv">
+            <form>
+              <div className="textCenter">Add an item to this project</div>
+              <div>
+                <div className="displayBlock width500 marginAuto">
+                  {selectedProjectItem.itemId ? displayItemPhoto() : ""}
+                  <select
+                    onChange={(event) => {
+                      const copy = { ...selectedProjectItem };
+                      copy.itemId = parseInt(event.target.value);
+                      setSelectedProjectItem(copy);
                     }}
                   >
-                    x
+                    <option>Select an item</option>
+                    {items.map((item) => {
+                      return (
+                        <option key={item.id} value={item.id}>
+                          {item.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                  <button
+                    className="marginLeft20"
+                    onClick={(event) => {
+                      handleAddButtonClick(event);
+                    }}
+                  >
+                    Add
                   </button>
                 </div>
               </div>
-            );
-          })}
+            </form>
+          </div>
         </div>
       </div>
-      <form>
-        <div>Add an item to this project</div>
-        {selectedProjectItem.itemId ? displayItemPhoto() : ""}
-        <select
-          onChange={(event) => {
-            const copy = { ...selectedProjectItem };
-            copy.itemId = parseInt(event.target.value);
-            setSelectedProjectItem(copy);
-          }}
-        >
-          <option>Select an item</option>
-          {items.map((item) => {
-            return (
-              <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-            );
-          })}
-        </select>
-        <button
-          onClick={(event) => {
-            handleAddButtonClick(event);
-          }}
-        >
-          Add
-        </button>
-      </form>
-      <button className="buttonBlock"
-          onClick={(event) => {
-            handleEditButtonClick(event);
-          }}
-        >
-          Edit this project
-        </button>
-      <button
-        onClick={(event) => {
-          handleDelete(event);
-        }}
-      >
-        Delete Project
-      </button>
+      <div>
+        <div className="marginLeft10P marginTop20 flexRow width500" id="projectEditDelete">
+          <button
+            className="buttonBlock"
+            onClick={(event) => {
+              handleEditButtonClick(event);
+            }}
+          >
+            Edit this project
+          </button>
+          <button
+          className="marginLeft10"
+            onClick={(event) => {
+              handleDelete(event);
+            }}
+          >
+            Delete Project
+          </button>
+        </div>
+      </div>
     </>
   );
 };

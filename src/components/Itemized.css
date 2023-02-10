@@ -13,7 +13,7 @@ body {
   background: #fff;
   color: #333;
   line-height: 1.6;
-  background-color: rgba(240, 255, 201, 0.281);
+  background-color: rgba(118, 214, 107, 0.04);
 }
 
 h1 {
@@ -74,8 +74,12 @@ a {
   background-color: rgba(107, 214, 193, 0.751);
 }
 
+.pinkBackground {
+  background-color: rgba(238, 141, 199, 0.751);
+}
+
 .yellowBackground {
-  background-color: rgba(251, 255, 213, 0.132);
+  background-color: rgba(107, 214, 193, 0.055);
 }
 
 /* Home */
@@ -157,7 +161,7 @@ a {
 
 .allProjectsItem:hover,
 .allItemsItemContainer:hover {
-  background-color: rgba(107, 214, 193, 0.075);
+  background-color: rgba(221, 186, 224, 0.19);
 }
 
 .allProjectsPhoto {
@@ -204,7 +208,7 @@ a {
 #allProjectsFilterBar {
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 75%;
   margin: auto;
 }
 
@@ -230,24 +234,13 @@ a {
   width: 45%;
 }
 
-.projectDetailsRightColumn {
-  width: 53%;
-}
-
-.projectDetailsRightColumnSplitter {
-  display: flex;
-  justify-content: left;
-}
-
-.pdrl {
-  width: 45%;
-  min-width: 100px;
-  max-width: 300px;
+.paddingL10P {
   padding-left: 10%;
 }
 
-.pdrr {
-  width: 60%;
+.pdrl {
+  min-width: 50px;
+  max-width: 300px;
 }
 
 .projectDescription {
@@ -313,7 +306,7 @@ a {
   cursor: pointer;
   position: absolute;
   top: 3%;
-  right: 3%;
+  right: 2%;
   color: white;
 }
 
@@ -327,9 +320,12 @@ a {
 .itemReview {
   margin-top: 5px;
   padding: 10px 0px 10px 35px;
-  border-radius: 20px;
   max-height: 100px;
   overflow-y: auto;
+}
+
+.borderRadius20 {
+  border-radius: 20px;
 }
 
 .justBold {
@@ -348,13 +344,15 @@ a {
 }
 
 .itemDescription {
-  padding: 5px;
-  border-radius: 10px;
-  max-width: 500px;
+  max-width: 600px;
+}
+
+.minWidth250 {
+  min-width: 250px;
 }
 
 .boxShadow {
-  box-shadow: 0px 0px 5px rgba(7, 28, 18, 0.066);
+  box-shadow: 0px 0px 10px rgba(107, 214, 193, 0.225);
 }
 
 .itemDescriptionUL {
@@ -369,6 +367,10 @@ a {
 
 .displayInline {
   display: inline;
+}
+
+.displayBlock {
+  display: block;
 }
 
 .tempBorder {
@@ -393,12 +395,28 @@ a {
   width: 100%;
 }
 
+.width85 {
+  width: 85%;
+}
+
 .width75 {
   width: 75%;
 }
 
+.width70 {
+  width: 70%;
+}
+
+.width60 {
+  width: 60%;
+}
+
 .width50 {
   width: 50%;
+}
+
+.width45 {
+  width: 45%;
 }
 
 .width40 {
@@ -407,6 +425,18 @@ a {
 
 .width30 {
   width: 30%;
+}
+
+.width20 {
+  width: 20%;
+}
+
+.width10 {
+  width: 10%;
+}
+
+.width400 {
+  width: 400px;
 }
 
 .height50 {
@@ -489,16 +519,52 @@ a {
   margin-left: 20px;
 }
 
+.marginLeft10 {
+  margin-left: 10px;
+}
+
+.marginLeft10P {
+  margin-left: 10%;
+}
+
+.marginLeft100 {
+  margin-left: 100px;
+}
+
+.marginBottom10 {
+  margin-bottom: 10px;
+}
+
+.marginTop10 {
+  margin-top: 10px;
+}
+
 .padding20 {
   padding: 20px;
 }
 
-.padding5 {
+.padding1020 {
+  padding: 10px 20px;
+}
+
+.padding52 {
   padding: 5px 2px;
+}
+
+.padding13 {
+  padding: 1px 3px;
 }
 
 .borderNone {
   border: none;
+}
+
+.borderRadiusLight {
+  border-radius: 4px;
+}
+
+.borderLight {
+  border: 0.5px solid rgba(157, 160, 255, 0.152);
 }
 
 .standardBackground {
@@ -509,7 +575,49 @@ a {
   text-align: right;
 }
 
+.textAlignCenter {
+  text-align: center;
+}
+
 .deleteButtonDiv {
   min-width: 250px;
   max-width: 300px;
+}
+
+.grid {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.marginTop20 {
+  margin-top: 20px;
+}
+
+.maxWidth750 {
+  max-width: 750px;
+}
+
+.width500 {
+  width: 500px;
+}
+
+.height20 {
+  height: 20px;
+}
+
+.alignSelfCenter {
+  align-self: center;
+}
+
+.simpleBorder {
+  border: 2px solid rgba(221, 186, 224, 0.19);
 }

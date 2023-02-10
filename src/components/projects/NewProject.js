@@ -121,7 +121,7 @@ export const NewProject = () => {
           </label>
           <input
             type="text"
-            value={userInputs.name}
+            value={userInputs.name || ""}
             id="projectName"
             name="name"
             onChange={(event) => {
@@ -156,7 +156,7 @@ export const NewProject = () => {
           </label>
           <textarea
             className="projectTextarea"
-            value={userInputs.description}
+            value={userInputs.description || ""}
             id="projectDescription"
             name="description"
             onChange={(event) => {
