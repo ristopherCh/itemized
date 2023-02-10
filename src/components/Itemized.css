@@ -98,17 +98,13 @@ a {
   margin-top: 20px;
 }
 
-#newItemForm,
-#newProjectForm {
+#newItemForm {
   margin-left: 10px;
 }
 
 .projectLabel {
   display: block;
   margin-top: 10px;
-}
-
-.itemLabel {
 }
 
 .itemTagsContainer {
@@ -122,8 +118,7 @@ a {
   min-width: 300px;
 }
 
-.projectTextarea {
-  width: 35rem;
+.height100 {
   height: 100px;
 }
 
@@ -200,8 +195,6 @@ a {
 
 .allItemsRightColumn {
   width: 58%;
-  display: flex;
-  justify-content: space-between;
 }
 
 #allItemsFilterBar,
@@ -280,7 +273,7 @@ a {
 #itemImageLargeDiv {
   position: fixed;
   left: 50%;
-  transform: translate(-50%, -8%);
+  transform: translate(-50%, -6%);
   display: none;
   z-index: 1;
 }
@@ -523,8 +516,16 @@ a {
   margin-left: 10px;
 }
 
+.marginLeft5 {
+  margin-left: 5px;
+}
+
 .marginLeft10P {
   margin-left: 10%;
+}
+
+.marginLeft25P {
+  margin-left: 25%;
 }
 
 .marginLeft100 {

@@ -114,7 +114,7 @@ export const NewProject = () => {
     <div id="newProjectContentContainer">
       {projectId ? <h1>Edit Project</h1> : <h1>Create New Project</h1>}
 
-      <form id="newProjectForm">
+      <form className="marginLeft25P" id="newProjectForm">
         <fieldset>
           <label className="projectLabel" htmlFor="projectName">
             Name
@@ -155,7 +155,7 @@ export const NewProject = () => {
             Add a description <span className="italic">-- Optional</span>
           </label>
           <textarea
-            className="projectTextarea"
+            className="height100 width75 minWidth250 maxWidth750"
             value={userInputs.description || ""}
             id="projectDescription"
             name="description"

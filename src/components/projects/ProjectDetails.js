@@ -131,8 +131,8 @@ export const ProjectDetails = () => {
             {projectItems.map((projectItem, index) => {
               return (
                 <div className="flexRow spaceAround" key={projectItem.id}>
-                  <div className="pdrl width30">{projectItem.item?.type}:</div>
-                  <div className="width75">
+                  <div className="pdrl width50">{projectItem.item?.type}:</div>
+                  <div className="width50">
                     <Link to={`/items/${projectItem.itemId}`}>
                       {projectItem.item?.name}
                     </Link>{" "}

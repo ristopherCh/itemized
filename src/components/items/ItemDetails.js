@@ -254,7 +254,7 @@ export const ItemDetails = () => {
 
   const handleTagDelete = (event) => {
     event.preventDefault();
-    let tagId = event.target.name;
+    let tagId = event.currentTarget.name;
     fetch(`http://localhost:8089/tags/${tagId}`, {
       method: "DELETE",
     }).then(() => {

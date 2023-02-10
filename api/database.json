@@ -304,9 +304,9 @@
       "name": "Brooks Ghost 14",
       "type": "Running Shoes",
       "imageURL": "https://i.imgur.com/I9L8342.jpg",
-      "description": "Size 12 D. ",
+      "description": "Size 12 D.",
       "purchasePrice": 99,
-      "purchaseDate": "2023-01-14T00:00:00.000Z",
+      "purchaseDate": "2023-01-14",
       "review": "Great.",
       "id": 21
     },
@@ -567,12 +567,24 @@
       "name": "SVS PB-1000",
       "type": "Subwoofer",
       "imageURL": "https://i.imgur.com/xNFNT1I.jpg",
-      "description": "Premium black ash finish.\nFront-firing 10” driver.\nFront-firing 3.5\" high-flow port with inner/outer port flares.\nCabinet Dimensions: 18.9\" (H) x 15\" (W) x 19.4\" (D) (without grille).\nOverall Dimensions: 18.9\" (H) x 15\" (W) x 20\" (D) (with grille)",
+      "description": "Premium black ash finish. \nFront-firing 10” driver. \nFront-firing 3.5\" high-flow port with inner/outer port flares. \nCabinet Dimensions: 18.9\" (H) x 15\" (W) x 19.4\" (D) (without grille). \nOverall Dimensions: 18.9\" (H) x 15\" (W) x 20\" (D) (with grille)",
       "purchasePrice": 474.99,
       "purchaseDate": "2020-04-17",
       "review": "Incredible probably, my girlfriend won't let me turn it up all the way to see though.",
       "documentation": "https://www.svsound.com/products/pb-1000",
       "id": 44
+    },
+    {
+      "userId": 1,
+      "name": "Polk Audio OWM3",
+      "type": "Surround Speakers",
+      "imageURL": "https://i.imgur.com/GGBQBLs.jpg",
+      "description": "4.5” Mid/Woofer. 1.5” Tweeter. Keyhole Hanger. ¼” mount. Height: 10”. Width: 7”.",
+      "purchasePrice": 109.49,
+      "purchaseDate": "2020-04-14",
+      "review": "Great speakers. Very handy mounting options, good for angling at unusual angles.",
+      "documentation": "https://www.polkaudio.com/en-us/product/on-wall-speakers/owm3",
+      "id": 45
     }
   ],
   "itemsProjects": [
@@ -779,6 +791,12 @@
       "itemId": 27,
       "projectId": 6,
       "id": 35
+    },
+    {
+      "userId": 1,
+      "itemId": 45,
+      "projectId": 8,
+      "id": 36
     }
   ],
   "documents": [],
@@ -918,13 +936,6 @@
     },
     {
       "userId": 1,
-      "itemId": "43",
-      "noteText": "Can this control Ableton? I think so, but only more recent versions than the one I have.",
-      "dateTime": "2022-06-07T05:00:00.000Z",
-      "id": 20
-    },
-    {
-      "userId": 1,
       "itemId": "31",
       "noteText": "Went bonkers when I ran with it. Keep it level!",
       "dateTime": "2023-02-08T06:00:00.000Z",
@@ -943,13 +954,6 @@
       "noteText": "I'd like to buy a cover for this, it gets too dusty.",
       "dateTime": "2023-02-01T06:00:00.000Z",
       "id": 18
-    },
-    {
-      "userId": 1,
-      "itemId": "24",
-      "noteText": "Sneezed 12 times in one sitting",
-      "dateTime": "2023-02-08T06:00:00.000Z",
-      "id": 23
     },
     {
       "userId": 1,
@@ -1027,6 +1031,41 @@
       "noteText": "Creeps me out.",
       "dateTime": "2023/02/09",
       "id": 41
+    },
+    {
+      "userId": 1,
+      "itemId": "45",
+      "noteText": "Re-installed these using the DYNASTY PROAUDIO WSA-5RP Wireless Surround Sound Rear Speakers Amplifier.",
+      "dateTime": "2022/09/20",
+      "id": 42
+    },
+    {
+      "userId": 1,
+      "itemId": "24",
+      "noteText": "Sneezed 13 times in one sitting",
+      "dateTime": "2023/02/08",
+      "id": 23
+    },
+    {
+      "userId": 1,
+      "itemId": "24",
+      "noteText": "Took amoxicillin because of a UTI, then she didn’t poop for a week. Beware amoxicillin!",
+      "dateTime": "2021/11/15",
+      "id": 44
+    },
+    {
+      "userId": 1,
+      "itemId": "43",
+      "noteText": "Can this control Ableton? I think so, but only more recent versions than the one I have. Such is life.",
+      "dateTime": "2022/06/07",
+      "id": 20
+    },
+    {
+      "userId": 1,
+      "itemId": "45",
+      "noteText": "Finally installed these in the new Nashville apartment.",
+      "dateTime": "2022/03/16",
+      "id": 43
     }
   ],
   "tags": [
@@ -1071,48 +1110,6 @@
       "itemId": 35,
       "tag": "Speakers",
       "id": 47
-    },
-    {
-      "userId": 1,
-      "itemId": 21,
-      "tag": "Shoes",
-      "id": 50
-    },
-    {
-      "userId": 1,
-      "itemId": 21,
-      "tag": "Clothes",
-      "id": 51
-    },
-    {
-      "userId": 1,
-      "itemId": 21,
-      "tag": "Clothing",
-      "id": 52
-    },
-    {
-      "userId": 1,
-      "itemId": 21,
-      "tag": "Fitness",
-      "id": 53
-    },
-    {
-      "userId": 1,
-      "itemId": 21,
-      "tag": "Yellow",
-      "id": 54
-    },
-    {
-      "userId": 1,
-      "itemId": 21,
-      "tag": "Brooks",
-      "id": 55
-    },
-    {
-      "userId": 1,
-      "itemId": 21,
-      "tag": "Running",
-      "id": 56
     },
     {
       "userId": 1,
@@ -1305,12 +1302,6 @@
       "itemId": 39,
       "tag": "Music gear",
       "id": 142
-    },
-    {
-      "userId": 1,
-      "itemId": 39,
-      "tag": "Speakers",
-      "id": 143
     },
     {
       "userId": 1,
@@ -1512,24 +1503,6 @@
     },
     {
       "userId": 1,
-      "itemId": 44,
-      "tag": "Sound",
-      "id": 245
-    },
-    {
-      "userId": 1,
-      "itemId": 44,
-      "tag": "Home Theater",
-      "id": 246
-    },
-    {
-      "userId": 1,
-      "itemId": 44,
-      "tag": "Speakers",
-      "id": 247
-    },
-    {
-      "userId": 1,
       "itemId": 1,
       "tag": "Biking",
       "id": 248
@@ -1711,12 +1684,6 @@
     {
       "userId": 1,
       "itemId": 22,
-      "tag": "Outdoors",
-      "id": 279
-    },
-    {
-      "userId": 1,
-      "itemId": 22,
       "tag": "Pet life",
       "id": 280
     },
@@ -1743,6 +1710,96 @@
       "itemId": 36,
       "tag": "Electronics",
       "id": 284
+    },
+    {
+      "userId": 1,
+      "itemId": 44,
+      "tag": "Speakers",
+      "id": 290
+    },
+    {
+      "userId": 1,
+      "itemId": 15,
+      "tag": "Fitness",
+      "id": 295
+    },
+    {
+      "userId": 1,
+      "itemId": 12,
+      "tag": "Fitness",
+      "id": 296
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "tag": "Shoes",
+      "id": 297
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "tag": "Clothes",
+      "id": 298
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "tag": "Clothing",
+      "id": 299
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "tag": "Fitness",
+      "id": 300
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "tag": "Brooks",
+      "id": 302
+    },
+    {
+      "userId": 1,
+      "itemId": 21,
+      "tag": "Running",
+      "id": 303
+    },
+    {
+      "userId": 1,
+      "itemId": 44,
+      "tag": "Electronics",
+      "id": 304
+    },
+    {
+      "userId": 1,
+      "itemId": 44,
+      "tag": "Home theater",
+      "id": 305
+    },
+    {
+      "userId": 1,
+      "itemId": 44,
+      "tag": "Sound",
+      "id": 306
+    },
+    {
+      "userId": 1,
+      "itemId": 45,
+      "tag": "Speakers",
+      "id": 310
+    },
+    {
+      "userId": 1,
+      "itemId": 45,
+      "tag": "Electronics",
+      "id": 311
+    },
+    {
+      "userId": 1,
+      "itemId": 45,
+      "tag": "Sound",
+      "id": 312
     }
   ]
 }

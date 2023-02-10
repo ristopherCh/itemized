@@ -278,8 +278,8 @@ export const NewItem = ({ purchaseDate }) => {
       {itemId ? <h1>Edit Item</h1> : <h1>Add New Item</h1>}
 
       <form id="newItemForm">
-        <fieldset className="flexColumn">
-          <label className="itemLabel" htmlFor="itemName">
+        <fieldset className="flexColumn marginLeft10P">
+          <label className="" htmlFor="itemName">
             Name
           </label>
           <input
@@ -293,7 +293,7 @@ export const NewItem = ({ purchaseDate }) => {
             }}
           />
 
-          <label className="itemLabel" htmlFor="itemType">
+          <label className="marginTop10" htmlFor="itemType">
             Part Type
           </label>
           <input
@@ -306,18 +306,19 @@ export const NewItem = ({ purchaseDate }) => {
               updateFormState(event, event.target.name);
             }}
           />
-          <label className="itemLabel" htmlFor="itemImage">
+          <label className="marginTop10" htmlFor="itemImage">
             Upload an image
           </label>
           <input
             type="file"
+            className=""
             id="itemImage"
             name="imageURL"
             onChange={(event) => {
               fileToImgur(event);
             }}
           />
-          <br />
+
           {userInputs.imageURL ? (
             <img
               id="uploadedImage"
@@ -328,20 +329,24 @@ export const NewItem = ({ purchaseDate }) => {
             ""
           )}
 
-          <label className="itemLabel" htmlFor="itemDescription">
+          <label className="marginTop10" htmlFor="itemDescription">
             Add a description <span className="italic">-- Optional</span>
           </label>
           <textarea
             className="itemTextarea"
             id="itemDescription"
             name="description"
-            value={userInputs.unEditedDescription ? userInputs.unEditedDescription : userInputs.description || ""}
+            value={
+              userInputs.unEditedDescription
+                ? userInputs.unEditedDescription
+                : userInputs.description || ""
+            }
             onChange={(event) => {
               updateFormState(event, event.target.name);
             }}
           ></textarea>
 
-          <label htmlFor="itemTags" className="itemLabel">
+          <label htmlFor="itemTags" className="">
             Tag this item
           </label>
           <div>
@@ -356,6 +361,7 @@ export const NewItem = ({ purchaseDate }) => {
               }}
             />
             <button
+            className="marginLeft5"
               onClick={(event) => {
                 handleAddTag(event);
               }}
@@ -372,7 +378,7 @@ export const NewItem = ({ purchaseDate }) => {
                   <div className="flexRow" key={index}>
                     <li className="skinnyLI">{tag}</li>
                     <button
-                    className="borderNone standardBackground marginLeft10 cursorPointer padding13"
+                      className="borderNone standardBackground marginLeft10 cursorPointer padding13"
                       name={index}
                       onClick={(event) => handleDeleteTag(event, index)}
                     >
@@ -385,18 +391,19 @@ export const NewItem = ({ purchaseDate }) => {
 
           {displayItemProjects()}
           {itemProjects.length > 0 ? (
-            <label className="itemLabel" htmlFor="itemProjectSelect">
+            <label className="" htmlFor="itemProjectSelect">
               Add this item to another project
               <span className="italic">-- Optional</span>
             </label>
           ) : (
-            <label className="itemLabel" htmlFor="itemProjectSelect">
+            <label className="" htmlFor="itemProjectSelect">
               Add this item to a project
               <span className="italic">-- Optional</span>
             </label>
           )}
 
-          <select className="width400"
+          <select
+            className="width400"
             onChange={(event) => {
               setSelectedProjectId(parseInt(event.target.value));
             }}
@@ -411,7 +418,7 @@ export const NewItem = ({ purchaseDate }) => {
             })}
           </select>
 
-          <label className="itemLabel" htmlFor="itemPrice">
+          <label className="" htmlFor="itemPrice">
             Purchase Price <span className="italic">-- Optional</span>
           </label>
           <input
@@ -426,7 +433,7 @@ export const NewItem = ({ purchaseDate }) => {
             }}
           />
 
-          <label className="itemLabel" htmlFor="itemPurchaseDate">
+          <label className="" htmlFor="itemPurchaseDate">
             Purchase date <span className="italic">-- Optional</span>
           </label>
           <input
@@ -440,7 +447,7 @@ export const NewItem = ({ purchaseDate }) => {
             }}
           />
 
-          <label className="itemLabel" htmlFor="itemReview">
+          <label className="" htmlFor="itemReview">
             Add review <span className="italic">-- Optional</span>
           </label>
           <textarea
@@ -453,7 +460,7 @@ export const NewItem = ({ purchaseDate }) => {
             }}
           ></textarea>
 
-          <label className="itemLabel" htmlFor="itemDocumentation">
+          <label className="" htmlFor="itemDocumentation">
             Additional documentation <span className="italic">-- Optional</span>
           </label>
           <input
@@ -467,7 +474,7 @@ export const NewItem = ({ purchaseDate }) => {
             }}
           />
 
-          {/* <label className="itemLabel" htmlFor="itemNote">
+          {/* <label className="" htmlFor="itemNote">
             Add a note
           </label> */}
           <div>
@@ -491,6 +498,7 @@ export const NewItem = ({ purchaseDate }) => {
               </button>
             ) : (
               <button
+                className="marginTop10"
                 id="newItemSubmitButton"
                 onClick={(event) => handleItemCreation(event)}
               >

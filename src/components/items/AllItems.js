@@ -11,7 +11,7 @@ export const AllItems = () => {
   const [searchInput, setSearchInput] = useState("");
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
 
-  useEffect(() => {
+  const initialRender = () => {
     fetch(`http://localhost:8089/items?userId=${itemizedUserObject.id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -25,7 +25,15 @@ export const AllItems = () => {
       .then((data) => {
         setTagObjects(data);
       });
+  };
+
+  useEffect(() => {
+    initialRender();
   }, []);
+
+  useEffect(() => {
+    initialRender();
+  }, [itemTag]);
 
   const compare = (prop) => {
     return (a, b) => {
@@ -138,7 +146,7 @@ export const AllItems = () => {
         <div>
           <label>Search</label>
           <input
-          className="marginLeft10"
+            className="marginLeft10"
             type="text"
             onChange={(event) => {
               setSearchInput(event.target.value);
@@ -148,7 +156,7 @@ export const AllItems = () => {
         <div>
           <label>Filter</label>
           <select
-          className="marginLeft10"
+            className="marginLeft10"
             onChange={(event) => {
               setFilterStatus(parseInt(event.target.value));
             }}
@@ -167,8 +175,11 @@ export const AllItems = () => {
 
       {filteredItems.map((item) => {
         return (
-          <Link key={item.id} to={`/items/${item.id}`}>
-            <section className="allItemsItemContainer width75 marginAuto" key={item.id}>
+          <section
+            className="allItemsItemContainer width75 marginAuto"
+            key={item.id}
+          >
+            <Link key={item.id} to={`/items/${item.id}`}>
               <h2>{item.name}</h2>
               <div className="allItemsItem">
                 <div className="allItemsDetails">
@@ -182,8 +193,8 @@ export const AllItems = () => {
                   ></img>
                 </div>
               </div>
-            </section>
-          </Link>
+            </Link>
+          </section>
         );
       })}
     </div>
