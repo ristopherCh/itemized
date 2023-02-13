@@ -585,6 +585,30 @@
       "review": "Great speakers. Very handy mounting options, good for angling at unusual angles.",
       "documentation": "https://www.polkaudio.com/en-us/product/on-wall-speakers/owm3",
       "id": 45
+    },
+    {
+      "userId": 1,
+      "name": "Bell Z20 MIPS Adult Bike Helmet",
+      "type": "Bike Helmet",
+      "imageURL": "https://i.imgur.com/vMturzQ.jpg",
+      "description": "Matte/Gloss Red/White/Pacific. Large (58-62cm).",
+      "purchasePrice": 208,
+      "purchaseDate": "2020-06-18",
+      "review": "Just fine. The MIPS technology makes it look pretty bulky, and the colors are corny, but I'm still alive and plan to stay that way.",
+      "documentation": "https://www.bellhelmets.com/bike/p/z20-mips-road-bike-helmet/100000000300000093.html",
+      "id": 46
+    },
+    {
+      "userId": 1,
+      "name": "LG 34UC79G-B 34-Inch 21:9 Curved Ultrawide IPS Gaming Monitor",
+      "type": "Computer Monitor",
+      "imageURL": "https://i.imgur.com/zGz4VlN.jpg",
+      "description": "144 Hz refresh rate. 34 inch ultrawide. IPS. AMD Freesync. Response time: 14ms/5ms. 1ms motion blur reduction. 2560 x 1080 resolution.",
+      "purchasePrice": 509.9,
+      "purchaseDate": "2019-06-04",
+      "review": "It was fantastic when purchased. I eventually regretted not getting a higher resolution monitor, as I use it more for reading text than I do for gaming. I still use it and it's great to have around.",
+      "documentation": "https://www.amazon.com/gp/product/B01LW5CGIS/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1",
+      "id": 47
     }
   ],
   "itemsProjects": [
@@ -797,6 +821,18 @@
       "itemId": 45,
       "projectId": 8,
       "id": 36
+    },
+    {
+      "userId": 1,
+      "itemId": 46,
+      "projectId": 3,
+      "id": 37
+    },
+    {
+      "userId": 1,
+      "itemId": 47,
+      "projectId": 4,
+      "id": 38
     }
   ],
   "documents": [],
@@ -1066,6 +1102,20 @@
       "noteText": "Finally installed these in the new Nashville apartment.",
       "dateTime": "2022/03/16",
       "id": 43
+    },
+    {
+      "userId": 1,
+      "itemId": "46",
+      "noteText": "Filty. How does one clean these straps?",
+      "dateTime": "2023/02/13",
+      "id": 45
+    },
+    {
+      "userId": 1,
+      "itemId": "47",
+      "noteText": "Moved this to my secondary monitor, up top, using the VIVO Dual LCD Monitor Desk Mount Stand.",
+      "dateTime": "2022/10/18",
+      "id": 46
     }
   ],
   "tags": [
@@ -1800,6 +1850,48 @@
       "itemId": 45,
       "tag": "Sound",
       "id": 312
+    },
+    {
+      "userId": 1,
+      "itemId": 46,
+      "tag": "Safety",
+      "id": 319
+    },
+    {
+      "userId": 1,
+      "itemId": 46,
+      "tag": "Helmets",
+      "id": 320
+    },
+    {
+      "userId": 1,
+      "itemId": 46,
+      "tag": "Biking",
+      "id": 321
+    },
+    {
+      "userId": 1,
+      "itemId": 47,
+      "tag": "Electronics",
+      "id": 334
+    },
+    {
+      "userId": 1,
+      "itemId": 47,
+      "tag": "Monitors",
+      "id": 335
+    },
+    {
+      "userId": 1,
+      "itemId": 47,
+      "tag": "Computers",
+      "id": 336
+    },
+    {
+      "userId": 1,
+      "itemId": 47,
+      "tag": "Gaming",
+      "id": 337
     }
   ]
 }

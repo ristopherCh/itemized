@@ -48,7 +48,6 @@ export const AllItems = () => {
   };
 
   useEffect(() => {
-    // let preFilteredItems = [];
     // TODO : tags are case insensitive
     if (itemTag) {
       let taggedItems = [];

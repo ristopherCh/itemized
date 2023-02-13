@@ -133,58 +133,72 @@ export const NewItem = ({ purchaseDate }) => {
         }),
       });
     } else {
-      return;
+      // return;
+      return new Promise((resolve, reject) => {
+        resolve("Nothing was sent! All is well though.");
+      });
     }
   };
 
-  const postToItemsNotes = (itemId) => {
-    const itemNoteCopy = { ...itemNote };
-    itemNoteCopy.itemId = itemId;
-    itemNoteCopy.dateTime = Date();
-    if (itemNoteCopy.noteText) {
-      fetch(`http://localhost:8089/itemsNotes`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(itemNoteCopy),
-      });
-    } else {
-      navigate(`/items/${itemId}`);
-    }
-  };
+  // const postToItemsNotes = (itemId) => {
+  //   const itemNoteCopy = { ...itemNote };
+  //   itemNoteCopy.itemId = itemId;
+  //   itemNoteCopy.dateTime = Date();
+  //   if (itemNoteCopy.noteText) {
+  //     fetch(`http://localhost:8089/itemsNotes`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(itemNoteCopy),
+  //     });
+  //   } else {
+  //     navigate(`/items/${itemId}`);
+  //   }
+  // };
 
   const postToTags = (itemId) => {
     const promiseArray = [];
-
-    for (let tag of tags) {
-      promiseArray.push(
-        fetch(`http://localhost:8089/tags`, {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            userId: itemizedUserObject.id,
-            itemId: itemId,
-            tag: tag,
-          }),
-        })
-      );
+    if (tags.length > 0) {
+      for (let tag of tags) {
+        promiseArray.push(
+          fetch(`http://localhost:8089/tags`, {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              userId: itemizedUserObject.id,
+              itemId: itemId,
+              tag: tag,
+            }),
+          })
+        );
+      }
+      return Promise.all(promiseArray);
+    } else {
+      return new Promise((resolve, reject) => {
+        resolve("Nothing was sent! All is well though.");
+      });
     }
-    return promiseArray;
   };
 
   const erasePriorTags = () => {
     let tagArray = [];
-    for (let tag of priorTags) {
-      tagArray.push(
-        fetch(`http://localhost:8089/tags/${tag.id}`, {
-          method: "DELETE",
-        })
-      );
+    if (priorTags.length > 0) {
+      for (let tag of priorTags) {
+        tagArray.push(
+          fetch(`http://localhost:8089/tags/${tag.id}`, {
+            method: "DELETE",
+          })
+        );
+      }
+      return Promise.all(tagArray);
+    } else {
+      return new Promise((resolve, reject) => {
+        resolve("Nothing was sent! All is well though.");
+      });
     }
-    return tagArray;
   };
 
   const displayItemProjects = () => {
@@ -241,10 +255,17 @@ export const NewItem = ({ purchaseDate }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          postToItemsProjects(data.id);
-          postToItemsNotes(data.id);
-          erasePriorTags();
-          postToTags(data.id).then(navigate(`/items/${itemId}`));
+          // ~ HERE
+          postToItemsProjects(data.id)
+            .then(() => {
+              erasePriorTags();
+            })
+            .then(() => {
+              postToTags(data.id);
+            })
+            .then(() => {
+              navigate(`/items/${itemId}`);
+            });
         });
     } else {
       alert("Please try again");
@@ -264,9 +285,13 @@ export const NewItem = ({ purchaseDate }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          postToItemsProjects(data.id);
-          postToItemsNotes(data.id);
-          postToTags(data.id).then(navigate(`/items/${data.id}`));
+          postToItemsProjects(data.id)
+            .then(() => {
+              postToTags(data.id);
+            })
+            .then(() => {
+              navigate(`/items/${data.id}`);
+            });
         });
     } else {
       alert("Please try again");
@@ -276,7 +301,6 @@ export const NewItem = ({ purchaseDate }) => {
   return (
     <div id="newItemContentContainer">
       {itemId ? <h1>Edit Item</h1> : <h1>Add New Item</h1>}
-
       <form id="newItemForm">
         <fieldset className="flexColumn marginLeft10P">
           <label className="" htmlFor="itemName">
@@ -361,7 +385,7 @@ export const NewItem = ({ purchaseDate }) => {
               }}
             />
             <button
-            className="marginLeft5"
+              className="marginLeft5"
               onClick={(event) => {
                 handleAddTag(event);
               }}
@@ -492,6 +516,7 @@ export const NewItem = ({ purchaseDate }) => {
             {itemId ? (
               <button
                 id="newItemSubmitButton"
+                className="marginTop10"
                 onClick={(event) => handleItemEdit(event)}
               >
                 Save Edit
