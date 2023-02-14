@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 export const Register = (props) => {
@@ -79,6 +79,9 @@ export const Register = (props) => {
         <fieldset>
           <button type="submit">Register</button>
         </fieldset>
+        <section>
+          <Link to="/login">Back to Login</Link>
+        </section>
       </form>
     </main>
   );

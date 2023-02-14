@@ -7,42 +7,49 @@ export const NavBar = () => {
   return (
     <ul id="navbarUL" className="darkGreenBackground">
       <div className="navbar">
-        <li className="navItem">
-          <div className="navFlexHolder">
-            <Link className="navLink" to="/">
-              Home
-            </Link>
-          </div>
-        </li>
-        <li className="navItem">
-          <div className="navFlexHolder">
-            <Link className="navLink" to="/projects">
-              All Projects
-            </Link>
-          </div>
-        </li>
-        <li className="navItem">
-          <div className="navFlexHolder">
-            <Link className="navLink" to="/items">
-              All Items
-            </Link>
-          </div>
-        </li>
-        <li className="navItem">
-          <div className="navFlexHolder">
-            <Link className="navLink" to="/projects/new">
-              Create New Project
-            </Link>
-          </div>
-        </li>
-        <li className="navItem">
-          <div className="navFlexHolder">
-            <Link className="navLink" to="/items/new">
-              Add New Item
-            </Link>
-          </div>
-        </li>
-        <li className="navItem">
+        <div className="navbarLeft">
+          <li className=" width180">
+            <div className="navFlexHolder">
+              <Link className="navLink" to="/">
+                <img
+                  className="navLogo"
+                  src={require("../../images/itemizedLogoSolid.png")}
+                  alt=""
+                ></img>
+                {/* <div className="navLogo" /> */}
+              </Link>
+            </div>
+          </li>
+          <li className="">
+            <div className="navFlexHolder width150">
+              <Link className="navLink" to="/projects">
+                All Projects
+              </Link>
+            </div>
+          </li>
+          <li className="">
+            <div className="navFlexHolder width120">
+              <Link className="navLink" to="/items">
+                All Items
+              </Link>
+            </div>
+          </li>
+          <li className="">
+            <div className="navFlexHolder width180">
+              <Link className="navLink" to="/projects/new">
+                Create New Project
+              </Link>
+            </div>
+          </li>
+          <li className="">
+            <div className="navFlexHolder width150">
+              <Link className="navLink" to="/items/new">
+                Add New Item
+              </Link>
+            </div>
+          </li>
+        </div>
+        <li className="">
           <div className="navFlexHolder">
             <Link
               className="navLink"

@@ -2,17 +2,15 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 export const ItemDetails = () => {
-  const todaysDate = `${new Date().getFullYear()}-${(new Date()
-    .getMonth()+1)
-    .toLocaleString("en-US", {
-      minimumIntegerDigits: 2,
-      useGrouping: false,
-    })}-${new Date()
-    .getDate()
-    .toLocaleString("en-US", {
-      minimumIntegerDigits: 2,
-      useGrouping: false,
-    })}`
+  const todaysDate = `${new Date().getFullYear()}-${(
+    new Date().getMonth() + 1
+  ).toLocaleString("en-US", {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}-${new Date().getDate().toLocaleString("en-US", {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}`;
   const navigate = useNavigate();
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
   const { itemId } = useParams();
@@ -107,7 +105,7 @@ export const ItemDetails = () => {
   };
 
   useEffect(() => {
-    fetchItemProjects();
+    fetchItemProjects(item.id);
 
     fetchItemNotes();
   }, [item]);
@@ -291,7 +289,9 @@ export const ItemDetails = () => {
         </div>
         <img className="itemImageLarge" src={item.imageURL} alt="" />
         <div className="itemReview borderRadius20 darkGreenBackground">
-          <span className="displayBlock justBold underlined textAlignCenter">Review</span>
+          <span className="displayBlock justBold underlined textAlignCenter">
+            Review
+          </span>
           <div className="textAlignCenter">{item.review}</div>
         </div>
       </div>
@@ -335,10 +335,10 @@ export const ItemDetails = () => {
                 <div className="width45">
                   <div
                     id="descriptionBox"
-                    className="simpleBorder itemDescription minWidth250 boxShadow yellowBackground padding1020"
+                    className="simpleBorder itemDescription minWidth250 boxShadow yellowBackground padding020"
                   >
                     <h2 className="underlined">Description</h2>
-                    <ul className="itemDescriptionUL">
+                    <ul className="itemDescriptionUL marginBottom10">
                       {item.description?.map((point, index) => {
                         return <li key={index}>{point}</li>;
                       })}
@@ -351,7 +351,7 @@ export const ItemDetails = () => {
                   className="borderRadiusLight simpleBorder width50 margin10 minWidth250 flexRow alignItemsCenter spaceAround flexColumn boxShadow yellowBackground"
                 >
                   <div
-                    className="marginBottom20 marginTop10"
+                    className="marginBottom10 marginTop10 textAlignCenter"
                     id="itemProjectsList"
                   >
                     {itemProjects.length > 0 ? (
@@ -423,7 +423,7 @@ export const ItemDetails = () => {
 
               <div
                 id="tagsBox"
-                className="boxShadow yellowBackground simpleBorder"
+                className="boxShadow yellowBackground simpleBorder marginTop20"
               >
                 <h2 className="underlined">Tags</h2>
                 <form className="flexRow justifyCenter marginBottom10">
@@ -445,7 +445,7 @@ export const ItemDetails = () => {
                   </button>
                 </form>
 
-                <div className="grid" id="tagsContainer">
+                <div className="grid marginBottom10" id="tagsContainer">
                   {itemTags.map((itemTag) => {
                     return (
                       <div className="itemTagsContainer" key={itemTag.id}>
@@ -470,12 +470,12 @@ export const ItemDetails = () => {
               </div>
 
               <div
-                className="flexColumn margin10 yellowBackground simpleBorder"
+                className="flexColumn margin10 marginTop20 yellowBackground simpleBorder"
                 id="itemNotes"
               >
                 <div className="width100">
                   {itemNotes.length > 0 ? (
-                    <div className="marginTop20" id="notesBox">
+                    <div className="" id="notesBox">
                       <h2 className="underlined">Notes</h2>
                       <ul className="">
                         {itemNotes.map((itemNote) => {

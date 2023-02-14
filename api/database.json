@@ -125,7 +125,7 @@
       "imageURL": "https://i.imgur.com/RkQIOp6.jpg",
       "description": "Mahogany Wood Floor Stand",
       "purchasePrice": 22,
-      "purchaseDate": "2018-04-28T00:00:00.000Z",
+      "purchaseDate": "2018-04-28",
       "review": "https://www.amazon.com/gp/product/B074XDWJ6Q/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1",
       "id": 5
     },
@@ -283,7 +283,7 @@
       "imageURL": "https://i.imgur.com/u0EYsnX.jpg",
       "description": "These are generation 1 of the QC35 product. They have active noise cancelling.",
       "purchasePrice": 120,
-      "purchaseDate": "2016-01-01T00:00:00.000Z",
+      "purchaseDate": "2016-01-01",
       "review": "These are the greatest thing to have ever happened to me. If I never get another pair of headphones in my life, I will be delighted.\n\nPrice and purchase date totally unknown.",
       "id": 19
     },
@@ -600,15 +600,39 @@
     },
     {
       "userId": 1,
-      "name": "LG 34UC79G-B 34-Inch 21:9 Curved Ultrawide IPS Gaming Monitor",
+      "name": "LG 34-Inch 21:9 Curved Ultrawide IPS Gaming Monitor",
       "type": "Computer Monitor",
       "imageURL": "https://i.imgur.com/zGz4VlN.jpg",
-      "description": "144 Hz refresh rate. 34 inch ultrawide. IPS. AMD Freesync. Response time: 14ms/5ms. 1ms motion blur reduction. 2560 x 1080 resolution.",
+      "description": "34UC79G-B. 144 Hz refresh rate. 34 inch ultrawide. IPS. AMD Freesync. Response time: 14ms/5ms. 1ms motion blur reduction. 2560 x 1080 resolution.",
       "purchasePrice": 509.9,
       "purchaseDate": "2019-06-04",
       "review": "It was fantastic when purchased. I eventually regretted not getting a higher resolution monitor, as I use it more for reading text than I do for gaming. I still use it and it's great to have around.",
       "documentation": "https://www.amazon.com/gp/product/B01LW5CGIS/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1",
       "id": 47
+    },
+    {
+      "userId": 1,
+      "name": "Shokz OpenRun Bone Conduction Headphones",
+      "type": "Headphones",
+      "imageURL": "https://i.imgur.com/JMvolXj.jpg",
+      "description": "Open-ear bluetooth bone conduction headphones. 8th generation. PremiumPitch2.0+. 8h battery life. Bluetooth v5.1. Sweat resistant. Built-in mic. IP67 waterproof rated.",
+      "purchasePrice": 129.95,
+      "purchaseDate": "2022-05-30",
+      "review": "I wear them every single day and will replace them the day they die with an identical pair.",
+      "documentation": "https://www.amazon.com/gp/product/B09BVYKTZM/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1",
+      "id": 48
+    },
+    {
+      "userId": 1,
+      "name": "ViewSonic 27\" Monitor",
+      "type": "Computer Monitor",
+      "imageURL": "https://i.imgur.com/91gUaIh.jpg",
+      "description": "ViewSonic VX2768-2KP-MHD 27 Inch Frameless WQHD 1440p 144Hz 1ms IPS Gaming Monitor with FreeSync Premium, Eye Care, HDMI and DisplayPort. 27\". 2560x1440p. 144Hz. IPS. 1ms MPRT response time. FreeSync Premium.",
+      "purchasePrice": 189.99,
+      "purchaseDate": "2022-10-13",
+      "review": "Great! For this price, what more could I hope for.",
+      "documentation": "https://www.newegg.com/p/N82E16824117009?Item=9SIAN7GFSV2446",
+      "id": 49
     }
   ],
   "itemsProjects": [
@@ -833,6 +857,18 @@
       "itemId": 47,
       "projectId": 4,
       "id": 38
+    },
+    {
+      "userId": 1,
+      "itemId": 48,
+      "projectId": 6,
+      "id": 39
+    },
+    {
+      "userId": 1,
+      "itemId": 49,
+      "projectId": 4,
+      "id": 40
     }
   ],
   "documents": [],
@@ -1116,6 +1152,20 @@
       "noteText": "Moved this to my secondary monitor, up top, using the VIVO Dual LCD Monitor Desk Mount Stand.",
       "dateTime": "2022/10/18",
       "id": 46
+    },
+    {
+      "userId": 1,
+      "itemId": "19",
+      "noteText": "Replaced Ear Pads with official replacements purchased on Amazon.",
+      "dateTime": "2022/05/18",
+      "id": 47
+    },
+    {
+      "userId": 1,
+      "itemId": "49",
+      "noteText": "Mounted this as my primary monitor using the VIVO Dual LCD Monitor Desk Mount Stand.",
+      "dateTime": "2022/10/18",
+      "id": 48
     }
   ],
   "tags": [
@@ -1589,18 +1639,6 @@
     },
     {
       "userId": 1,
-      "itemId": 5,
-      "tag": "Guitar",
-      "id": 254
-    },
-    {
-      "userId": 1,
-      "itemId": 5,
-      "tag": "Music",
-      "id": 255
-    },
-    {
-      "userId": 1,
       "itemId": 6,
       "tag": "Shoes",
       "id": 256
@@ -1694,24 +1732,6 @@
       "itemId": 15,
       "tag": "Wheels",
       "id": 272
-    },
-    {
-      "userId": 1,
-      "itemId": 19,
-      "tag": "Music",
-      "id": 273
-    },
-    {
-      "userId": 1,
-      "itemId": 19,
-      "tag": "Sound",
-      "id": 274
-    },
-    {
-      "userId": 1,
-      "itemId": 19,
-      "tag": "Headphones",
-      "id": 275
     },
     {
       "userId": 1,
@@ -1835,24 +1855,6 @@
     },
     {
       "userId": 1,
-      "itemId": 45,
-      "tag": "Speakers",
-      "id": 310
-    },
-    {
-      "userId": 1,
-      "itemId": 45,
-      "tag": "Electronics",
-      "id": 311
-    },
-    {
-      "userId": 1,
-      "itemId": 45,
-      "tag": "Sound",
-      "id": 312
-    },
-    {
-      "userId": 1,
       "itemId": 46,
       "tag": "Safety",
       "id": 319
@@ -1871,27 +1873,111 @@
     },
     {
       "userId": 1,
+      "itemId": 5,
+      "tag": "Guitar",
+      "id": 346
+    },
+    {
+      "userId": 1,
+      "itemId": 5,
+      "tag": "Music Production",
+      "id": 347
+    },
+    {
+      "userId": 1,
+      "itemId": 45,
+      "tag": "Speakers",
+      "id": 354
+    },
+    {
+      "userId": 1,
+      "itemId": 45,
+      "tag": "Electronics",
+      "id": 355
+    },
+    {
+      "userId": 1,
+      "itemId": 45,
+      "tag": "Sound",
+      "id": 356
+    },
+    {
+      "userId": 1,
+      "itemId": 19,
+      "tag": "Music",
+      "id": 368
+    },
+    {
+      "userId": 1,
+      "itemId": 19,
+      "tag": "Sound",
+      "id": 369
+    },
+    {
+      "userId": 1,
+      "itemId": 19,
+      "tag": "Headphones",
+      "id": 370
+    },
+    {
+      "userId": 1,
+      "itemId": 48,
+      "tag": "Headphones",
+      "id": 377
+    },
+    {
+      "userId": 1,
+      "itemId": 48,
+      "tag": "Fitness",
+      "id": 378
+    },
+    {
+      "userId": 1,
+      "itemId": 48,
+      "tag": "Sound",
+      "id": 379
+    },
+    {
+      "userId": 1,
       "itemId": 47,
       "tag": "Electronics",
-      "id": 334
+      "id": 386
     },
     {
       "userId": 1,
       "itemId": 47,
       "tag": "Monitors",
-      "id": 335
+      "id": 387
     },
     {
       "userId": 1,
       "itemId": 47,
       "tag": "Computers",
-      "id": 336
+      "id": 388
     },
     {
       "userId": 1,
       "itemId": 47,
       "tag": "Gaming",
-      "id": 337
+      "id": 389
+    },
+    {
+      "userId": 1,
+      "itemId": 49,
+      "tag": "Computers",
+      "id": 393
+    },
+    {
+      "userId": 1,
+      "itemId": 49,
+      "tag": "Gaming",
+      "id": 394
+    },
+    {
+      "userId": 1,
+      "itemId": 49,
+      "tag": "Monitors",
+      "id": 395
     }
   ]
 }

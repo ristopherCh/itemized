@@ -40,11 +40,26 @@ a {
 }
 
 /* Navbar */
+.navLogo {
+  width: 130px;
+}
+
+.navLogo:hover {
+  width: 135px;
+}
+
 .navbar {
   display: flex;
   margin: 5px;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+
+.navbarLeft {
+  display: flex;
+  align-items: center;
 }
 
 .navLink {
@@ -57,12 +72,24 @@ a {
 }
 
 .navFlexHolder {
-  width: 170px;
+  font-size: 17px;
   text-align: center;
 }
 
+.width180 {
+  width: 180px;
+}
+
+.width120 {
+  width: 120px;
+}
+
+.width150 {
+  width: 150px;
+}
+
 #navbarUL {
-  padding: 10px 0px;
+  padding: 5px 0px;
   border: 1px solid black;
 }
 
@@ -203,6 +230,7 @@ a {
   justify-content: space-between;
   width: 75%;
   margin: auto;
+  margin-bottom: 10px;
 }
 
 #allProjectsContainer img {
@@ -345,7 +373,7 @@ a {
 }
 
 .boxShadow {
-  box-shadow: 0px 0px 10px rgba(107, 214, 193, 0.225);
+  /* box-shadow: 0px 0px 4px rgba(107, 214, 193, 0.225); */
 }
 
 .itemDescriptionUL {
@@ -484,6 +512,10 @@ a {
   margin-bottom: 20px;
 }
 
+.marginBottom50 {
+  margin-bottom: 50px;
+}
+
 .alignCenter {
   align-items: center;
 }
@@ -546,6 +578,10 @@ a {
 
 .padding1020 {
   padding: 10px 20px;
+}
+
+.padding020 {
+  padding: 0px 20px;
 }
 
 .padding52 {

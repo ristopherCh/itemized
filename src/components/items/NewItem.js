@@ -133,9 +133,8 @@ export const NewItem = ({ purchaseDate }) => {
         }),
       });
     } else {
-      // return;
       return new Promise((resolve, reject) => {
-        resolve("Nothing was sent! All is well though.");
+        resolve("we have resolved postTOItemsProjects!");
       });
     }
   };
@@ -176,10 +175,6 @@ export const NewItem = ({ purchaseDate }) => {
         );
       }
       return Promise.all(promiseArray);
-    } else {
-      return new Promise((resolve, reject) => {
-        resolve("Nothing was sent! All is well though.");
-      });
     }
   };
 
@@ -194,10 +189,6 @@ export const NewItem = ({ purchaseDate }) => {
         );
       }
       return Promise.all(tagArray);
-    } else {
-      return new Promise((resolve, reject) => {
-        resolve("Nothing was sent! All is well though.");
-      });
     }
   };
 
@@ -244,6 +235,8 @@ export const NewItem = ({ purchaseDate }) => {
   };
 
   const handleItemEdit = (event) => {
+    const copy = { ...userInputs };
+    copy.description = copy.description.trim();
     event.preventDefault();
     if (userInputs.name && userInputs.type) {
       fetch(`http://localhost:8089/items/${itemId}`, {
@@ -251,7 +244,7 @@ export const NewItem = ({ purchaseDate }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userInputs),
+        body: JSON.stringify(copy),
       })
         .then((res) => res.json())
         .then((data) => {
@@ -275,13 +268,15 @@ export const NewItem = ({ purchaseDate }) => {
   const handleItemCreation = (event) => {
     // TODO : .then() all of those posts together
     event.preventDefault();
+    const copy = { ...userInputs };
+    copy.description = copy.description.trim();
     if (userInputs.name && userInputs.type) {
       fetch(`http://localhost:8089/items`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userInputs),
+        body: JSON.stringify(copy),
       })
         .then((res) => res.json())
         .then((data) => {
@@ -299,7 +294,7 @@ export const NewItem = ({ purchaseDate }) => {
   };
 
   return (
-    <div id="newItemContentContainer">
+    <div id="newItemContentContainer marginBottom50">
       {itemId ? <h1>Edit Item</h1> : <h1>Add New Item</h1>}
       <form id="newItemForm">
         <fieldset className="flexColumn marginLeft10P">
@@ -516,14 +511,14 @@ export const NewItem = ({ purchaseDate }) => {
             {itemId ? (
               <button
                 id="newItemSubmitButton"
-                className="marginTop10"
+                className="marginTop10 marginBottom10"
                 onClick={(event) => handleItemEdit(event)}
               >
                 Save Edit
               </button>
             ) : (
               <button
-                className="marginTop10"
+                className="marginTop10 marginBottom10"
                 id="newItemSubmitButton"
                 onClick={(event) => handleItemCreation(event)}
               >
