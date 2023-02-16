@@ -77,7 +77,9 @@ export const ItemDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         data.unEditedDescription = data.description;
-        data.description = data.description.split(". ");
+        if (data.description) {
+          data.description = data.description.split(". ");
+        }
         setItem(data);
 
         const copy = { ...selectedItemProject };
@@ -331,19 +333,20 @@ export const ItemDetails = () => {
                 )}
               </div>
 
-              <div className="margin10 alignCenter spaceBetween flexWrap">
-                <div className="width45">
-                  <div
-                    id="descriptionBox"
-                    className="simpleBorder itemDescription minWidth250 boxShadow yellowBackground padding020"
-                  >
-                    <h2 className="underlined">Description</h2>
-                    <ul className="itemDescriptionUL marginBottom10">
-                      {item.description?.map((point, index) => {
-                        return <li key={index}>{point}</li>;
-                      })}
-                    </ul>
-                  </div>
+              <div
+                className="margin10 alignCenter spaceBetween flexRow"
+                id="itemMiddleBox"
+              >
+                <div
+                  id="descriptionBox"
+                  className="simpleBorder itemDescription minWidth250 boxShadow yellowBackground padding020 width45"
+                >
+                  <h2 className="underlined">Description</h2>
+                  <ul className="itemDescriptionUL marginBottom10">
+                    {item.description?.map((point, index) => {
+                      return <li key={index}>{point}</li>;
+                    })}
+                  </ul>
                 </div>
 
                 <div
@@ -486,39 +489,44 @@ export const ItemDetails = () => {
                             >
                               <li>
                                 <div className="flexRow spaceBetween">
-                                  <div className="width85 marginLeft20">
+                                  <div className="width85 marginLeft20 marginRight20">
                                     {itemNote.noteText}
                                   </div>
-                                  <div className="width10 textAlignRight alignSelfCenter">
-                                    {itemNote.dateTime ? (
-                                      <>
-                                        {new Date(
-                                          itemNote.dateTime.replace(/-/g, "/")
-                                        ).toLocaleDateString()}
-                                      </>
-                                    ) : (
-                                      ""
-                                    )}
+                                  <div className="flexRow" id="notesDateButtons">
+                                    <div className="textAlignRight alignSelfCenter">
+                                      {itemNote.dateTime ? (
+                                        <>
+                                          {new Date(
+                                            itemNote.dateTime.replace(/-/g, "/")
+                                          ).toLocaleDateString()}
+                                        </>
+                                      ) : (
+                                        ""
+                                      )}
+                                    </div>
+                                    <div className="flexRow">
+                                      <button
+                                        value={itemNote.id}
+                                        className="height20 borderNone standardBackground marginLeft10 cursorPointer padding13 boxShadow alignSelfCenter"
+                                        onClick={(event) => {
+                                          handleNoteEdit(event);
+                                        }}
+                                      >
+                                        <i className="fa-regular fa-pen-to-square"></i>
+                                      </button>
+                                      <button
+                                        value={itemNote.id}
+                                        className="height20 borderNone standardBackground marginLeft10 cursorPointer padding13 boxShadow alignSelfCenter"
+                                        onClick={(event) => {
+                                          handleNoteDelete(event);
+                                        }}
+                                      >
+                                        <i className="fa-solid fa-xmark"></i>
+                                      </button>
+                                    </div>
                                   </div>
-                                  <button
-                                    value={itemNote.id}
-                                    className="height20 borderNone standardBackground marginLeft10 cursorPointer padding13 boxShadow alignSelfCenter"
-                                    onClick={(event) => {
-                                      handleNoteEdit(event);
-                                    }}
-                                  >
-                                    <i className="fa-regular fa-pen-to-square"></i>
-                                  </button>
-                                  <button
-                                    value={itemNote.id}
-                                    className="height20 borderNone standardBackground marginLeft10 cursorPointer padding13 boxShadow alignSelfCenter"
-                                    onClick={(event) => {
-                                      handleNoteDelete(event);
-                                    }}
-                                  >
-                                    <i className="fa-solid fa-xmark"></i>
-                                  </button>
                                 </div>
+                                <div className="narrowLine" />
                               </li>
                             </div>
                           );
@@ -535,7 +543,7 @@ export const ItemDetails = () => {
                     id="addNoteBox"
                   >
                     <textarea
-                      className="itemTextarea width50"
+                      className="itemTextarea"
                       value={itemNote?.noteText}
                       id="addItemNote"
                       onChange={(event) => {

@@ -269,7 +269,9 @@ export const NewItem = ({ purchaseDate }) => {
     // TODO : .then() all of those posts together
     event.preventDefault();
     const copy = { ...userInputs };
-    copy.description = copy.description.trim();
+    if (copy.description) {
+      copy.description = copy.description.trim();
+    }
     if (userInputs.name && userInputs.type) {
       fetch(`http://localhost:8089/items`, {
         method: "POST",
@@ -526,7 +528,7 @@ export const NewItem = ({ purchaseDate }) => {
               </button>
             ) : (
               <button
-                className="width125 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding5 marginTop5"
+                className="width125 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding5 marginTop5 cursorPointer"
                 onClick={(event) => handleItemCreation(event)}
               >
                 Submit

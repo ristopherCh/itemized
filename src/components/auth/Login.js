@@ -33,7 +33,7 @@ export const Login = () => {
     <main>
       <section className=" ">
         <h2 className="marginBottom10">Login</h2>
-        <div className="marginAuto blackBorder width500 borderRadiusMedium yellowBackground boxShadowDark">
+        <div className="marginAuto blackBorder maxWidth500 borderRadiusMedium yellowBackground boxShadowDark">
           <form className="" onSubmit={handleLogin}>
             <fieldset className="">
               <label

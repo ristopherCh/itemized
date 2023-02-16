@@ -92,22 +92,23 @@ export const AllProjects = () => {
           </select>
         </div>
       </div>
-      {filteredProjects.map((project) => {
-        return (
-          <Link key={project.id} to={`/projects/${project.id}`}>
-            <section className="allProjectsItem" key={project.id}>
-              <h2>{project.name}</h2>
-              <div>
+      <div className="width75 marginAuto">
+        {filteredProjects.map((project) => {
+          return (
+            <Link key={project.id} to={`/projects/${project.id}`}>
+              <section className="blackBorder" id="allProjectsItem">
+                <h2>{project.name}</h2>
+
                 <img
-                  className="allProjectsPhoto"
+                  className="width200 marginBottom10 marginAuto displayBlock"
                   src={project.imageURL}
                   alt=""
-                ></img>
-              </div>
-            </section>
-          </Link>
-        );
-      })}
+                />
+              </section>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };
