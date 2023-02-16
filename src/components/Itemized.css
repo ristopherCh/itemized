@@ -35,12 +35,12 @@ a {
   font-weight: 900;
 }
 
-.buttonBlock {
-  display: block;
-}
-
 /* Navbar */
 .navLogo {
+  width: 130px;
+}
+
+.navLogoLogin {
   width: 130px;
 }
 
@@ -51,15 +51,9 @@ a {
 .navbar {
   display: flex;
   margin: 5px;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 30px;
-}
-
-.navbarLeft {
-  display: flex;
-  align-items: center;
 }
 
 .navLink {
@@ -72,7 +66,7 @@ a {
 }
 
 .navFlexHolder {
-  font-size: 17px;
+  font-size: 100%;
   text-align: center;
 }
 
@@ -88,17 +82,16 @@ a {
   width: 150px;
 }
 
-#navbarUL {
-  padding: 5px 0px;
-  border: 1px solid black;
-}
-
 .greenBackground {
   background-color: rgba(107, 214, 193, 0.116);
 }
 
 .darkGreenBackground {
   background-color: rgba(107, 214, 193, 0.751);
+}
+
+.darkPurpleBackground {
+  background-color: rgba(127, 43, 196, 0.751);
 }
 
 .pinkBackground {
@@ -147,13 +140,6 @@ a {
 
 .height100 {
   height: 100px;
-}
-
-#newItemSubmitButton,
-#newProjectSubmitButton {
-  display: block;
-  padding: 3px 5px;
-  font-weight: 600;
 }
 
 .italic {
@@ -242,7 +228,6 @@ a {
 .projectDetailsContainer {
   margin-top: 25px;
   display: flex;
-  justify-content: left;
 }
 
 .projectImage {
@@ -257,11 +242,6 @@ a {
 
 .paddingL10P {
   padding-left: 10%;
-}
-
-.pdrl {
-  min-width: 50px;
-  max-width: 300px;
 }
 
 .projectDescription {
@@ -283,6 +263,11 @@ a {
   object-fit: cover;
   border-radius: 5px;
   cursor: pointer;
+}
+
+#itemImageFile,
+#projectImageFile {
+  display: none;
 }
 
 .itemProjectsLI {
@@ -372,8 +357,16 @@ a {
   min-width: 250px;
 }
 
+.minWidth500 {
+  min-width: 500px;
+}
+
 .boxShadow {
   /* box-shadow: 0px 0px 4px rgba(107, 214, 193, 0.225); */
+}
+
+.boxShadowDark {
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.225);
 }
 
 .itemDescriptionUL {
@@ -398,6 +391,10 @@ a {
   /* border: 1px solid rgb(234, 234, 234); */
 }
 
+.blackBorder {
+  border: 1px solid black;
+}
+
 .lightBorder {
   border: 1px solid rgba(199, 255, 198, 0.636);
 }
@@ -412,8 +409,20 @@ a {
   margin: 10px;
 }
 
+.width150 {
+  width: 150px;
+}
+
+.width125 {
+  width: 125px;
+}
+
 .width100 {
   width: 100%;
+}
+
+.width95 {
+  width: 95%;
 }
 
 .width85 {
@@ -426,6 +435,10 @@ a {
 
 .width70 {
   width: 70%;
+}
+
+.width65 {
+  width: 66%;
 }
 
 .width60 {
@@ -452,6 +465,10 @@ a {
   width: 20%;
 }
 
+.width15 {
+  width: 15%;
+}
+
 .width10 {
   width: 10%;
 }
@@ -475,7 +492,7 @@ a {
   flex-direction: column;
 }
 
-.inline {
+.displayInline {
   display: inline;
 }
 
@@ -486,6 +503,11 @@ a {
 .flexColumn {
   display: flex;
   flex-direction: column;
+}
+
+.flexWrap {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .spaceAround {
@@ -500,6 +522,10 @@ a {
   align-items: center;
 }
 
+.alignItemsStart {
+  align-items: start;
+}
+
 .spaceBetween {
   justify-content: space-between;
 }
@@ -508,8 +534,20 @@ a {
   margin: 10px 0px;
 }
 
+.margin10P {
+  margin: 10%;
+}
+
+.margin20 {
+  margin: 20px;
+}
+
 .marginBottom20 {
   margin-bottom: 20px;
+}
+
+.marginBottom10 {
+  margin-bottom: 10px;
 }
 
 .marginBottom50 {
@@ -533,11 +571,27 @@ a {
 }
 
 .marginAuto {
-  margin: auto;
+  margin: 0px auto;
 }
 
 .marginRight20 {
   margin-right: 20px;
+}
+
+.marginRight10 {
+  margin-right: 10px;
+}
+
+.marginRight10P {
+  margin-right: 10%;
+}
+
+.marginRight3P {
+  margin-right: 3%;
+}
+
+.marginRight5 {
+  margin-right: 5px;
 }
 
 .marginLeft20 {
@@ -560,6 +614,10 @@ a {
   margin-left: 25%;
 }
 
+.marginLeft15P {
+  margin-left: 15%;
+}
+
 .marginLeft100 {
   margin-left: 100px;
 }
@@ -570,6 +628,14 @@ a {
 
 .marginTop10 {
   margin-top: 10px;
+}
+
+.marginTop5 {
+  margin-top: 5px;
+}
+
+.noWrap {
+  white-space: nowrap;
 }
 
 .padding20 {
@@ -588,8 +654,8 @@ a {
   padding: 5px 2px;
 }
 
-.padding13 {
-  padding: 1px 3px;
+.padding26 {
+  padding: 2px 6px;
 }
 
 .borderNone {
@@ -598,6 +664,10 @@ a {
 
 .borderRadiusLight {
   border-radius: 4px;
+}
+
+.borderRadiusMedium {
+  border-radius: 10px;
 }
 
 .borderLight {
@@ -610,6 +680,10 @@ a {
 
 .textAlignRight {
   text-align: right;
+}
+
+.textAlignLeft {
+  text-align: left;
 }
 
 .textAlignCenter {
@@ -643,6 +717,10 @@ a {
   max-width: 750px;
 }
 
+.maxWidth1500 {
+  max-width: 1500px;
+}
+
 .width500 {
   width: 500px;
 }
@@ -657,4 +735,30 @@ a {
 
 .simpleBorder {
   border: 2px solid rgba(221, 186, 224, 0.19);
+}
+
+.line {
+  border-bottom: 1px solid #dadde1;
+  margin: 20px 25px 15px 25px;
+  text-align: center
+}
+
+.whiteFont {
+  color: white;
+}
+
+.padding5 {
+  padding: 5px;
+}
+
+.fontSize17 {
+  font-size: 17px;
+}
+
+.width500 {
+  width: 500px;
+}
+
+.widthAuto {
+  width: auto;
 }

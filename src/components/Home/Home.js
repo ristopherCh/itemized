@@ -22,7 +22,7 @@ export const Home = () => {
     <>
       <h1>Welcome to Itemized!</h1>
       <h2>Your top projects</h2>
-      <div id="homeGrid">
+      <div id="homeGrid" className="width75 marginAuto maxWidth1500">
         {topProjects.map(project => {
           return (
             <section className="allProjectsItem" key={project.id}>

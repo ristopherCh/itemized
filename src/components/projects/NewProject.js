@@ -114,7 +114,7 @@ export const NewProject = () => {
     <div id="newProjectContentContainer">
       {projectId ? <h1>Edit Project</h1> : <h1>Create New Project</h1>}
 
-      <form className="marginLeft25P" id="newProjectForm">
+      <form className="marginLeft15P" id="newProjectForm">
         <fieldset>
           <label className="projectLabel" htmlFor="projectName">
             Name
@@ -134,13 +134,12 @@ export const NewProject = () => {
           </label>
           <input
             type="file"
-            id="projectImageInput"
+            id="projectImageFile"
             name="imageURL"
             onChange={(event) => {
               fileToImgur(event);
             }}
           />
-          <br />
           {userInputs.imageURL ? (
             <img
               id="uploadedImage"
@@ -150,7 +149,15 @@ export const NewProject = () => {
           ) : (
             ""
           )}
-
+          <button
+            className="displayBlock width125 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding5 "
+            onClick={(event) => {
+              event.preventDefault();
+              document.getElementById("projectImageFile").click();
+            }}
+          >
+            Choose File
+          </button>
           <label className="projectLabel" htmlFor="projectDescription">
             Add a description <span className="italic">-- Optional</span>
           </label>
@@ -176,6 +183,7 @@ export const NewProject = () => {
           ) : (
             <button
               id="newProjectSubmitButton"
+              className="displayBlock width125 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding5 marginTop5"
               onClick={(event) => handleProjectCreation(event)}
             >
               Submit

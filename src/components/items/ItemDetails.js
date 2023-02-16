@@ -331,7 +331,7 @@ export const ItemDetails = () => {
                 )}
               </div>
 
-              <div className="margin10 alignCenter spaceBetween flexRow margin10">
+              <div className="margin10 alignCenter spaceBetween flexWrap">
                 <div className="width45">
                   <div
                     id="descriptionBox"
@@ -423,7 +423,7 @@ export const ItemDetails = () => {
 
               <div
                 id="tagsBox"
-                className="boxShadow yellowBackground simpleBorder marginTop20"
+                className="boxShadow yellowBackground simpleBorder marginTop20 width75 marginAuto"
               >
                 <h2 className="underlined">Tags</h2>
                 <form className="flexRow justifyCenter marginBottom10">
@@ -470,7 +470,7 @@ export const ItemDetails = () => {
               </div>
 
               <div
-                className="flexColumn margin10 marginTop20 yellowBackground simpleBorder"
+                className="flexColumn margin10 marginTop20 yellowBackground simpleBorder width75 marginAuto"
                 id="itemNotes"
               >
                 <div className="width100">
@@ -544,9 +544,9 @@ export const ItemDetails = () => {
                         setItemNote(copy);
                       }}
                     ></textarea>
-                    <div className="flexRow marginLeft20">
+                    <div className="flexRow marginLeft10">
                       <button
-                        className="borderNone standardBackground cursorPointer borderLight padding13 borderRadiusLight boxShadow marginLeft10"
+                        className="lightBorder darkPurpleBackground whiteFont cursorPointer padding26 borderRadiusLight boxShadow marginLeft10"
                         id="addNoteButton"
                         onClick={(event) => {
                           handleAddNoteButton(event);
@@ -570,24 +570,24 @@ export const ItemDetails = () => {
                 </div>
               </div>
               <div
-                className="margin10 inline width30 flexRow padding20 justifyCenter marginAuto deleteButtonDiv"
-                id="editDeleteButtonDiv"
+                className="margin10 inline flexRow padding20 justifyCenter marginAuto deleteButtonDiv"
+                id="itemEditDeleteDiv"
               >
                 <button
-                  className="buttonBlock inline marginRight20"
+                  className="displayInline width150 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding5 marginRight20"
                   onClick={(event) => {
                     handleEditButtonClick(event);
                   }}
                 >
-                  Edit this item
+                  Edit item
                 </button>
                 <button
-                  className="buttonBlock inline"
+                  className="displayInline width150 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding5"
                   onClick={(event) => {
                     handleDeleteButtonClick(event);
                   }}
                 >
-                  Delete this item
+                  Delete item
                 </button>
               </div>
             </div>

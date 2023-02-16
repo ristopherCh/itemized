@@ -31,28 +31,44 @@ export const Login = () => {
 
   return (
     <main>
-      <section>
-        <form onSubmit={handleLogin}>
-          <fieldset>
-            <label htmlFor="inputEmail"> Email address </label>
-            <input
-              type="email"
-              id="inputEmail"
-              value={email}
-              onChange={(evt) => setEmail(evt.target.value)}
-              className="form-control"
-              placeholder="Email address"
-              required
-              autoFocus
-            />
-          </fieldset>
-          <fieldset>
-            <button type="submit">Sign in</button>
-          </fieldset>
-        </form>
-      </section>
-      <section>
-        <Link to="/register">Not a member yet?</Link>
+      <section className=" ">
+        <h2 className="marginBottom10">Login</h2>
+        <div className="marginAuto blackBorder width500 borderRadiusMedium yellowBackground boxShadowDark">
+          <form className="" onSubmit={handleLogin}>
+            <fieldset className="">
+              <label
+                className="marginAuto width50 displayBlock textAlignCenter"
+                htmlFor="inputEmail"
+              >
+                {" "}
+                Email address{" "}
+              </label>
+              <input
+                type="email"
+                id="inputEmail"
+                value={email}
+                onChange={(evt) => setEmail(evt.target.value)}
+                className="marginAuto displayBlock"
+                placeholder="Email address"
+                required
+                autoFocus
+              />
+            </fieldset>
+            <button
+              className="fontSize17 padding5 marginTop10 marginAuto displayBlock width75 whiteFont cursorPointer darkPurpleBackground lightBorder borderRadiusMedium"
+              type="submit"
+            >
+              Log in
+            </button>
+          </form>
+          <div className="line" />
+          <Link
+            className="marginAuto displayBlock width50 textAlignCenter boxShadow marginTop10 marginBottom10"
+            to="/register"
+          >
+            Create new account
+          </Link>
+        </div>
       </section>
     </main>
   );

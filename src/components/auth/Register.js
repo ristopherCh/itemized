@@ -51,37 +51,51 @@ export const Register = (props) => {
   };
 
   return (
-    <main>
-      <form onSubmit={handleRegister}>
-        <fieldset>
-          <label htmlFor="fullName">Full Name</label>
+    <main className="">
+      <h2 className="marginBottom10">Register</h2>
+      <form
+        className="width500 marginAuto blackBorder borderRadiusMedium yellowBackground boxShadowDark"
+        onSubmit={handleRegister}
+      >
+        <fieldset className="">
+          <label
+            className="displayBlock marginAuto width50 textAlignCenter"
+            htmlFor="fullName"
+          >
+            Full Name
+          </label>
           <input
             onChange={updateUser}
             type="text"
             id="fullName"
-            className="form-control"
+            className="displayBlock marginAuto"
             placeholder="Enter your name"
             required
             autoFocus
           />
         </fieldset>
-        <fieldset>
-          <label htmlFor="email">Email address</label>
+        <fieldset className="">
+          <label
+            className=" displayBlock marginAuto widthAuto textAlignCenter marginTop10"
+            htmlFor="email"
+          >
+            Email address
+          </label>
           <input
             onChange={updateUser}
             type="email"
             id="email"
-            className="form-control"
+            className=" displayBlock marginAuto"
             placeholder="Email address"
             required
           />
         </fieldset>
-        <fieldset>
-          <button type="submit">Register</button>
-        </fieldset>
-        <section>
-          <Link to="/login">Back to Login</Link>
-        </section>
+        <button
+          className="cursorPointer displayBlock marginAuto fontSize17 padding5 marginTop10 width75 whiteFont darkPurpleBackground lightBorder borderRadiusMedium marginBottom10"
+          type="submit"
+        >
+          Register
+        </button>
       </form>
     </main>
   );

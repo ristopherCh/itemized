@@ -92,7 +92,7 @@ export const ProjectDetails = () => {
 
   const handleDelete = (event) => {
     event.preventDefault();
-    
+
     fetch(`http://localhost:8089/projects/${projectId}`, {
       method: "DELETE",
     }).then(() => {
@@ -117,43 +117,54 @@ export const ProjectDetails = () => {
     <>
       <h1>{project.name}</h1>
       <h3 className="projectDescription">{project.description}</h3>
-      <div className="projectDetailsContainer">
-        <div className="width40">
+      <div className="flexWrap marginTop20 marginAuto maxWidth1500 alignItemsStart">
+        <div className="width40 marginAuto minWidth500 flexColumn">
           <img
             className="displayBlock projectImage borderRadiusLight marginAuto"
             src={project.imageURL}
             alt=""
-          ></img>
+          />
         </div>
-        <div className="width60 maxWidth750">
+        <div className="widthAuto marginAuto maxWidth750">
           <div id="itemsListDiv">
             <h2 className="underlined">Items</h2>
-            {projectItems.map((projectItem, index) => {
-              return (
-                <div className="flexRow spaceAround" key={projectItem.id}>
-                  <div className="pdrl width50">{projectItem.item?.type}:</div>
-                  <div className="width50">
-                    <Link to={`/items/${projectItem.itemId}`}>
-                      {projectItem.item?.name}
-                    </Link>{" "}
-                    <button
-                      className="borderNone standardBackground marginLeft10 cursorPointer padding 13"
-                      onClick={(event) => {
-                        handleRemoveItem(event, projectItem);
-                      }}
-                    >
-                      <i className="fa-solid fa-xmark"></i>
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+            <div className="flexRow spaceAround">
+              <div id="projectDescriptionLeft"
+              className="marginRight3P">
+                {projectItems.map((projectItem) => {
+                  return (
+                    <div className="noWrap" key={projectItem.id}>
+                      {projectItem.item?.type}:
+                    </div>
+                  );
+                })}
+              </div>
+              <div id="projectDescriptionRight width50">
+                {projectItems.map((projectItem) => {
+                  return (
+                    <div className="noWrap" key={projectItem.id}>
+                      <Link to={`/items/${projectItem.itemId}`}>
+                        {projectItem.item?.name}
+                      </Link>{" "}
+                      <button
+                        className="borderNone standardBackground marginLeft5 cursorPointer"
+                        onClick={(event) => {
+                          handleRemoveItem(event, projectItem);
+                        }}
+                      >
+                        <i className="fa-solid fa-xmark"></i>
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
           <div className="marginTop20" id="addItemDiv">
             <form>
               <div className="textCenter">Add an item to this project</div>
               <div>
-                <div className="displayBlock width500 marginAuto">
+                <div className="displayBlock marginAuto flexRow justifyCenter">
                   {selectedProjectItem.itemId ? displayItemPhoto() : ""}
                   <select
                     onChange={(event) => {
@@ -185,25 +196,26 @@ export const ProjectDetails = () => {
           </div>
         </div>
       </div>
-      <div>
-        <div className="marginLeft10P marginTop20 flexRow width500" id="projectEditDelete">
-          <button
-            className="buttonBlock"
-            onClick={(event) => {
-              handleEditButtonClick(event);
-            }}
-          >
-            Edit this project
-          </button>
-          <button
-          className="marginLeft10"
-            onClick={(event) => {
-              handleDelete(event);
-            }}
-          >
-            Delete Project
-          </button>
-        </div>
+      <div
+        className="marginAuto marginTop20 flexWrap justifyCenter"
+        id="projectEditDeleteDiv"
+      >
+        <button
+          className="displayInline width150 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding5"
+          onClick={(event) => {
+            handleEditButtonClick(event);
+          }}
+        >
+          Edit project
+        </button>
+        <button
+          className="displayInline width150 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding5"
+          onClick={(event) => {
+            handleDelete(event);
+          }}
+        >
+          Delete Project
+        </button>
       </div>
     </>
   );

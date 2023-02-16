@@ -331,13 +331,12 @@ export const NewItem = ({ purchaseDate }) => {
           <input
             type="file"
             className=""
-            id="itemImage"
+            id="itemImageFile"
             name="imageURL"
             onChange={(event) => {
               fileToImgur(event);
             }}
           />
-
           {userInputs.imageURL ? (
             <img
               id="uploadedImage"
@@ -347,6 +346,15 @@ export const NewItem = ({ purchaseDate }) => {
           ) : (
             ""
           )}
+          <button
+            className="width125 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding5 "
+            onClick={(event) => {
+              event.preventDefault();
+              document.getElementById("itemImageFile").click();
+            }}
+          >
+            Choose File
+          </button>
 
           <label className="marginTop10" htmlFor="itemDescription">
             Add a description <span className="italic">-- Optional</span>
@@ -518,8 +526,7 @@ export const NewItem = ({ purchaseDate }) => {
               </button>
             ) : (
               <button
-                className="marginTop10 marginBottom10"
-                id="newItemSubmitButton"
+                className="width125 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding5 marginTop5"
                 onClick={(event) => handleItemCreation(event)}
               >
                 Submit
