@@ -633,6 +633,66 @@
       "review": "Great! For this price, what more could I hope for.",
       "documentation": "https://www.newegg.com/p/N82E16824117009?Item=9SIAN7GFSV2446",
       "id": 49
+    },
+    {
+      "userId": 1,
+      "name": "Kryptonite New-U New York Bike Lock",
+      "type": "Bike Lock",
+      "imageURL": "https://i.imgur.com/3GFW76I.jpg",
+      "description": "16mm Hardended Max Performance Steel Shackle Resists Hand Tools, Bolt Cutters, and Leverage Attacks. Interior Locking Dimensions; 4\" x 8\".",
+      "purchasePrice": 114.95,
+      "purchaseDate": "2020-06-01",
+      "review": "Hasn't been sawed through yet.",
+      "documentation": "https://www.amazon.com/gp/product/B06XCH21YH/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1",
+      "id": 50
+    },
+    {
+      "userId": 1,
+      "name": "Saris Bones 2",
+      "type": "Bike Trunk Rack",
+      "imageURL": "https://i.imgur.com/eodQbym.jpg",
+      "description": "11 lbs. Carries 2 bikes, 35lbs per bike. Compatible with most vehicles frame and fits over most spoilers;. Rubberized feet protect car and coated straps protect bike.",
+      "purchasePrice": 144.78,
+      "purchaseDate": "2020-05-26",
+      "review": "Drove 2 bikes from LA to Nashville with it, no problems, including driving through the windiest section of the USA (West Texas).",
+      "documentation": "https://www.amazon.com/gp/product/B00BCLAZJC/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1",
+      "id": 51
+    },
+    {
+      "userId": 1,
+      "name": "Wraith Prism LED",
+      "type": "CPU Cooler",
+      "imageURL": "https://i.imgur.com/RA87VJd.jpg",
+      "description": "712-000075 Rev: C. Came free with AMD Ryzen 7 3800X.",
+      "purchasePrice": 1,
+      "purchaseDate": "2019-11-30",
+      "review": "Loud, but effective. Will be the first thing I replace on this PC (when I get rich).",
+      "documentation": "https://www.amazon.com/Wraith-Cooler-Processor-AM4-Connector/dp/B07GKRR5WR",
+      "id": 52
+    },
+    {
+      "userId": 1,
+      "name": "Logitech G602",
+      "type": "Mouse",
+      "imageURL": "https://i.imgur.com/ZIwg6FL.jpg",
+      "description": "11 programmable buttons. Up to 2500 DPI. Wireless (through USB). Does not use a unifying receiver.",
+      "purchasePrice": 28.99,
+      "purchaseDate": "2019-11-30",
+      "review": "Great! Scroll bar could be smoother, but I'm used to it.",
+      "documentation": "https://www.amazon.com/gp/product/B00E4MQODC/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1",
+      "id": 53
+    },
+    {
+      "userId": 1,
+      "name": "EVGA SuperNOVA 750 G2",
+      "type": "PSU",
+      "imageURL": "https://i.imgur.com/tzOtzEQ.jpg",
+      "description": "220-G2-0750-XR. 80 PLUS Gold certified. 750 watts.",
+      "purchasePrice": 89.99,
+      "purchaseDate": "2017-12-09",
+      "review": "Totally adequate.",
+      "documentation": "https://www.evga.com/products/specs/psu.aspx?pn=eac89383-65ea-4fd4-925e-fc6d7480dcb7",
+      "id": 54
     }
   ],
   "itemsProjects": [
@@ -869,6 +929,36 @@
       "itemId": 49,
       "projectId": 4,
       "id": 40
+    },
+    {
+      "userId": 1,
+      "itemId": 50,
+      "projectId": 3,
+      "id": 41
+    },
+    {
+      "userId": 1,
+      "itemId": 51,
+      "projectId": 3,
+      "id": 42
+    },
+    {
+      "userId": 1,
+      "itemId": 52,
+      "projectId": 4,
+      "id": 43
+    },
+    {
+      "userId": 1,
+      "itemId": 53,
+      "projectId": 4,
+      "id": 44
+    },
+    {
+      "userId": 1,
+      "itemId": 54,
+      "projectId": 4,
+      "id": 45
     }
   ],
   "documents": [],
@@ -1166,6 +1256,13 @@
       "noteText": "Mounted this as my primary monitor using the VIVO Dual LCD Monitor Desk Mount Stand.",
       "dateTime": "2022/10/18",
       "id": 48
+    },
+    {
+      "userId": 1,
+      "itemId": "54",
+      "noteText": "Moved this from the Black Tower PC to my new gaming PC when I built it in late 2019.",
+      "dateTime": "2019/12/01",
+      "id": 49
     }
   ],
   "tags": [
@@ -1978,6 +2075,54 @@
       "itemId": 49,
       "tag": "Monitors",
       "id": 395
+    },
+    {
+      "userId": 1,
+      "itemId": 50,
+      "tag": "Biking",
+      "id": 396
+    },
+    {
+      "userId": 1,
+      "itemId": 52,
+      "tag": "Gaming",
+      "id": 397
+    },
+    {
+      "userId": 1,
+      "itemId": 52,
+      "tag": "Computers",
+      "id": 398
+    },
+    {
+      "userId": 1,
+      "itemId": 53,
+      "tag": "Gaming",
+      "id": 402
+    },
+    {
+      "userId": 1,
+      "itemId": 53,
+      "tag": "Mice",
+      "id": 404
+    },
+    {
+      "userId": 1,
+      "itemId": 53,
+      "tag": "Computers",
+      "id": 405
+    },
+    {
+      "userId": 1,
+      "itemId": 54,
+      "tag": "PSU",
+      "id": 406
+    },
+    {
+      "userId": 1,
+      "itemId": 54,
+      "tag": "Computer parts",
+      "id": 408
     }
   ]
 }

@@ -16,13 +16,23 @@ body {
   background-color: rgba(118, 214, 107, 0.04);
 }
 
-h1 {
+/* h1 {
   font-size: 48px;
-}
+} */
 
 h1,
 h2 {
   text-align: center;
+}
+
+h1 {
+  font-size: 5vw;
+}
+
+@media screen and (min-width: 1200px) {
+  h1 {
+     font-size: 60px;
+  }
 }
 
 ul {
@@ -605,6 +615,14 @@ a {
   margin-right: 3%;
 }
 
+.marginLeft4P {
+  margin-left: 4%;
+}
+
+.marginLeft3P {
+  margin-left: 3%;
+}
+
 .marginRight5 {
   margin-right: 5px;
 }
@@ -623,6 +641,10 @@ a {
 
 .marginLeft10P {
   margin-left: 10%;
+}
+
+.marginLeft15P {
+  margin-left: 15%;
 }
 
 .marginLeft25P {
@@ -796,8 +818,24 @@ a {
   height: auto;
 }
 
+.height1VH {
+  height: 100vh;
+}
+
+/* Analytics */
+
+
+
+
+
+
+
 /* Mobile */
 @media (max-width: 880px) {
+  h1 {
+    font-size: 8vw;
+ }
+
   #navTopFlexbox {
     flex-direction: column;
     height: 75px;

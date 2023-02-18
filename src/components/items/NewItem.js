@@ -375,29 +375,31 @@ export const NewItem = ({ purchaseDate }) => {
             }}
           ></textarea>
 
-          <label htmlFor="itemTags" className="">
-            Tag this item
-          </label>
-          <div>
-            <input
-              type="text"
-              className="width400"
-              id="itemTags"
-              name="tag"
-              value={tag}
-              onChange={(event) => {
-                setTag(event.target.value);
-              }}
-            />
-            <button
-              className="marginLeft5"
-              onClick={(event) => {
-                handleAddTag(event);
-              }}
-            >
-              +
-            </button>
-          </div>
+          <form>
+            <label htmlFor="itemTags" className="">
+              Tag this item
+            </label>
+            <div>
+              <input
+                type="text"
+                className="width400"
+                id="itemTags"
+                name="tag"
+                value={tag}
+                onChange={(event) => {
+                  setTag(event.target.value);
+                }}
+              />
+              <button
+                className="marginLeft5"
+                onClick={(event) => {
+                  handleAddTag(event);
+                }}
+              >
+                +
+              </button>
+            </div>
+          </form>
           <ul>
             {tags
               .slice(0)

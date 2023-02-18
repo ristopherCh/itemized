@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { Analytics } from "../analytics/Analytics";
 import { Home } from "../Home/Home";
 import { AllItems } from "../items/AllItems";
 import { ItemDetails } from "../items/ItemDetails";
@@ -20,6 +21,7 @@ export const ApplicationViews = () => {
       <Route path="/items/new" element={<NewItem />} />
       <Route path="/items/edit/:itemId" element={<NewItem />} />
       <Route path="/items/tags/:itemTag" element={<AllItems />} />
+      <Route path="/analytics" element={<Analytics />} />
     </Routes>
   );
 };
