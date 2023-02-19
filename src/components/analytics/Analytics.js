@@ -16,6 +16,23 @@ export const Analytics = () => {
   });
   // const pricesArray = [];
   const pricesArray = useRef([]);
+  const [showLegend, setShowLegend] = useState(true);
+  const [chartOptions, setChartOptions] = useState({
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true,
+      },
+    },
+  });
 
   const compare = (prop) => {
     return (a, b) => {
@@ -30,7 +47,7 @@ export const Analytics = () => {
   };
 
   const monthColors = [
-    "Light Blue",
+    "#9BD0F5",
     "Pink",
     "Purple",
     "Green",
@@ -39,7 +56,7 @@ export const Analytics = () => {
     "Red",
     "Brown",
     "Blue",
-    "Black",
+    "LightGreen",
     "Gold",
     "Lavender",
   ];
@@ -68,6 +85,20 @@ export const Analytics = () => {
   useEffect(() => {
     if (selectedProjectId === 0) {
       setFilteredItems(items);
+    } else if (selectedProjectId === projects.length + 1) {
+      let unfoundItems = [];
+      items.forEach((item) => {
+        let found = false;
+        itemsProjects.forEach((itemProject) => {
+          if (itemProject.itemId === item.id) {
+            found = true;
+          }
+        });
+        if (!found) {
+          unfoundItems.push(item);
+        }
+      });
+      setFilteredItems(unfoundItems);
     } else {
       let foundItems = [];
       itemsProjects.forEach((itemProject) => {
@@ -83,6 +114,8 @@ export const Analytics = () => {
     }
   }, [selectedProjectId]);
 
+
+// ! The below code is functional (I believe) for non-stacked bar charts. Leaving it for now.
   // useEffect(() => {
   //   let allItems = filteredItems?.map((item) => ({ ...item }));
   //   allItems.sort(compare("purchaseDate"));
@@ -158,8 +191,6 @@ export const Analytics = () => {
   //   setPriceData(formattedPriceData);
   // }, [monthlyPurchases]);
 
-  // ! attempt at stacked bar chart
-  
   useEffect(() => {
     pricesArray.current = [];
     let allItems = filteredItems?.map((item) => ({ ...item }));
@@ -280,7 +311,7 @@ export const Analytics = () => {
             ].map((monthlyProjectPurchase) => {
               return monthlyProjectPurchase.purchases;
             }),
-            backgroundColor: monthColors[index],
+            backgroundColor: monthColors[index % monthColors.length],
           };
         }),
       };
@@ -288,39 +319,52 @@ export const Analytics = () => {
     setPriceData(formattedPriceData);
   }, [monthlyPurchases, pricesArray.current]);
 
-  const options = {
-    responsive: true,
-    scales: {
-      x: {
-        stacked: true,
-      },
-      y: {
-        stacked: true,
-      },
-    },
-  };
+  useEffect(() => {
+    let options = { ...chartOptions };
+    if (showLegend) {
+      options.plugins.legend.display = true;
+    } else {
+      options.plugins.legend.display = false;
+    }
+    setChartOptions(options);
+  }, [showLegend]);
 
   return (
     <div className="">
       <h1 className="marginTop10">Monthly spending totals</h1>
-      <h3 className="marginLeft15P">Filter by project</h3>
-      <select
-        className="marginLeft15P"
-        onChange={(event) => {
-          setSelectedProjectId(parseInt(event.target.value));
-        }}
-      >
-        <option value={0}>All Projects</option>
-        {projects.map((project) => {
-          return (
-            <option key={project.id} value={project.id}>
-              {project.name}
-            </option>
-          );
-        })}
-      </select>
-      <div id="barChartDiv" className="width75 displayBlock marginAuto">
-        <Bar data={priceData} options={options} />
+      <div className="flexRow spaceBetween marginBottom10 marginTop10">
+        <div className="flexRow marginLeft15P">
+          <h3 className="displayInline">Filter by project</h3>
+          <select
+            className="marginLeft10"
+            onChange={(event) => {
+              setSelectedProjectId(parseInt(event.target.value));
+            }}
+          >
+            <option value={0}>All Projects</option>
+            {projects.map((project) => {
+              return (
+                <option key={project.id} value={project.id}>
+                  {project.name}
+                </option>
+              );
+            })}
+            <option value={projects.length + 1}>Unassociated items</option>
+          </select>
+        </div>
+        <div className="marginRight15P displayInline">
+          <label>Hide legend</label>
+          <input
+            className="marginLeft10"
+            type="checkbox"
+            onClick={(event) => {
+              setShowLegend(!event.target.checked);
+            }}
+          />
+        </div>
+      </div>
+      <div id="barChartDiv" className="width75 maxWidth1500 displayBlock marginAuto">
+        <Bar data={priceData} options={chartOptions} />
       </div>
     </div>
   );

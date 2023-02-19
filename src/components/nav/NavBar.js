@@ -54,6 +54,13 @@ export const NavBar = ({ route }) => {
                   </Link>
                 </div>
               </li>
+              <li className="">
+                <div className="textAlignCenter width120 navLinkHolder">
+                  <Link className="navLink" to="/analytics">
+                    Analytics
+                  </Link>
+                </div>
+              </li>
             </div>
             <li className="">
               <div className="textAlignRight navLinkHolderShort">
