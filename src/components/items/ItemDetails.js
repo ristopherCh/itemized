@@ -185,13 +185,14 @@ export const ItemDetails = () => {
       })
     );
 
-    for (let itemProject of itemProjects) {
-      promiseArray.push(
-        fetch(`http://localhost:8089/itemsProjects/${itemProject.id}`, {
-          method: "DELETE",
-        })
-      );
-    }
+    // ~ apparently this happens automatically
+    // for (let itemProject of itemProjects) {
+    //   promiseArray.push(
+    //     fetch(`http://localhost:8089/itemsProjects/${itemProject.id}`, {
+    //       method: "DELETE",
+    //     })
+    //   );
+    // }
 
     for (let itemNote of itemNotes) {
       promiseArray.push(
@@ -448,11 +449,11 @@ export const ItemDetails = () => {
                   </button>
                 </form>
 
-                <div className="grid marginBottom10" id="tagsContainer">
+                <div className="grid marginBottom10 marginLeft5 marginRight5" id="tagsContainer">
                   {itemTags.map((itemTag) => {
                     return (
                       <div className="itemTagsContainer" key={itemTag.id}>
-                        <div className="width100 textCenter" key={itemTag.id}>
+                        <div className="width100 textCenter marginLeft5" key={itemTag.id}>
                           <Link to={`/items/tags/${itemTag.tag}`}>
                             {itemTag.tag}
                           </Link>

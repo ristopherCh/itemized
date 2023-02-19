@@ -128,10 +128,10 @@ export const AllItems = () => {
       }));
       let selectedFilteredSearched = selectedFiltered.filter((item) => {
         return (
-          item.name.toLowerCase().indexOf(searchInput.toLowerCase()) > -1 ||
-          item.description.toLowerCase().indexOf(searchInput.toLowerCase()) >
+          item.name?.toLowerCase().indexOf(searchInput.toLowerCase()) > -1 ||
+          item.description?.toLowerCase().indexOf(searchInput.toLowerCase()) >
             -1 ||
-          item.type.toLowerCase().indexOf(searchInput.toLowerCase()) > -1
+          item.type?.toLowerCase().indexOf(searchInput.toLowerCase()) > -1
         );
       });
       setFilteredItems(selectedFilteredSearched);

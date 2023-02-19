@@ -51,14 +51,17 @@ export const Analytics = () => {
     "Pink",
     "Purple",
     "Green",
-    "Yellow",
+    "#B565A7",
     "Orange",
     "Red",
     "Brown",
     "Blue",
-    "LightGreen",
+    "#88B04B",
     "Gold",
-    "Lavender",
+    "#FF6F61",
+    "#D65076",
+    "#E15D44",
+    "#A0DAA9"
   ];
 
   useEffect(() => {

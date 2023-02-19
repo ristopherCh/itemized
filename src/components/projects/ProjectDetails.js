@@ -129,8 +129,7 @@ export const ProjectDetails = () => {
           <div id="itemsListDiv">
             <h2 className="underlined">Items</h2>
             <div className="flexRow spaceAround">
-              <div id="projectDescriptionLeft"
-              className="marginRight3P">
+              <div id="projectDescriptionLeft" className="marginRight3P">
                 {projectItems.map((projectItem) => {
                   return (
                     <div className="noWrap" key={projectItem.id}>
@@ -164,8 +163,8 @@ export const ProjectDetails = () => {
             <form>
               <div className="textCenter">Add an item to this project</div>
               <div>
+                {selectedProjectItem.itemId ? displayItemPhoto() : ""}
                 <div className="displayBlock marginAuto flexRow justifyCenter">
-                  {selectedProjectItem.itemId ? displayItemPhoto() : ""}
                   <select
                     onChange={(event) => {
                       const copy = { ...selectedProjectItem };
