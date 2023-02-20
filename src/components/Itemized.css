@@ -890,7 +890,7 @@ a {
 
 }
 
-@media (max-width: 565px) {
+@media (max-width: 685px) {
   .navLink {
     font-size: small;
   }

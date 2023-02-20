@@ -200,8 +200,8 @@ export const Analytics = () => {
     allItems.sort(compare("purchaseDate"));
     let firstPurchase = allItems[0];
     let lastPurchase = allItems[allItems.length - 1];
-    let firstYear = parseInt(firstPurchase?.purchaseDate.slice(0, 4));
-    let finalYear = parseInt(lastPurchase?.purchaseDate.slice(0, 4));
+    let firstYear = parseInt(firstPurchase?.purchaseDate?.slice(0, 4));
+    let finalYear = parseInt(lastPurchase?.purchaseDate?.slice(0, 4));
 
     if (firstYear && finalYear) {
       for (let i = firstYear; i <= finalYear; i++) {
@@ -215,7 +215,7 @@ export const Analytics = () => {
         }
       }
     }
-
+    
     let totalPricesArray = [];
     projects.forEach((project) => {
       let projectObj = {};
@@ -291,7 +291,7 @@ export const Analytics = () => {
       let totalPriceArray = totalPriceObj[Object.keys(totalPriceObj)[0]];
       totalPriceArray.splice(lastUsedIndex + 1, totalPriceArray.length);
     });
-
+    
     setMonthlyPurchases(totalPricesArray);
   }, [filteredItems, projects, itemsProjects]);
 

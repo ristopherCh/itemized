@@ -92,7 +92,7 @@ export const AllProjects = () => {
           </select>
         </div>
       </div>
-      <div className="width75 marginAuto">
+      <div className="width75 marginAuto marginBottom10">
         {filteredProjects.map((project) => {
           return (
             <Link key={project.id} to={`/projects/${project.id}`}>
