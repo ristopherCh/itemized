@@ -7,6 +7,7 @@ import { Register } from "./auth/Register";
 import "./Itemized.css";
 
 export const Itemized = () => {
+  
   return (
     <Routes>
       <Route
@@ -33,7 +34,7 @@ export const Itemized = () => {
         element={
           <Authorized>
             <>
-              <NavBar />
+              <NavBar  />
               <ApplicationViews />
             </>
           </Authorized>

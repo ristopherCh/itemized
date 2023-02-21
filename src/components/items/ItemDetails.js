@@ -355,7 +355,7 @@ export const ItemDetails = () => {
                   className="borderRadiusLight simpleBorder width50 margin10 minWidth250 flexRow alignItemsCenter spaceAround flexColumn boxShadow yellowBackground"
                 >
                   <div
-                    className="marginBottom10 marginTop10 textAlignCenter"
+                    className="marginBottom10 marginTop10 textAlignCenter width100"
                     id="itemProjectsList"
                   >
                     {itemProjects.length > 0 ? (
@@ -413,7 +413,7 @@ export const ItemDetails = () => {
                         })}
                       </select>
                       <button
-                        className="marginLeft10"
+                        className="marginLeft10 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding26"
                         onClick={(event) => {
                           handleAddItemProject(event);
                         }}

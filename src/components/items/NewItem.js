@@ -298,7 +298,7 @@ export const NewItem = ({ purchaseDate }) => {
   return (
     <div id="newItemContentContainer marginBottom50">
       {itemId ? <h1>Edit Item</h1> : <h1>Add New Item</h1>}
-      <form id="newItemForm">
+      <div id="newItemForm">
         <fieldset className="flexColumn marginLeft10P">
           <label className="" htmlFor="itemName">
             Name
@@ -523,7 +523,7 @@ export const NewItem = ({ purchaseDate }) => {
             {itemId ? (
               <button
                 id="newItemSubmitButton"
-                className="marginTop10 marginBottom10"
+                className="width125 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding5 marginTop5 cursorPointer"
                 onClick={(event) => handleItemEdit(event)}
               >
                 Save Edit
@@ -538,7 +538,7 @@ export const NewItem = ({ purchaseDate }) => {
             )}
           </div>
         </fieldset>
-      </form>
+      </div>
     </div>
   );
 };

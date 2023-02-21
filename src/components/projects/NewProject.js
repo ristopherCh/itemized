@@ -174,6 +174,7 @@ export const NewProject = () => {
           {projectId ? (
             <button
               id="newProjectSubmitButton"
+              className="displayBlock width125 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding5 marginTop5"
               onClick={(event) => {
                 handleProjectEdit(event);
               }}

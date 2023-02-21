@@ -336,10 +336,10 @@ export const Analytics = () => {
     <div className="">
       <h1 className="marginTop10">Monthly spending totals</h1>
       <div className="flexRow spaceBetween marginBottom10 marginTop10">
-        <div className="flexRow marginLeft15P">
+        <div className="flexRow marginLeft15P alignCenter">
           <h3 className="displayInline">Filter by project</h3>
           <select
-            className="marginLeft10"
+            className="marginLeft10 height25"
             onChange={(event) => {
               setSelectedProjectId(parseInt(event.target.value));
             }}

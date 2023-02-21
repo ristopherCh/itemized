@@ -182,7 +182,7 @@ export const ProjectDetails = () => {
                     })}
                   </select>
                   <button
-                    className="marginLeft20"
+                    className="marginLeft20 borderRadiusMedium lightBorder darkPurpleBackground whiteFont padding26"
                     onClick={(event) => {
                       handleAddButtonClick(event);
                     }}

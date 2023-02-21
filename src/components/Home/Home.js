@@ -57,7 +57,7 @@ export const Home = () => {
                 to={`/projects/${project.id}`}
                 key={project.id}
               >
-                <section className="allProjectsItem height100P">
+                <section className="allProjectsItem height100P" id="allHomeItem">
                   <h2 className="marginBottom5">{project.name}</h2>
                   <div className="marginBottom10">
                     <img

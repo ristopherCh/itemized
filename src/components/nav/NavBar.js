@@ -5,14 +5,42 @@ export const NavBar = ({ route }) => {
   const navigate = useNavigate();
   const itemizedUserObject = JSON.parse(localStorage.getItem("itemized_user"));
 
+  const createDropFunction = () => {
+    document.getElementById("createDropdown").classList.toggle("show");
+  };
+
+  const navigateDropFunction = () => {
+    document.getElementById("navigateDropdown").classList.toggle("show");
+  };
+
+  window.onclick = (e) => {
+    if (
+      document.getElementById("createDropdown") ||
+      document.getElementById("navigateDropdown")
+    ) {
+      if (!e.target.matches(".createDropbtn")) {
+        let myDropdown = document.getElementById("createDropdown");
+        if (myDropdown.classList.contains("show")) {
+          myDropdown.classList.remove("show");
+        }
+      }
+      if (!e.target.matches(".navigateDropbtn")) {
+        let myDropdown = document.getElementById("navigateDropdown");
+        if (myDropdown.classList.contains("show")) {
+          myDropdown.classList.remove("show");
+        }
+      }
+    }
+  };
+
   if (itemizedUserObject) {
     return (
-      <ul id="navbarUL" className="blackBorder darkGreenBackground padding52">
+      <ul id="navbarUL" className="blackBorder darkGreenBackground">
         <div
-          className="flexRow padding5 alignItemsCenter height40 spaceBetween"
+          className="flexRow alignItemsCenter height40 spaceBetween"
           id="navTopFlexbox"
         >
-          <li className="width180">
+          <li className="width180 padding5">
             <div className="textAlignCenter">
               <Link className="navLink width200" to="/">
                 <img
@@ -24,46 +52,39 @@ export const NavBar = ({ route }) => {
               </Link>
             </div>
           </li>
-          <div className="flexRow spaceBetween alignItemsCenter width100">
-            <div className="flexRow">
-              <li className="">
-                <div className="textAlignCenter width101 navLinkHolderMedium">
-                  <Link className="navLink" to="/projects">
-                    All Projects
-                  </Link>
-                </div>
+          <div
+            className="flexRow spaceBetween alignItemsCenter width100 height100P"
+            id="navLinkItems"
+          >
+            <div className="flexRow height100P alignItemsCenter">
+              <li className="navItem marginAuto height100P flexRow alignItemsCenter justifyCenter textAlignCenter width101 navLinkHolderMedium">
+                <Link className="navLink" to="/projects">
+                  All Projects
+                </Link>
               </li>
-              <li className="">
-                <div className="textAlignCenter width101 navLinkHolder navLinkHolderShort">
-                  <Link className="navLink" to="/items">
-                    All Items
-                  </Link>
-                </div>
+              <li className="navItem marginAuto height100P flexRow alignItemsCenter justifyCenter textAlignCenter width101 navLinkHolderShort">
+                <Link className="navLink" to="/items">
+                  All Items
+                </Link>
               </li>
-              <li className="">
-                <div className="textAlignCenter width150 navLinkHolderLong">
-                  <Link className="navLink" to="/projects/new">
-                    Create New Project
-                  </Link>
-                </div>
+              <li className="navItem marginAuto height100P flexRow alignItemsCenter justifyCenter textAlignCenter width150 navLinkHolderLong">
+                <Link className="navLink" to="/projects/new">
+                  Create New Project
+                </Link>
               </li>
-              <li className="">
-                <div className="textAlignCenter width120 navLinkHolder">
-                  <Link className="navLink" to="/items/new">
-                    Add New Item
-                  </Link>
-                </div>
+              <li className="navItem marginAuto height100P flexRow alignItemsCenter justifyCenter textAlignCenter width120 navLinkHolder">
+                <Link className="navLink" to="/items/new">
+                  Add New Item
+                </Link>
               </li>
-              <li className="">
-                <div className="textAlignCenter width120 navLinkHolder">
-                  <Link className="navLink" to="/analytics">
-                    Analytics
-                  </Link>
-                </div>
+              <li className="navItem marginAuto height100P flexRow alignItemsCenter justifyCenter textAlignCenter width120 navLinkHolder">
+                <Link className="navLink" to="/analytics">
+                  Analytics
+                </Link>
               </li>
             </div>
-            <li className="">
-              <div className="textAlignRight navLinkHolderShort">
+            <li className="navItem height100P flexRow alignItemsCenter padding5">
+              <div className="5textAlignRight navLinkHolderShort">
                 <Link
                   className="navLink"
                   to=""
@@ -76,6 +97,71 @@ export const NavBar = ({ route }) => {
                 </Link>
               </div>
             </li>
+          </div>
+          <div className="navbarDropDiv" id="navBarDropDiv">
+            <div className="dropdownDiv">
+              <button
+                className="createDropbtn dropbtn width125 borderRadiusMedium lightBorder padding5 whiteFont darkPurpleBackground"
+                onClick={() => createDropFunction()}
+              >
+                Create New <i className="fa fa-caret-down"></i>
+              </button>
+              <div
+                className="dropdown-content lightPinkBackground borderRadiusLight boxShadowDiffuse"
+                id="createDropdown"
+              >
+                <div className="textAlignCenter width100">
+                  <Link className="navLink padding5" to="/projects/new">
+                    Create New Project
+                  </Link>
+                </div>
+                <div className="textAlignCenter width100">
+                  <Link className="navLink padding5" to="/items/new">
+                    Add New Item
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="dropdownDiv marginLeft20">
+              <button
+                className="navigateDropbtn dropbtn width125 borderRadiusMedium lightBorder padding5 whiteFont darkPurpleBackground"
+                onClick={() => navigateDropFunction()}
+              >
+                Navigate <i className="fa fa-caret-down"></i>
+              </button>
+              <div
+                className="dropdown-content lightPinkBackground borderRadiusLight boxShadowDiffuse"
+                id="navigateDropdown"
+              >
+                <div className="textAlignCenter width100">
+                  <Link className="navLink padding5" to="/projects">
+                    All Projects
+                  </Link>
+                </div>
+                <div className="textAlignCenter width100">
+                  <Link className="navLink padding5" to="/items">
+                    All Items
+                  </Link>
+                </div>
+                <div className="textAlignCenter width100">
+                  <Link className="navLink padding5" to="/analytics">
+                    Analytics
+                  </Link>
+                </div>
+                <div className="textAlignCenter width100">
+                  <Link
+                    className="navLink padding5"
+                    to=""
+                    onClick={() => {
+                      localStorage.removeItem("itemized_user");
+                      navigate("/", { replace: true });
+                    }}
+                  >
+                    Logout
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </ul>
