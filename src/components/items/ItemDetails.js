@@ -282,7 +282,7 @@ export const ItemDetails = () => {
   };
 
   return (
-    <>
+    <div className="marginTop40">
       <div id="itemImageLargeDiv">
         <div className="borderRadius20 pinkBackground">
           <h1 className="smallH1">{item.name}</h1>
@@ -569,7 +569,7 @@ export const ItemDetails = () => {
                         type="date"
                         onChange={(event) => {
                           const copy = { ...itemNote };
-                          console.log(event.target.value);
+                          
                           copy.dateTime = event.target.value;
                           setItemNote(copy);
                         }}
@@ -603,6 +603,6 @@ export const ItemDetails = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

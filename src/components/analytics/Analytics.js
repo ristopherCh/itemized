@@ -333,7 +333,7 @@ export const Analytics = () => {
   }, [showLegend]);
 
   return (
-    <div className="">
+    <div className="marginTop40">
       <h1 className="marginTop10">Monthly spending totals</h1>
       <div className="flexRow spaceBetween marginBottom10 marginTop10">
         <div className="flexRow marginLeft15P alignCenter">

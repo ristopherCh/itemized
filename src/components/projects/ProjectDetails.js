@@ -114,7 +114,7 @@ export const ProjectDetails = () => {
   };
 
   return (
-    <>
+    <div className="marginTop40">
       <h1>{project.name}</h1>
       <h3 className="projectDescription">{project.description}</h3>
       <div className="flexWrap marginTop20 marginAuto maxWidth1500 alignItemsStart">
@@ -216,6 +216,6 @@ export const ProjectDetails = () => {
           Delete Project
         </button>
       </div>
-    </>
+    </div>
   );
 };

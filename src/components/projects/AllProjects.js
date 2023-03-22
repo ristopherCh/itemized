@@ -60,7 +60,7 @@ export const AllProjects = () => {
   };
 
   return (
-    <div id="allProjectsContainer">
+    <div id="allProjectsContainer" className="marginTop40">
       <h1>All Projects</h1>
       <div id="allProjectsFilterBar">
         <div>

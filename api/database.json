@@ -824,11 +824,12 @@
       "userId": 1,
       "name": "Gigabyte Radeon RX 5700 XT",
       "type": "PC Graphics Card",
-      "imageURL": "",
-      "description": "GV-R57XTGaming OC-8GD. 8GB GDDR6 256-bit memory, game clock 1795 MHz, 2560 stream processors, memory clock 14000 MHz.",
+      "imageURL": "https://i.imgur.com/Loe3VAP.png",
+      "description": "GV-R57XTGaming OC-8GD. 8GB GDDR6 256-bit memory, game clock 1795 MHz, 2560 stream processors, memory clock 14000 MHz. Runs RDR2 wonderfully.",
       "purchasePrice": 419.99,
-      "purchaseDate": "2019-12-09",
-      "documentation": "https://www.gigabyte.com/us/Graphics-Card/GV-R57XTGAMING-OC-8GD-rev-10#kf",
+      "purchaseDate": "2023-02-21",
+      "review": "It's great! I hope.",
+      "documentation": "",
       "id": 64
     },
     {
@@ -1349,7 +1350,7 @@
     },
     {
       "userId": 1,
-      "itemId": 76,
+      "itemId": 64,
       "projectId": 4,
       "id": 75
     }
@@ -1674,16 +1675,23 @@
     {
       "userId": 1,
       "itemId": "76",
-      "noteText": "Installed this into my black Corsair PC.",
-      "dateTime": "2016/12/01",
-      "id": 52
+      "noteText": "Removed this from black Corsair PC and moved it into my UFO Gaming PC.",
+      "dateTime": "2019/12/15",
+      "id": 53
     },
     {
       "userId": 1,
       "itemId": "76",
-      "noteText": "Removed this from black Corsair PC and moved it into my UFO Gaming PC.",
-      "dateTime": "2019/12/15",
-      "id": 53
+      "noteText": "I just uninstalled this and gave it to my girlfriend so that we can game together.",
+      "dateTime": "2023/02/21",
+      "id": 56
+    },
+    {
+      "userId": 1,
+      "itemId": "76",
+      "noteText": "I installed this in my black gaming PC. It's great!",
+      "dateTime": "2017/12/17",
+      "id": 55
     }
   ],
   "tags": [
@@ -2178,12 +2186,6 @@
       "itemId": 13,
       "tag": "Biking",
       "id": 267
-    },
-    {
-      "userId": 1,
-      "itemId": 13,
-      "tag": "Outdoors",
-      "id": 268
     },
     {
       "userId": 1,
@@ -2739,12 +2741,6 @@
     },
     {
       "userId": 1,
-      "itemId": 51,
-      "tag": "Biking",
-      "id": 459
-    },
-    {
-      "userId": 1,
       "itemId": 76,
       "tag": "GPU",
       "id": 460
@@ -2763,18 +2759,6 @@
     },
     {
       "userId": 1,
-      "itemId": 64,
-      "tag": "GPU",
-      "id": 463
-    },
-    {
-      "userId": 1,
-      "itemId": 64,
-      "tag": "Graphics card",
-      "id": 464
-    },
-    {
-      "userId": 1,
       "itemId": 19,
       "tag": "Music",
       "id": 465
@@ -2790,6 +2774,42 @@
       "itemId": 19,
       "tag": "Headphones",
       "id": 467
+    },
+    {
+      "userId": 1,
+      "itemId": 13,
+      "tag": "Outdoors",
+      "id": 480
+    },
+    {
+      "userId": 1,
+      "itemId": 13,
+      "tag": "Tires",
+      "id": 481
+    },
+    {
+      "userId": 1,
+      "itemId": 51,
+      "tag": "Biking",
+      "id": 482
+    },
+    {
+      "userId": 1,
+      "itemId": 64,
+      "tag": "GPU",
+      "id": 483
+    },
+    {
+      "userId": 1,
+      "itemId": 64,
+      "tag": "Graphics card",
+      "id": 484
+    },
+    {
+      "userId": 1,
+      "itemId": 3,
+      "tag": "Guitar",
+      "id": 485
     }
   ]
 }

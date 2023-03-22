@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "./projects.css";
 
 export const NewProject = () => {
   const { projectId } = useParams();
@@ -111,7 +110,7 @@ export const NewProject = () => {
   }, [userInputs]);
 
   return (
-    <div id="newProjectContentContainer">
+    <div id="newProjectContentContainer" className="marginTop40">
       {projectId ? <h1>Edit Project</h1> : <h1>Create New Project</h1>}
 
       <form className="marginLeft15P" id="newProjectForm">

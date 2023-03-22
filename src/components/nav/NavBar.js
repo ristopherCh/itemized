@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import "./NavBar.css";
 
 export const NavBar = ({ route }) => {
   const navigate = useNavigate();
@@ -168,7 +167,7 @@ export const NavBar = ({ route }) => {
     );
   } else {
     return (
-      <ul id="navbarUL" className="blackBorder darkGreenBackground padding52">
+      <ul id="navbarUL" className="blackBorder darkGreenBackground">
         <div className="">
           <div className="flexRow alignItemsCenter height40 spaceBetween">
             <li className="width180">
@@ -196,30 +195,4 @@ export const NavBar = ({ route }) => {
       </ul>
     );
   }
-  // else if (route === "register") {
-  //   return (
-  //     <ul id="navbarUL" className="blackBorder darkGreenBackground padding52">
-  //       <div className="navbar">
-  //         <div className="flexRow alignItemsCenter">
-  //           <li className="">
-  //             <div className="textAlignCenter">
-  //               <img
-  //                 className="navLogoLogin"
-  //                 src={require("../../images/itemizedLogoSolid.png")}
-  //                 alt=""
-  //               ></img>
-  //             </div>
-  //           </li>
-  //         </div>
-  //         <li className="">
-  //           <div className="textAlignCenter">
-  //             <Link className="navLink" to="/login">
-  //               Login
-  //             </Link>
-  //           </div>
-  //         </li>
-  //       </div>
-  //     </ul>
-  //   );
-  // }
 };

@@ -51,7 +51,7 @@ export const Register = (props) => {
   };
 
   return (
-    <main className="">
+    <main className="marginTop40">
       <h2 className="marginBottom10">Register</h2>
       <form
         className="width500 marginAuto blackBorder borderRadiusMedium yellowBackground boxShadowDark"

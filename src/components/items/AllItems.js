@@ -139,7 +139,7 @@ export const AllItems = () => {
   }, [items, tagObjects, filterStatus, searchInput]);
 
   return (
-    <div id="allItemsContainer">
+    <div id="allItemsContainer" className="marginTop40">
       {itemTag ? <h1>{itemTag}</h1> : <h1>All Items</h1>}
       <div className="" id="allItemsFilterBar">
         <div>

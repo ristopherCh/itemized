@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "./items.css";
 
 export const NewItem = ({ purchaseDate }) => {
   const { itemId } = useParams();
@@ -138,23 +137,6 @@ export const NewItem = ({ purchaseDate }) => {
       });
     }
   };
-
-  // const postToItemsNotes = (itemId) => {
-  //   const itemNoteCopy = { ...itemNote };
-  //   itemNoteCopy.itemId = itemId;
-  //   itemNoteCopy.dateTime = Date();
-  //   if (itemNoteCopy.noteText) {
-  //     fetch(`http://localhost:8089/itemsNotes`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(itemNoteCopy),
-  //     });
-  //   } else {
-  //     navigate(`/items/${itemId}`);
-  //   }
-  // };
 
   const postToTags = (itemId) => {
     const promiseArray = [];
@@ -296,7 +278,7 @@ export const NewItem = ({ purchaseDate }) => {
   };
 
   return (
-    <div id="newItemContentContainer marginBottom50">
+    <div id="newItemContentContainer" className="marginTop40">
       {itemId ? <h1>Edit Item</h1> : <h1>Add New Item</h1>}
       <div id="newItemForm">
         <fieldset className="flexColumn marginLeft10P">

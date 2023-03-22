@@ -31,7 +31,7 @@ export const Login = () => {
 
   return (
     <main>
-      <section className=" ">
+      <section className="marginTop40">
         <h2 className="marginBottom10">Login</h2>
         <div className="marginAuto blackBorder maxWidth500 borderRadiusMedium yellowBackground boxShadowDark">
           <form className="" onSubmit={handleLogin}>

@@ -43,8 +43,8 @@ export const Home = () => {
   }, [projects, projectItems]);
 
   return (
-    <>
-      <h1>Your recent projects</h1>
+    <div className="marginTop40">
+      <h1>Recent projects</h1>
       <div className="marginBottom50 marginTop20">
         <div
           id="homeGrid"
@@ -72,6 +72,6 @@ export const Home = () => {
           })}
         </div>
       </div>
-    </>
+    </div>
   );
 };
